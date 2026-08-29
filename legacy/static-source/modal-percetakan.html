@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap 5 Modals</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/pages/modal-percetakan.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mb-4">Bootstrap 5 Modal Examples</h1>
+
+        <div class="demo-buttons">
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal1" type="button">Modal 1: Input Ukuran Kertas Baru</button>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal2" type="button">Modal 2: Input Ukuran Kertas Baru dengan Tabel</button>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal3" type="button">Modal 3: Input Harga Kertas Baru</button>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal4" type="button">Modal 4: Group Acuan Kertas</button>
+        </div>
+
+        <!-- Modal 1: Input Ukuran Kertas Baru -->
+        <div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="modal1Label" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal1Label">modal visitor</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <h5>Input Ukuran Kertas Baru</h5>
+
+                            <div class="mb-3">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <label for="satuanUkuran1" class="form-label">Pilih Satuan Ukuran</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="input-group">
+                                            <select class="form-select" id="satuanUkuran1">
+                                                <option selected>Centimeter</option>
+                                                <option>Inch</option>
+                                                <option>Millimeter</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <label for="namaMesin1" class="form-label">Masukan Nama Mesin</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <input type="text" class="form-control" id="namaMesin1" value="Mesin SM 52 4 Warna">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <label class="form-label">Ukuran Area Kertas</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="row">
+                                            <div class="col-2 text-center">P</div>
+                                            <div class="col-4">
+                                                <input type="text" class="form-control" value="52">
+                                            </div>
+                                            <div class="col-2 text-center">L</div>
+                                            <div class="col-4">
+                                                <input type="text" class="form-control" value="37">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <label for="lebarJepitan1" class="form-label">Lebar Jepitan</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <input type="text" class="form-control" id="lebarJepitan1" value="1.2">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <label for="hargaMinimum1" class="form-label">Harga Minimum</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <input type="text" class="form-control" id="hargaMinimum1" value="240.000">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <label for="qtyMinimum1" class="form-label">Qty Minimum</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <input type="text" class="form-control" id="qtyMinimum1" value="1.000">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <label for="hargaDruck1" class="form-label">Harga Druck</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <input type="text" class="form-control" id="hargaDruck1" value="60">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <label for="hargaPlat1" class="form-label">Harga Plat</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <input type="text" class="form-control" id="hargaPlat1" value="80.000">
+                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal 2: Input Ukuran Kertas Baru dengan Tabel -->
+        <div class="modal fade" id="modal2" tabindex="-1" aria-labelledby="modal2Label" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal2Label">modal user</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="accordion mb-3" id="accordionUkuranKertas">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseUkuranKertas" aria-expanded="true" aria-controls="collapseUkuranKertas">
+                                        + Input Ukuran Kertas Baru
+                                    </button>
+                                </h2>
+                                <div id="collapseUkuranKertas" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionUkuranKertas">
+                                    <div class="accordion-body">
+                                        <form>
+                                            <div class="mb-3">
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <label for="satuanUkuran1-2" class="form-label">Pilih Satuan Ukuran</label>
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                        <div class="input-group">
+                                                            <select class="form-select" id="satuanUkuran1-2">
+                                                                <option selected>Centimeter</option>
+                                                                <option>Inch</option>
+                                                                <option>Millimeter</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <label for="namaMesin1-2" class="form-label">Masukan Nama Mesin</label>
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                        <input type="text" class="form-control" id="namaMesin1-2" value="Mesin SM 52 4 Warna">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <label class="form-label">Ukuran Area Kertas</label>
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                        <div class="row">
+                                                            <div class="col-2 text-center">P</div>
+                                                            <div class="col-4">
+                                                                <input type="text" class="form-control" value="52">
+                                                            </div>
+                                                            <div class="col-2 text-center">L</div>
+                                                            <div class="col-4">
+                                                                <input type="text" class="form-control" value="37">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <label for="lebarJepitan1-2" class="form-label">Lebar Jepitan</label>
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                        <input type="text" class="form-control" id="lebarJepitan1-2" value="1.2">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <label for="hargaMinimum1-2" class="form-label">Harga Minimum</label>
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                        <input type="text" class="form-control" id="hargaMinimum1-2" value="240.000">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <label for="qtyMinimum1-2" class="form-label">Qty Minimum</label>
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                        <input type="text" class="form-control" id="qtyMinimum1-2" value="1.000">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <label for="hargaDruck1-2" class="form-label">Harga Druck</label>
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                        <input type="text" class="form-control" id="hargaDruck1-2" value="60">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <label for="hargaPlat1-2" class="form-label">Harga Plat</label>
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                        <input type="text" class="form-control" id="hargaPlat1-2" value="80.000">
+                                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama Mesin</th>
+                                        <th>Panjang Area</th>
+                                        <th>Lebar Area</th>
+                                        <th>Lebar Jepitan</th>
+                                        <th>Harga Min</th>
+                                        <th>Qty Min</th>
+                                        <th>Druck</th>
+                                        <th>Harga Plat</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>GTO 52 4 Warna</td>
+                                        <td>52</td>
+                                        <td>35</td>
+                                        <td>1.2</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>Aktif</td>
+                                        <td>
+                                            <button class="icon-button" type="button"><i class="bi bi-pencil-square"></i></button>
+                                            <button class="icon-button" type="button"><i class="bi bi-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>SM 52 4 Warna</td>
+                                        <td>52</td>
+                                        <td>37</td>
+                                        <td>1.2</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>Aktif</td>
+                                        <td>
+                                            <button class="icon-button" type="button"><i class="bi bi-pencil-square"></i></button>
+                                            <button class="icon-button" type="button"><i class="bi bi-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>SM 72 4 Warna</td>
+                                        <td>72</td>
+                                        <td>37</td>
+                                        <td>1.2</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>Aktif</td>
+                                        <td>
+                                            <button class="icon-button" type="button"><i class="bi bi-pencil-square"></i></button>
+                                            <button class="icon-button" type="button"><i class="bi bi-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>SM 102 4 Warna</td>
+                                        <td>102</td>
+                                        <td>72</td>
+                                        <td>1.5</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>Aktif</td>
+                                        <td>
+                                            <button class="icon-button" type="button"><i class="bi bi-pencil-square"></i></button>
+                                            <button class="icon-button" type="button"><i class="bi bi-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="text-center my-3">
+                            <a href="#" class="generate-button">Generate Data Harga Aktual</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Modal 3: Input Harga Kertas Baru -->
+        <div class="modal fade" id="modal3" tabindex="-1" aria-labelledby="modal3Label" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal3Label">modal visitor</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <h5>Input Harga Kertas Baru</h5>
+
+                            <div class="mb-3">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <label for="satuanUkuran3" class="form-label">Pilih Satuan Ukuran</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="input-group">
+                                            <select class="form-select" id="satuanUkuran3">
+                                                <option selected>Centimeter</option>
+                                                <option>Inch</option>
+                                                <option>Millimeter</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <label for="namaKertas3" class="form-label">Nama Kertas</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <input type="text" class="form-control" id="namaKertas3">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <label class="form-label">Ukuran</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="row">
+                                            <div class="col-2 text-center">P</div>
+                                            <div class="col-4">
+                                                <input type="text" class="form-control" value="65">
+                                            </div>
+                                            <div class="col-2 text-center">L</div>
+                                            <div class="col-4">
+                                                <input type="text" class="form-control" value="100">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <label for="hargaPerRim3" class="form-label">Harga Per Rim</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <input type="text" class="form-control" id="hargaPerRim3" value="850.000">
+                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal 4: Group Acuan Kertas -->
+        <div class="modal fade" id="modal4" tabindex="-1" aria-labelledby="modal4Label" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal4Label">modal user regist</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="accordion mb-3" id="satuanUkuran">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne-2">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSatuanUkuran" aria-expanded="true" aria-controls="collapseSatuanUkuran">
+                                        + Harga Group Acuan Kertas per Rim
+                                    </button>
+                                </h2>
+                                <div id="collapseSatuanUkuran" class="accordion-collapse collapse show" aria-labelledby="headingOne-2" data-bs-parent="#satuanUkuran">
+                                    <div class="accordion-body">
+                                        <form>
+                                            <div class="mb-3">
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <label for="satuanUkuran4" class="form-label">Pilih Satuan Ukuran</label>
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                        <div class="input-group">
+                                                            <select class="form-select" id="satuanUkuran4">
+                                                                <option selected>Centimeter</option>
+                                                                <option>Inch</option>
+                                                                <option>Millimeter</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <label for="pilihGroup4" class="form-label">Pilih Group Kertas</label>
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                        <div class="input-group">
+                                                            <select class="form-select" id="pilihGroup4">
+                                                                <option selected>Art Carton</option>
+                                                                <option>Art Paper</option>
+                                                                <option>HVS</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <label class="form-label">Ukuran</label>
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                        <div class="row">
+                                                            <div class="col-2 text-center">P</div>
+                                                            <div class="col-4">
+                                                                <input type="text" class="form-control" value="65">
+                                                            </div>
+                                                            <div class="col-2 text-center">L</div>
+                                                            <div class="col-4">
+                                                                <input type="text" class="form-control" value="100">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <label for="gramatur4" class="form-label">Gramatur/Gsm</label>
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                        <input type="text" class="form-control" id="gramatur4" value="230">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <label for="hargaPerRim4" class="form-label">Harga Per Rim</label>
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                        <input type="text" class="form-control" id="hargaPerRim4" value="850.000">
+                                                        <button type="submit" class="btn btn-primary mb-4">Simpan</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h6>Tabel Harga Acuan Kertas Per Rim dalam Group</h6>
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Group Kertas</th>
+                                        <th>Gsm</th>
+                                        <th>Panjang</th>
+                                        <th>Lebar</th>
+                                        <th>Harga</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Art Paper</td>
+                                        <td>100</td>
+                                        <td>65</td>
+                                        <td>100</td>
+                                        <td>450.000</td>
+                                        <td>Aktif</td>
+                                        <td>
+                                            <button class="icon-button" type="button"><i class="bi bi-pencil-square"></i></button>
+                                            <button class="icon-button" type="button"><i class="bi bi-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Art Carton</td>
+                                        <td>260</td>
+                                        <td>79</td>
+                                        <td>109</td>
+                                        <td>1850.000</td>
+                                        <td>Aktif</td>
+                                        <td>
+                                            <button class="icon-button" type="button"><i class="bi bi-pencil-square"></i></button>
+                                            <button class="icon-button" type="button"><i class="bi bi-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Duplex</td>
+                                        <td>310</td>
+                                        <td>79</td>
+                                        <td>109</td>
+                                        <td>0</td>
+                                        <td>Aktif</td>
+                                        <td>
+                                            <button class="icon-button" type="button"><i class="bi bi-pencil-square"></i></button>
+                                            <button class="icon-button" type="button"><i class="bi bi-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>Hvs/paper</td>
+                                        <td>100</td>
+                                        <td>70</td>
+                                        <td>100</td>
+                                        <td>0</td>
+                                        <td>Aktif</td>
+                                        <td>
+                                            <button class="icon-button" type="button"><i class="bi bi-pencil-square"></i></button>
+                                            <button class="icon-button" type="button"><i class="bi bi-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="text-center my-3">
+                            <a href="#" class="generate-button">Generate Harga Aktual</a>
+                        </div>
+
+                        <div class="accordion mb-3" id="accordionHargaGroup">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne-3">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHargaGroup" aria-expanded="true" aria-controls="collapseHargaGroup">
+                                        + Jenis Kertas Baru berdasarkan group kertas
+                                    </button>
+                                </h2>
+                                <div id="collapseHargaGroup" class="accordion-collapse collapse show" aria-labelledby="headingOne-3" data-bs-parent="#accordionHargaGroup">
+                                    <div class="accordion-body">
+                                        <form>
+                                            <div class="mb-3">
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <label for="pilihGroup4-2" class="form-label">Pilih Group Kertas</label>
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                        <div class="input-group">
+                                                            <select class="form-select" id="pilihGroup4-2">
+                                                                <option selected>Art Carton</option>
+                                                                <option>Art Paper</option>
+                                                                <option>HVS</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <label for="gramatur4-2" class="form-label">Masukan Gramatur</label>
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                        <input type="text" class="form-control" id="gramatur4-2" value="230">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <label class="form-label">Pilih Ukuran Plano</label>
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                        <div class="form-check mb-2">
+                                                            <input class="form-check-input" type="checkbox" value="" id="size1" checked>
+                                                            <label class="form-check-label" for="size1">
+                                                                90 x 120
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check mb-2">
+                                                            <input class="form-check-input" type="checkbox" value="" id="size2">
+                                                            <label class="form-check-label" for="size2">
+                                                                79 x 109
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check mb-2">
+                                                            <input class="form-check-input" type="checkbox" value="" id="size3">
+                                                            <label class="form-check-label text-muted" for="size3">
+                                                                70 x 100 (cocok untuk ukuran A4/A3 genap)
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check mb-2">
+                                                            <input class="form-check-input" type="checkbox" value="" id="size4">
+                                                            <label class="form-check-label" for="size4">
+                                                                65 x 90
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check mb-2">
+                                                            <input class="form-check-input" type="checkbox" value="" id="size5">
+                                                            <label class="form-check-label" for="size5">
+                                                                61 x 92
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check mb-2">
+                                                            <input class="form-check-input" type="checkbox" value="" id="size6">
+                                                            <label class="form-check-label" for="size6">
+                                                                61 x 86
+                                                            </label>
+                                                        </div>
+                                                        <button type="submit" class="btn btn-primary mb-4">Simpan</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h6>Tabel Jenis Kertas</h6>
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Group Kertas</th>
+                                        <th>Gsm</th>
+                                        <th>Panjang</th>
+                                        <th>Lebar</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Art Paper</td>
+                                        <td>150</td>
+                                        <td>79</td>
+                                        <td>109</td>
+                                        <td>Aktif</td>
+                                        <td>
+                                            <button class="icon-button" type="button"><i class="bi bi-pencil-square"></i></button>
+                                            <button class="icon-button" type="button"><i class="bi bi-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Art Paper</td>
+                                        <td>150</td>
+                                        <td>65</td>
+                                        <td>100</td>
+                                        <td>Aktif</td>
+                                        <td>
+                                            <button class="icon-button" type="button"><i class="bi bi-pencil-square"></i></button>
+                                            <button class="icon-button" type="button"><i class="bi bi-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Art Paper</td>
+                                        <td>150</td>
+                                        <td>65</td>
+                                        <td>90</td>
+                                        <td>Aktif</td>
+                                        <td>
+                                            <button class="icon-button" type="button"><i class="bi bi-pencil-square"></i></button>
+                                            <button class="icon-button" type="button"><i class="bi bi-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>Art Paper</td>
+                                        <td>150</td>
+                                        <td>61</td>
+                                        <td>92</td>
+                                        <td>Aktif</td>
+                                        <td>
+                                            <button class="icon-button" type="button"><i class="bi bi-pencil-square"></i></button>
+                                            <button class="icon-button" type="button"><i class="bi bi-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td>Art Carton</td>
+                                        <td>210</td>
+                                        <td>79</td>
+                                        <td>109</td>
+                                        <td>Aktif</td>
+                                        <td>
+                                            <button class="icon-button" type="button"><i class="bi bi-pencil-square"></i></button>
+                                            <button class="icon-button" type="button"><i class="bi bi-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td>Art Carton</td>
+                                        <td>210</td>
+                                        <td>65</td>
+                                        <td>100</td>
+                                        <td>Aktif</td>
+                                        <td>
+                                            <button class="icon-button" type="button"><i class="bi bi-pencil-square"></i></button>
+                                            <button class="icon-button" type="button"><i class="bi bi-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>7</td>
+                                        <td>Art Carton</td>
+                                        <td>210</td>
+                                        <td>61</td>
+                                        <td>92</td>
+                                        <td>Aktif</td>
+                                        <td>
+                                            <button class="icon-button" type="button"><i class="bi bi-pencil-square"></i></button>
+                                            <button class="icon-button" type="button"><i class="bi bi-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

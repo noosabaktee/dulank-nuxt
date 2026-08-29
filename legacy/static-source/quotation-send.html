@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quotation</title>
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pages/quotation-send.css">
+</head>
+<body>
+    <header>
+        <div id="navbar-placeholder"></div>
+    </header>
+
+
+    <main>
+
+        <!-- Main Content Area (placeholder) -->
+        <div class="container my-5">
+            <div class="row">
+                <!-- Sidebar Navigation -->
+                <div class="col-lg-3 mb-4" id="sidebar-profile-placeholder"></div>
+
+                <!-- Main Profile Content -->
+                <div class="col-lg-9">
+                    <!-- For Empty -->
+                    <div class="text-center py-5 d-none">
+                        <img src="images/profile-null.svg" width="150" class="mb-4">
+                        <h4>There is no history here</h4>
+                        <p class="text-muted mb-4">Happy shopping!</p>
+                        <a href="#" class="btn btn-dark my-bg-primary px-4 py-2 rounded-0">Continue Shopping</a>
+                    </div>
+                    <div class="recent-orders">
+                        <div class="mt-2 mt-md-0 d-flex justify-content-between">
+                            <h5 class="section-title mb-0">Quotations</h5>
+                            <div class="d-flex">
+                                <form action="" class="d-flex">
+                                    <input type="text" class="form-control" placeholder="search">
+                                    <button class="ms-2 btn my-btn-primary" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                </form>
+                                <div class="dropdown ms-2">
+                                    <button class="btn my-btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Sorting
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        <li><a class="dropdown-item" href="#">Newest</a></li>
+                                        <li><a class="dropdown-item" href="#">Oldest</a></li>
+                                        <li><a class="dropdown-item" href="#">Highest</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div>
+                            <div class="row align-items-center py-2 px-3 d-none d-md-flex fw-bold">
+                                <div class="col-md-2 small">Quotation #</div>
+                                <div class="col-md-2 small">Tanggal</div>
+                                <div class="col-md-4 small">Quotation Request Status</div>
+                                <div class="col-md-2 small text-end">Total Price</div>
+                                <div class="col-md-2 small text-end"></div>
+                            </div>
+
+                            <!-- Items 1 -->
+                            <div class="row table-product align-items-md-center py-3 px-3 border-bottom-md-0">
+                                <div class="col-12 col-md-2" data-label="Quotation #">Q21000221395</div>
+                                <div class="col-12 col-md-2" data-label="Tanggal">13/06/25</div>
+                                <div class="col-12 col-md-4" data-label="Quotation Request Status">Accepted</div>
+                                <div class="col-12 col-md-2 text-start text-md-end" data-label="Total Price">Rp2.441.889</div>
+                                <div class="col-12 col-md-2 text-start text-md-end actions-mobile-separator">
+                                    <a href="quotation-view.html" class="btn my-text-primary p-0">View Quotation</a>
+                                </div>
+                            </div>
+                            <!-- Items 2 -->
+                            <div class="row table-product align-items-md-center py-3 px-3 border-bottom-md-0">
+                                <div class="col-12 col-md-2" data-label="Quotation #">Q21000221395</div>
+                                <div class="col-12 col-md-2" data-label="Tanggal">13/06/25</div>
+                                <div class="col-12 col-md-4" data-label="Quotation Request Status">Accepted, Ordered</div>
+                                <div class="col-12 col-md-2 text-start text-md-end" data-label="Total Price">Rp2.441.889</div>
+                                <div class="col-12 col-md-2 text-start text-md-end actions-mobile-separator">
+                                    <a href="quotation-view.html" class="btn my-text-primary p-0">View Quotation</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-standard d-flex justify-content-end mt-2">
+                            Tampilkan
+                            <select class="text-standard mx-2" aria-label="Default select example">
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="50">50</option>
+                            </select>
+                            Per Halaman
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div id="footer-placeholder"></div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/component.js"></script>
+    <script src="js/profile.js"></script>
+</body>
+</html>

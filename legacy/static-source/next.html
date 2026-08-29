@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart | Dulank</title>
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Sweet Alert -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.22.2/dist/sweetalert2.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.22.2/dist/sweetalert2.all.min.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- <link rel="stylesheet" href="css/save.css"> -->
+    <link rel="stylesheet" href="css/pages/next.css">
+    <link rel="stylesheet" href="css/pages/next-inline.css">
+</head>
+
+<body>
+    <header>
+        <div id="navbar-placeholder" class="bg-white"></div>
+    </header>
+
+    <!-- Category Navbar -->
+    <div class="container mt-3">
+        <p class="text-standard">Home > Cart > Next</p>
+    </div>
+
+    <main>
+        <!-- Main Content Area (placeholder) -->
+        <div class="container my-5">
+            <div class="row save">
+                <ol class="step">
+                    <li class="steps">Select Product</li>
+                    <li class="steps current">Input File</li>
+                    <li class="steps">Checkout</li>
+                </ol>
+                <div class="col-lg-8">
+                    <h1 class="fs-5">Your Cart</h1>
+                    <!-- <div class="d-flex justify-content-between mb-2">
+                        <div class="d-flex">
+                            <button class="btn my-btn-primary me-2 d-none" id="update-cart-btn">Update Keranjang Belanjang</button>
+                            <button class="btn my-btn-outline-primary">Hapus</button>
+                        </div>
+                    </div> -->
+
+
+                    <!-- Item 1 -->
+                    <div class="card-product-list save-item">
+                        <!-- Rincian dan aksi -->
+                        <div class="align-items-center my-3">
+                            <div class="d-flex">
+                                <div class="me-2">
+                                    <img src="images/yasin.jpg" alt="Kaos" class="object-fit-cover rounded-2"
+                                        width="64" height="64">
+                                </div>
+                                <div class="ms-md-1 w-100">
+                                    <div class="desc">
+                                        <div class="text-secondary text-standard">Brosur Full Color A4 (210x297
+                                            Milimeter), Art paper 150gr, Tanpa Laminasi, Tanpa Lipatan</div>
+                                        <div class="title row mt-1">
+                                            <div class="col-3">
+                                                <span class="text-standard">Job Name</span>
+                                            </div>
+                                            <div class="col">
+                                                <input type="text" class="input-edit p-0 fw-semibold d-none">
+                                                <span class="job-name fw-semibold">Yasin Tahlil </span>
+                                                <span role="button"
+                                                    class="text-standard fst-italic text-primary job-name-btn">Job Title
+                                                    <i class="fa-solid fa-pen-to-square ms-1"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row align-items-center">
+                                        <div>
+                                            <!-- Design File -->
+                                            <div class="row my-2">
+                                                <div class="col-3">
+                                                    <label class="custom-label text-standard">Art Work</label>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="d-inline">
+                                                        <button class="btn btn-spec me-2 selected" type="button" data-js-click="next-001">Belum
+                                                            ada design<span class="ribbon"></span></button>
+                                                        <button class="btn btn-spec me-2" type="button" data-js-click="next-002">Ada
+                                                            file ready to print<span
+                                                                class="ribbon d-none"></span></button>
+                                                    </div>
+                                                    <input type="text" class="form-control mt-2 d-none design-link-input"
+                                                        placeholder="link design">
+                                                </div>
+                                            </div>
+                                            <!-- Hasil Cetak -->
+                                            <div class="row my-2">
+                                                <div class="col-3">
+                                                    <label class="custom-label text-standard">Hasil Cetak</label>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="d-inline">
+                                                        <button class="btn btn-spec me-2 selected" type="button">Warna
+                                                            Standard CMYK<span class="ribbon"></span></button>
+                                                        <button class="btn btn-spec me-2" type="button">Warna sesuai
+                                                            sampel<span class="ribbon d-none"></span></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Note -->
+                                            <div class="row my-2">
+                                                <div class="col-3">
+                                                    <label class="custom-label text-standard">Note</label>
+                                                </div>
+                                                <div class="col">
+                                                    <input type="text" class="form-control text-standard mt-2" name=""
+                                                        placeholder="Note (opsional)">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="card-product-list save-item">
+                        <!-- Rincian dan aksi -->
+                        <div class="align-items-center my-3">
+                            <div class="d-flex">
+                                <div class="me-2">
+                                    <img src="images/brosur.jpg" alt="Kaos" class="object-fit-cover rounded-2"
+                                        width="64" height="64">
+                                </div>
+                                <div class="ms-md-1 w-100">
+                                    <div class="desc">
+                                        <div class="text-secondary text-standard">Brosur Full Color A4 (210x297
+                                            Milimeter), Art paper 150gr, Tanpa Laminasi, Tanpa Lipatan</div>
+                                        <div class="title row mt-1">
+                                            <div class="col-3">
+                                                <span class="text-standard">Job Name</span>
+                                            </div>
+                                            <div class="col">
+                                                <input type="text" class="input-edit p-0 fw-semibold d-none">
+                                                <span class="job-name fw-semibold">Brosur Full Color </span>
+                                                <span role="button"
+                                                    class="text-standard fst-italic text-primary job-name-btn">Job Title
+                                                    <i class="fa-solid fa-pen-to-square ms-1"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row align-items-center">
+                                        <div>
+                                            <!-- Design File -->
+                                            <div class="row my-2">
+                                                <div class="col-3">
+                                                    <label class="custom-label text-standard">Art Work</label>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="d-inline">
+                                                        <button class="btn btn-spec me-2 selected" type="button" data-js-click="next-003">Belum
+                                                            ada design<span class="ribbon"></span></button>
+                                                        <button class="btn btn-spec me-2" type="button" data-js-click="next-004">Ada
+                                                            file ready to print<span
+                                                                class="ribbon d-none"></span></button>
+                                                    </div>
+                                                    <input type="text" class="form-control mt-2 d-none design-link-input"
+                                                        placeholder="link design">
+                                                </div>
+                                            </div>
+                                            <!-- Hasil Cetak -->
+                                            <div class="row my-2">
+                                                <div class="col-3">
+                                                    <label class="custom-label text-standard">Hasil Cetak</label>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="d-inline">
+                                                        <button class="btn btn-spec me-2 selected" type="button">Warna
+                                                            Standard CMYK<span class="ribbon"></span></button>
+                                                        <button class="btn btn-spec me-2" type="button">Warna sesuai
+                                                            sampel<span class="ribbon d-none"></span></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Note -->
+                                            <div class="row my-2">
+                                                <div class="col-3">
+                                                    <label class="custom-label text-standard">Note</label>
+                                                </div>
+                                                <div class="col">
+                                                    <input type="text" class="form-control text-standard mt-2" name=""
+                                                        placeholder="Note (opsional)">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Cart total section -->
+                <div class="col-lg-4 px-3 h-100 position-sticky top-0">
+                   <h1 class=" fs-5 bg-light p-2" id="inline-style-next-001">Order Summary</h1>
+                    <div class="mb-3"><span class="text-standard">PPN (11%)</span> <span
+                            class="float-end text-standard text-primary">Rp0</span></div>
+                    <div class="mb-3 mt-2">
+                        <div class="text-standard text-start">Jumlah Total</div>
+                        <h4 class="text-primary text-end" id="grandTotal">Rp1.300.000</h4>
+                    </div>
+                    <div class="alert alert-warning text-standard text-center d-none" role="alert" id="update-info">
+                        Silakan klik update keranjang belanja untuk memperbarui rangkuman belanja Anda!
+                    </div>
+                    <div class="alert alert-danger text-standard text-center d-none" role="alert" id="job-name-info">
+                        Silakan isi semua Job Name pada product yang dipilih!
+                    </div>
+                    <div class="text-end">
+                        <a href="checkout.html" class="btn me-2 my-btn-primary w-100 disabled"
+                            id="checkout-btn">Lanjutkan ke Checkout</a>
+                        <a href="quotation-add.html" class="btn me-2 btn-warning w-100 my-2 disabled"
+                            id="quotation-btn">Buat Surat Penawaran (Quotation)</a>
+                    </div>
+                    <div class="text-start my-2">
+                        <span class="text-standard">*) Belum termasuk biaya pengiriman berikut PPN pengiriman</span><br>
+                        <span class="text-standard">*) Kode voucher dapat digunakan di halaman checkout</span>
+                    </div>
+
+                    <!-- Label Gratis Ongkir -->
+                    <div class="bg-light border">
+                        <p class="text-standard p-2" id="inline-style-next-002">Promo GRATIS ONGKIR kirim ke Jakarta,
+                            Bogor, Bekasi, Karawang, Purwakarta dengan minimum pembelian Rp500.000</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Empty Cart State (hidden by default) -->
+            <div class="empty-save-container d-none text-center py-5">
+                <i class="fa-solid fa-cart-plus empty-save-icon fa-4x text-muted mb-4"></i>
+                <h4>Your Cart is empty</h4>
+                <p class="text-muted mb-4">You don't have any products added to cart yet.</p>
+                <a href="#" class="btn btn-danger my-bg-primary px-4 py-2 rounded-0">Continue Shopping</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div id="footer-placeholder"></div>
+    </footer>
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/component.js"></script>
+    <script src="js/easy-number-separator.js"></script>
+    <script src="js/pages/next.js"></script>
+    <script src="js/pages/next-events.js"></script>
+</body>
+
+</html>

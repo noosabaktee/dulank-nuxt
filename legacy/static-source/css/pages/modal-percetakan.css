@@ -1,0 +1,63 @@
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .modal-header {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        .modal-title {
+            color: #999;
+            font-weight: normal;
+        }
+        .form-label {
+            color: #0066cc;
+            font-size: 14px;
+            font-weight: normal;
+            margin-bottom: 5px;
+        }
+        .btn-primary {
+            background-color: #0099ff;
+            border: none;
+            width: 100%;
+        }
+        .table {
+            font-size: 14px;
+        }
+        .table th {
+            background-color: #f0f0f0;
+        }
+        .icon-button {
+            color: #0099ff;
+            background: none;
+            border: none;
+            padding: 0;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .generate-button {
+            color: #0099ff;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .accordion-button {
+            color: #0099ff;
+            background-color: #f8f9fa;
+            font-size: 14px;
+            font-weight: normal;
+            padding: 10px 15px;
+        }
+        .accordion-button:not(.collapsed) {
+            background-color: #e9f0f8;
+            color: #0066cc;
+        }
+        .accordion-button:focus {
+            box-shadow: none;
+        }
+        .demo-buttons {
+            margin-bottom: 20px;
+        }
+        .demo-buttons .btn {
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }

@@ -1,0 +1,53 @@
+    .kebijakan-privasi {
+        margin-top: 25px;
+    }
+    .kebijakan-privasi section {
+        margin-bottom: 25px;
+        text-align: left;
+        font-size: 0.75rem !important;
+    }
+    .kebijakan-privasi section p, .kebijakan-privasi section ul, .kebijakan-privasi section ol {
+        font-size: 15px;
+        line-height: 24px;
+        padding-bottom: 2px;
+        font-size: 0.75rem !important;
+    }
+    .kebijakan-privasi section ul, .kebijakan-privasi section ol {
+        margin-left: 25px;
+        margin-bottom: 10px;
+        font-size: 0.75rem !important;
+    }
+    .kebijakan-privasi section ul li, .kebijakan-privasi section ol li {
+        padding-bottom: 2px;
+        font-size: 0.75rem !important;
+    }
+    .title-pp{
+        font-size:1.2rem;
+        font-weight:bold;
+        color:#f70000;
+        padding-top:20px;
+        padding-bottom:10px;
+        border-bottom:#F70000 1px dotted;
+        text-transform:uppercase;
+        letter-spacing:1px;
+        margin-bottom:10px;
+    }
+    .contentpp{
+        color:#333;
+        font-size:0.9rem;
+        line-height:23px;
+        text-align:justify;
+    }
+    a.active-lang {
+        color: #d40000;
+        font-weight: bold;
+        font-size: 0.75rem !important;
+        text-decoration:none;}
+    a.language:link, a.language:visited {
+        color: #333;
+        text-decoration: none;
+        font-size: 0.75rem !important;
+    }
+    a.language:hover {
+        color: #d40000;
+    }

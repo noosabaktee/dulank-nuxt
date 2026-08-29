@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pages/profile.css">
+    <link rel="stylesheet" href="css/pages/profile-inline.css">
+</head>
+<body>
+    <header>
+        <div id="navbar-placeholder"></div>
+    </header>
+
+    <main>
+        <!-- Main Content Area (placeholder) -->
+        <div class="container my-5">
+            <div class="row">
+                <!-- Sidebar Navigation -->
+                <div class="col-lg-3 mb-4" id="sidebar-profile-placeholder"></div>
+
+                <!-- Main Profile Content -->
+                <div class="col-lg-9">
+                    <div class="profile-header d-flex align-items-center mb-4">
+                        <div class="profile-avatar">
+                            <img src="images/profile.png" alt="User Avatar" class="rounded-circle">
+                            <div class="profile-avatar-badge">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                        </div>
+                        <div class="profile-header-info ms-3">
+                            <h5 class="profile-name fs-6 mb-1">Hello Ahmad Dhani</h5>
+                            <span class="text-standard text-muted d-block">Join Date: 19.30 15/12/2025</span>
+                            <span class="text-standard text-muted d-block">Last Login: 15.25 25/12/2025</span>
+                        </div>
+                    </div>
+
+
+                    <div class="profile-content bg-white p-4 rounded-3 shadow-sm">
+                        <!-- Tab Navigation -->
+                        <div class="d-md-flex border-bottom mb-4">
+                            <button id="previewTab" target-form="previewForm" class="tab-btn btn p-0 me-md-4 d-block mt-md-0 active" type="button">
+                                <span class="mb-0">Profile</span>
+                            </button>
+                            <button id="passwordTab" target-form="passwordForm" class="tab-btn btn p-0 me-md-4 d-block mt-md-0" type="button">
+                                <span class="mb-0">Change Password</span>
+                            </button>
+                            <button id="2FaTab" target-form="2FaForm" class="tab-btn btn p-0 me-md-4 d-block mt-md-0" type="button">
+                                <span class="mb-0">2 Factor Authentication</span>
+                            </button>
+                        </div>
+
+                        <!-- Preview Form (default show) -->
+                        <div id="previewForm" class="tab-form">
+                            <div class="row g-4">
+                                <!-- Orders Widget -->
+                                <div class="col-6 col-lg-4">
+                                    <div class="dashboard-widget shadow-sm d-md-flex d-block text-md-start text-center d-md-flex d-block text-md-start text-center">
+                                        <div class="widget-icon fw-bold">4</div>
+                                        <div class="widget-content">
+                                            <h3 class="widget-title">Orders</h3>
+                                            <a href="orders.html" class="widget-link">View All</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Pesanan Saya Widget -->
+                                <div class="col-6 col-lg-4">
+                                    <div class="dashboard-widget shadow-sm d-md-flex d-block text-md-start text-center">
+                                        <div class="widget-icon fw-bold">2</div>
+                                        <div class="widget-content">
+                                            <h3 class="widget-title">Pesanan Saya</h3>
+                                            <a href="history.html" class="widget-link">View All</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Return Widget -->
+                                <div class="col-6 col-lg-4">
+                                    <div class="dashboard-widget shadow-sm d-md-flex d-block text-md-start text-center">
+                                        <div class="widget-icon fw-bold">1</div>
+                                        <div class="widget-content">
+                                            <h3 class="widget-title">Quotations</h3>
+                                            <a href="quotation-send.html" class="widget-link">View All</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Track Widget -->
+                                <div class="col-6 col-lg-4">
+                                    <div class="dashboard-widget shadow-sm d-md-flex d-block text-md-start text-center">
+                                        <div class="widget-icon fw-bold">3</div>
+                                        <div class="widget-content">
+                                            <h3 class="widget-title">Addresses</h3>
+                                            <a href="address.html" class="widget-link">View All</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Support Widget -->
+                                <div class="col-6 col-lg-4">
+                                    <div class="dashboard-widget shadow-sm d-md-flex d-block text-md-start text-center">
+                                        <div class="widget-icon fw-bold">2</div>
+                                        <div class="widget-content">
+                                            <h3 class="widget-title">Billings</h3>
+                                            <a href="billing.html" class="widget-link">View All</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Account Widget -->
+                                <div class="col-6 col-lg-4">
+                                    <div class="dashboard-widget shadow-sm d-md-flex d-block text-md-start text-center">
+                                        <div class="widget-icon">
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                        <div class="widget-content">
+                                            <h3 class="widget-title">Account Details</h3>
+                                            <a href="#" class="widget-link">Edit</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <form>
+                                    <!-- Akun -->
+                                    <span class="fs-6 d-block border-bottom border-1 py-2 my-2">Login ID</span>
+                                    <div class="mb-4 row">
+                                        <div class="col-md-4">
+                                            <label for="email" class="form-label text-standard">Alamat Email (Login ID)</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control my-1 w-100" id="email" value="ahmad@gmail.com" disabled>
+                                        </div>
+                                    </div>
+                                    <!-- Akun -->
+                                    <span class="fs-6 d-block border-bottom border-1 py-2 my-2">Informasi Saya</span>
+                                    <div class="mb-4 row">
+                                        <div class="col-md-4">
+                                            <label for="companyName" class="form-label text-standard">Nama Perusahaan</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <select class="form-select text-standard my-1" aria-label="Default select example">
+                                                        <option selected disabled>Pilih Jenis Badan Usaha</option>
+                                                        <option value="PT">PT</option>
+                                                        <option value="CV">CV</option>
+                                                        <option value="Firma">Firma</option>
+                                                        <option value="PD">PD</option>
+                                                        <option value="UD">UD</option>
+                                                        <option value="BUMD">BUMD</option>
+                                                        <option value="BUMN">BUMN</option>
+                                                        <option value="Kementerian">Kementerian</option>
+                                                        <option value="Lembaga">Lembaga</option>
+                                                        <option value="Koperasi">Koperasi</option>
+                                                        <option value="BUT">BUT</option>
+                                                        <option value="Lainnya">Lainnya</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <input type="text" class="form-control my-1 w-100" id="companyName" value="Dulank Semesta Cida">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-4 row">
+                                        <div class="col-md-4">
+                                            <span for="departmenName" class="form-label text-standard">Nama Departemen</span>
+                                            <span class="text-standard text-muted fst-italic d-block">(Optional)</span>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control w-100" id="departmenName" value="">
+                                        </div>
+                                    </div>
+                                    <div class="mb-4 row">
+                                        <div class="col-md-4">
+                                            <label for="fullName" class="form-label text-standard">Nama Lengkap</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control w-100" id="fullName" value="Ahmad Dhani">
+                                        </div>
+                                    </div>
+                                    <div class="mb-4 row">
+                                        <div class="col-md-4">
+                                            <label for="phone" class="form-label text-standard">No. Handphone</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control w-100" id="phone" value="08727645627">
+                                        </div>
+                                    </div>
+
+                                    <!-- Perusahaan -->
+                                    <span class="fs-6 d-block border-bottom border-1 py-2 my-2">Informasi Perusahaan Saya</span>
+                                    <div>
+
+                                        <div id="settingFormFakturValue mt-2">
+                                            <div class="mb-4 row">
+                                                <div class="col-md-4">
+                                                    <span for="npwp" class="form-label text-standard">NPWP Perusahaan</span>
+                                                    <span class="text-standard text-muted fst-italic d-block">(NPWP 16 Digit)</span>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <input type="text" class="form-control w-100" id="npwp" data-grouplength=4 maxlength="19">
+                                                </div>
+                                            </div>
+                                            <div class="mb-4 row">
+                                                <div class="col-md-4">
+                                                    <label for="kode-transaksi" class="form-label text-standard">Kode Transaksi</label>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <select class="form-select text-standard" aria-label="Default select example">
+                                                        <option selected disabled>Pilih Jenis Kode Transaksi</option>
+                                                        <option value="01 - Kepada selain pemungut PPN">01 - Kepada selain pemungut PPN</option>
+                                                        <option value="02 - Kepada Pemungut PPN Instansi Pemerintah">02 - Kepada Pemungut PPN Instansi Pemerintah</option>
+                                                        <option value="03 - Kepada Pemungut PPN selain Instansi Pemerintah">03 - Kepada Pemungut PPN selain Instansi Pemerintah</option>
+                                                        <option value="04 - DPP Nilai Lain">04 - DPP Nilai Lain</option>
+                                                        <option value="05 -  Besaran tertentu">05 -  Besaran tertentu</option>
+                                                        <option value="06 - Kepada pribadi pemegang paspor luar negeri (16E UU PPN)">06 - Kepada pribadi pemegang paspor luar negeri (16E UU PPN)</option>
+                                                        <option value="07 - Penyerahan dengan fasilitas PPn atau PPN dan PPnBM tidak dipungut/ditanggung pemerintah">07 - Penyerahan dengan fasilitas PPn atau PPN dan PPnBM tidak dipungut/ditanggung pemerintah</option>
+                                                        <option value="08 - Penyerahan dengan fasilitas dibebaskan PPN atau PPN dan PPnBM">08 - Penyerahan dengan fasilitas dibebaskan PPN atau PPN dan PPnBM</option>
+                                                        <option value="09 - Penyerahan aktiva yang tujuan semula tidak diperjualbelikan (16D UU PPN)">09 - Penyerahan aktiva yang tujuan semula tidak diperjualbelikan (16D UU PPN)</option>
+                                                        <option value="10 - Penyerahan Lainnya">10 - Penyerahan Lainnya</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="mb-4 row">
+                                                <div class="col-md-4">
+                                                    <label class="form-label text-standard">Nama Perusahaan</label>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <input type="text" disabled class="form-control my-1 w-100" value="CV ">
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <input type="text" disabled class="form-control my-1 w-100" value="Dulank Semesta Cida">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-4 row">
+                                                <div class="col-md-4">
+                                                    <label for="addressFaktur" class="form-label text-standard">Alamat Perusahaan</label>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <textarea type="text" class="form-control w-100" id="addressFaktur"></textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class="d-md-flex justify-content-between align-items-center mb-3">
+                                                <div>
+                                                    <div class="d-flex mt-3 align-items-center">
+                                                        <span class="text-standard">Apakah setiap transaksi selalu lampirkan softcopy faktur pajak <i>(PDF)</i> pada sistem billing?</span>
+                                                        <div class="form-check ms-3 align-items-center">
+                                                            <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault1">
+                                                            <label class="form-check-label text-standard" for="radioDefault1">
+                                                                Ya
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check ms-3 align-items-center">
+                                                            <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault2" checked>
+                                                            <label class="form-check-label text-standard" for="radioDefault2">
+                                                                Tidak
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <small class="d-none text-standard text-danger" id="info-selected-all"><i class="fa-solid fa-circle-info"></i> please input your message<br></small>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-4 d-flex justify-content-end">
+                                        <button type="submit" class="btn btn-primary px-4 py-2" id="inline-style-profile-001">Update</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Change Password Form (hidden by default) -->
+                        <div id="passwordForm" class="tab-form">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="currentPassword" class="form-label text-standard">Current password <span class="text-danger">*</span></label>
+                                    <input type="password" class="form-control w-100" id="currentPassword" placeholder="Current password">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="newPassword" class="form-label text-standard">Password <span class="text-danger">*</span></label>
+                                    <input type="password" class="form-control w-100" id="newPassword" placeholder="New password">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="confirmPassword" class="form-label text-standard">Password confirmation <span class="text-danger">*</span></label>
+                                    <input type="password" class="form-control w-100" id="confirmPassword" placeholder="Confirm password">
+                                </div>
+
+                                <div class="mt-4">
+                                    <button type="submit" class="btn btn-primary px-4 py-2" id="inline-style-profile-003">Change password</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- 2 Factor Authentication -->
+                        <div id="2FaForm" class="tab-form">
+                            <div class="card-body text-standard">
+                                <!-- Step 1: Choose Method -->
+                                <div id="step1">
+                                    <h5 class="mb-4 fs-6">
+                                        <i class="fas fa-mobile-alt my-text-primary me-2"></i>
+                                        Pilih Metode Autentikasi
+                                    </h5>
+
+                                    <div class="row g-3">
+
+                                        <div class="col-md-6">
+                                            <div class="card method-card h-100" data-method="app">
+                                                <div class="card-body text-center">
+                                                    <i class="fas fa-mobile fs-1 text-primary mb-3"></i>
+                                                    <h5 class="fs-6">Aplikasi Authenticator</h5>
+                                                    <p class="text-muted text-standard mb-3">Gunakan aplikasi Google Authenticator </p>
+                                                    <div class="badge bg-primary">Lebih aman</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="text-center mt-4">
+                                        <button class="btn my-btn-primary btn-lg" id="nextStep1" disabled type="button">
+                                            Lanjutkan <i class="fas fa-arrow-right ms-2"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Step 2: App Setup -->
+                                <div id="step2-app" class="fade-in">
+                                    <h5 class="mb-4 fs-6">
+                                        <i class="fas fa-mobile text-primary me-2"></i>
+                                        Setup Aplikasi Authenticator
+                                    </h5>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h6 class="mb-3 text-standard">1. Scan QR Code</h6>
+                                            <div class="qr-code-placeholder mb-3">
+                                                <div class="text-center">
+                                                    <i class="fas fa-qrcode fs-1 text-muted mb-2"></i>
+                                                    <div class="small text-muted">QR Code akan muncul di sini</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <h6 class="mb-3 text-standard">2. Download Aplikasi (jika belum ada)</h6>
+                                            <div class="list-group mb-3">
+                                                <div class="list-group-item">
+                                                    <i class="fab fa-google-play text-success me-2"></i>
+                                                    Google Authenticator
+                                                </div>
+                                            </div>
+
+                                            <h6 class="mb-3 text-standard">3. Masukkan Kode Verifikasi</h6>
+                                            <div class="mb-3">
+                                                <input type="text" class="form-control text-center fs-4" id="appCode" placeholder="123456" maxlength="6">
+                                            </div>
+
+                                            <div class="text-center">
+                                                <button class="btn my-btn-primary" id="verifyApp" type="button">
+                                                    <i class="fas fa-check me-2"></i>
+                                                    Verifikasi
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div id="footer-placeholder"></div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/component.js"></script>
+    <script src="js/profile.js"></script>
+    <script src="js/pages/profile.js"></script>
+</body>
+</html>

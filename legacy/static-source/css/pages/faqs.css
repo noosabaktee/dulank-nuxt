@@ -1,0 +1,9 @@
+		.collapse {
+			&:not(.show) {
+				display: none;
+			}
+		}
+
+		.accordion-button {
+			font-weight: bold;
+		}

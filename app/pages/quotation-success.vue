@@ -1,0 +1,1 @@
+<template><PagesQuotationSuccessPage /></template>

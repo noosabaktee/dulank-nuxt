@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Percetakan</title>
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div id="navbar-kalkulator-placeholder"></div>
+    </header>
+
+    <main>
+        <!-- Main Content Area (placeholder) -->
+        <div class="container">
+            <div class="calculator-container text-standard">
+                <div class="row">
+                    <div id="header-kalkulator-placeholder"></div>
+                    <!-- Form -->
+                    <div class="mt-5">
+                        <h5 class="mb-4">Spesifikasi Cetak</h5>
+                        <!-- Form 1 -->
+                        <div>
+                            <div class="mb-4 row">
+                                <div class="col-4">
+                                    <label for="jumlah" class="form-label">Satuan Ukuran</label>
+                                </div>
+                                <div class="col-8" id="unit-1">
+                                    <button class="satuan-btn btn btn-spec me-2 selected" type="button">Centimeter<span class="ribbon"></span></button>
+                                    <button class="satuan-btn btn btn-spec me-2" type="button">Milimeter<span class="ribbon d-none"></span></button>
+                                </div>
+                            </div>
+
+                            <div class="mb-4 row">
+                                <div class="col-4">
+                                    <label for="jumlah" class="form-label">Ukuran Cetakan</label>
+                                </div>
+                                <div class="col-8" id="unit-2">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="input-group input-group-sm">
+                                                <span class="input-group-text">P</span>
+                                                <input type="text"  class="form-control number-separator" inputmode="numeric" pattern="[0-9]*">
+                                                <input type="hidden" class="result-input" id="width-potong">
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="input-group input-group-sm">
+                                                <span class="input-group-text">L</span>
+                                                <input type="text" class="form-control number-separator" inputmode="numeric" pattern="[0-9]*">
+                                                <input type="hidden" class="result-input" id="height-potong">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-4">
+                                <div class="col-4">
+                                    <label for="nama-plano" class="form-label">Lebar Bleed (<span class="satuan text-standard">Centimeter</span>) <br> <i>Optional</i></label>
+                                </div>
+                                <div class="col-8">
+                                    <input type="text" class="form-control w-50" id="width-bleed">
+                                </div>
+                            </div>
+
+                            <div class="mb-4 row">
+                                <div class="col-4">
+                                    <label for="jumlah" class="form-label">Jenis Kertas</label>
+                                </div>
+                                <div class="col-8" id="type">
+                                    <button class="btn btn-spec me-2 selected" type="button">Art Carton<span class="ribbon"></span></button>
+                                    <button class="btn btn-spec me-2" type="button">Art Paper<span class="ribbon d-none"></span></button>
+                                    <button class="btn btn-spec me-2" type="button">HVS<span class="ribbon d-none"></span></button>
+                                    <button class="btn btn-spec me-2" type="button">Jenis Lain<span class="ribbon d-none"></span></button>
+                                </div>
+                            </div>
+
+                            <div class="mb-4 row">
+                                <div class="col-4">
+                                    <label for="jumlah" class="form-label">Gramatur Kertas</label>
+                                </div>
+                                <div class="col-8" id="gramatur">
+                                    <button class="btn btn-spec me-2 selected" type="button">Art Carton 210 Gsm<span class="ribbon"></span></button>
+                                    <button class="btn btn-spec me-2" type="button">Art Carton 230 Gsm<span class="ribbon d-none"></span></button>
+                                    <button class="btn btn-spec me-2" type="button">Art Carton 260 Gsm<span class="ribbon d-none"></span></button>
+                                    <button class="btn btn-spec me-2" type="button">Art Carton 310 Gsm<span class="ribbon d-none"></span></button>
+                                </div>
+                            </div>
+
+                            <div class="mb-4 row">
+                                <div class="col-4">
+                                    <label for="jumlah" class="form-label">Sisi Cetak</label>
+                                </div>
+                                <div class="col-8" id="side">
+                                    <button class="btn btn-spec me-2 selected" type="button">Cetak 1 Sisi<span class="ribbon"></span></button>
+                                    <button class="btn btn-spec me-2" type="button">Cetak Bolak Balik<span class="ribbon d-none"></span></button>
+                                </div>
+                            </div>
+
+                            <div class="row mb-4">
+                                <div class="col-4">
+                                    <label for="lots-print" class="form-label">Banyaknya Cetak</label>
+                                </div>
+                                <div class="col-8 d-flex">
+                                    <input type="text" class="form-control me-2 number-separator" id="lots-print">
+                                    <div id="unit-sheet" class="d-flex">
+                                        <button class="btn btn-spec me-2 selected" type="button">Lembar<span class="ribbon"></span></button>
+                                        <button class="btn btn-spec me-2" type="button">Rim<span class="ribbon d-none"></span></button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <!-- Form 2 -->
+                        <div class="form-selection">
+                            <div class="mb-4 d-flex justify-content-between">
+                                <span class="fs-5">Pilih Ukuran Plano</span>
+                                <div>
+                                    <a href="semua-kertas.html#jenis-tab-pane"><i class="fa-solid fa-gear me-2"></i>Pengaturan</a>
+                                    <button class="btn" data-js-click="kalkulator-percetakan-001" type="button"><i class="bi bi-x-circle-fill me-2"></i>Clear Selection</button>
+                                </div>
+                            </div>
+                            <div class="mb-4 row">
+                                <div class="col-4">
+                                    <label for="jumlah" class="form-label">Ukuran Kertas Plano</label>
+                                </div>
+                                <div class="col-8" id="plano-paper">
+                                    <button class="btn btn-spec me-2 selected" type="button">61 x 86 <span class="satuan text-standard">Centimeter</span><span class="ribbon"></span></button>
+                                    <button class="btn btn-spec me-2" type="button">61 x 92 <span class="satuan text-standard">Centimeter</span><span class="ribbon d-none"></span></button>
+                                    <button class="btn btn-spec me-2" type="button">65 x 90 <span class="satuan text-standard">Centimeter</span><span class="ribbon d-none"></span></button>
+                                    <button class="btn btn-spec me-2" type="button">65 x 100 <span class="satuan text-standard">Centimeter</span><span class="ribbon d-none"></span></button>
+                                    <button class="btn btn-spec me-2" type="button">79 x 109 <span class="satuan text-standard">Centimeter</span><span class="ribbon d-none"></span></button>
+                                </div>
+                            </div>
+
+                            <div class="mb-4 row">
+                                <div class="col-4">
+                                    <label for="jumlah" class="form-label">Sisi Cetak</label>
+                                </div>
+                                <div class="col-8" id="plano-method">
+                                    <button class="btn btn-spec me-2" type="button">Cari Ukuran Plano Termurah<span class="ribbon d-none"></span></button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Form 3 -->
+                        <div class="form-selection">
+                            <div class="mb-4 d-flex justify-content-between">
+                                <span class="fs-5">Pilih Jenis Mesin</span>
+                                <div>
+                                    <a href="mesin-cetak.html"><i class="fa-solid fa-gear me-2"></i>Pengaturan</a>
+                                    <button class="btn" data-js-click="kalkulator-percetakan-002" type="button"><i class="bi bi-x-circle-fill me-2"></i>Clear Selection</button>
+                                </div>
+                            </div>
+
+                            <div class="mb-4 row">
+                                <div class="col-4">
+                                    <label for="jumlah" class="form-label">Tentukan Jenis Mesin</label>
+                                </div>
+                                <div class="col-8" id="machine-type">
+                                    <button class="btn btn-spec me-2 selected" type="button">Mesin GTO 52 2 Warna<span class="ribbon"></span></button>
+                                    <button class="btn btn-spec me-2" type="button">Mesin Oliver 52 1 Warna<span class="ribbon d-none"></span></button>
+                                    <button class="btn btn-spec me-2" type="button">Mesin SM 52 4 Warna<span class="ribbon d-none"></span></button>
+                                    <button class="btn btn-spec me-2" type="button">Mesin Heidelberg MOV 66 4 Warna<span class="ribbon d-none"></span></button>
+                                    <button class="btn btn-spec me-2" type="button">Mesin Oliver 66 2 Warna<span class="ribbon d-none"></span></button>
+                                    <button class="btn btn-spec me-2" type="button">Mesin Heidelberg Sm74 4 Warna<span class="ribbon d-none"></span></button>
+                                </div>
+                            </div>
+
+                            <div class="mb-4 row">
+                                <div class="col-4">
+                                    <label for="jumlah" class="form-label">Sisi Cetak</label>
+                                </div>
+                                <div class="col-8" id="machine-method">
+                                    <button class="btn btn-spec me-2" type="button">Cari Biaya Cetak Termurah<span class="ribbon d-none"></span></button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Form  4 -->
+                        <div class="form-selection">
+                            <div class="mb-4 d-flex justify-content-between">
+                                <span class="fs-5">Biaya Laminasi</span>
+                                <div>
+                                    <a href="mesin-laminasi.html"><i class="fa-solid fa-gear me-2"></i>Pengaturan</a>
+                                    <button class="btn" data-js-click="kalkulator-percetakan-003" type="button"><i class="bi bi-x-circle-fill me-2"></i>Clear Selection</button>
+                                </div>
+                            </div>
+
+                            <div class="mb-4 row">
+                                <div class="col-4">
+                                    <label for="jumlah" class="form-label">Jenis Laminasi</label>
+                                </div>
+                                <div class="col-8" id="lamination-type">
+                                    <button class="btn btn-spec me-2 selected" type="button">Laminasi Glossy<span class="ribbon"></span></button>
+                                    <button class="btn btn-spec me-2" type="button">Laminasi Doff<span class="ribbon d-none"></span></button>
+                                    <button class="btn btn-spec me-2" type="button">Laminasi Doff + Spot UV<span class="ribbon d-none"></span></button>
+                                    <button class="btn btn-spec me-2" type="button">Vernish UV<span class="ribbon d-none"></span></button>
+                                </div>
+                            </div>
+
+                            <div class="mb-4 row">
+                                <div class="col-4">
+                                    <label for="jumlah" class="form-label">Sisi Cetak</label>
+                                </div>
+                                <div class="col-8" id="lamination-side">
+                                    <button class="btn btn-spec me-2 selected" type="button">Cetak 1 Sisi<span class="ribbon"></span></button>
+                                    <button class="btn btn-spec me-2" type="button">Cetak Bolak Balik<span class="ribbon d-none"></span></button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Form  5 -->
+                        <div class="form-selection">
+                            <div class="mb-4 d-flex justify-content-between">
+                                <span class="fs-5">Biaya Pond</span>
+                                <div>
+                                    <a href="mesin-pond.html"><i class="fa-solid fa-gear me-2"></i>Pengaturan</a>
+                                    <button class="btn" data-js-click="kalkulator-percetakan-004" type="button"><i class="bi bi-x-circle-fill me-2"></i>Clear Selection</button>
+                                </div>
+                            </div>
+
+                            <div class="mb-4 row">
+                                <div class="col-4">
+                                    <label for="jumlah" class="form-label">Ukuran Pisau (<span class="satuan text-standard">Centimeter</span>)</label>
+                                </div>
+                                <div class="col-8" id="unit-3">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="input-group input-group-sm">
+                                                <span class="input-group-text">P</span>
+                                                <input type="text" class="form-control number-separator" inputmode="numeric" pattern="[0-9]*">
+                                                <input type="hidden" class="result-input" id="width-knife">
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="input-group input-group-sm">
+                                                <span class="input-group-text">L</span>
+                                                <input type="text" class="form-control number-separator" inputmode="numeric" pattern="[0-9]*">
+                                                <input type="hidden" class="result-input" id="height-knife">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-4 row">
+                                <div class="col-4">
+                                    <label for="jumlah" class="form-label">Pola Bentuk Pisau</label>
+                                </div>
+                                <div class="col-8" id="knife-pattern">
+                                    <button class="btn btn-spec me-2 selected" type="button">Pola Pisau Simple/Mudah<span class="ribbon"></span></button>
+                                    <button class="btn btn-spec me-2" type="button">Pola Pisau Standar<span class="ribbon d-none"></span></button>
+                                    <button class="btn btn-spec me-2" type="button">Pola Pisau Rumit<span class="ribbon d-none"></span></button>
+                                </div>
+                            </div>
+
+                            <div class="mb-4 row">
+                                <div class="col-4">
+                                    <label for="jumlah" class="form-label">Metode Pond</label>
+                                </div>
+                                <div class="col-8" id="pond-method">
+                                    <button class="btn btn-spec me-2 selected" type="button">Pond Setengah Putus/Kisscut<span class="ribbon"></span></button>
+                                    <button class="btn btn-spec me-2" type="button">Pond Putus/Rel<span class="ribbon d-none"></span></button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Form  6 -->
+                        <div class="form-selection">
+                            <div class="mb-4 d-flex justify-content-between">
+                                <span class="fs-5">Biaya Poli/Hot Print</span>
+                                <div>
+                                    <a href="mesin-poli.html"><i class="fa-solid fa-gear me-2"></i>Pengaturan</a>
+                                    <button class="btn" data-js-click="kalkulator-percetakan-005" type="button"><i class="bi bi-x-circle-fill me-2"></i>Clear Selection</button>
+                                </div>
+                            </div>
+
+                            <button class="btn text-primary p-0 mt-1 mb-4" id="addAreaPoli" type="button">+ Tambahkan Area Poli Baru</button>
+
+                            <div class="mb-4 row poli-area">
+                                <div class="col-4">
+                                    <label for="jumlah" class="form-label">Ukuran Area Poli (<span class="satuan text-standard">Centimeter</span>)</label>
+                                </div>
+                                <div class="col-8" id="unit-4">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="input-group input-group-sm">
+                                                <span class="input-group-text">P</span>
+                                                <input type="text" class="form-control number-separator" inputmode="numeric" pattern="[0-9]*">
+                                                <input type="hidden" class="result-input" id="width-poli">
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="input-group input-group-sm">
+                                                <span class="input-group-text">L</span>
+                                                <input type="text" class="form-control number-separator" inputmode="numeric" pattern="[0-9]*">
+                                                <input type="hidden" class="result-input" id="height-poli">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-4 row">
+                                <div class="col-4">
+                                    <label for="jumlah" class="form-label">Jenis Poli</label>
+                                </div>
+                                <div class="col-8" id="poli-type">
+                                    <button class="btn btn-spec me-2 selected" type="button">Warna-warna Standar<span class="ribbon"></span></button>
+                                    <button class="btn btn-spec me-2" type="button">Warna Hologram<span class="ribbon d-none"></span></button>
+                                </div>
+                            </div>
+                        </div>
+                        <small class="d-none text-standard text-danger" id="info-selected-all"><i class="fa-solid fa-circle-info"></i> please select your specification<br></small>
+                        <!-- Button Hitung -->
+                        <div class="d-flex justify-content-end">
+                            <button class="btn my-btn-primary col-md-3 col-6" id="hitung" type="button">Hitung</button>
+                        </div>
+                    </div>
+
+                    <div class="mt-md-0 mt-5">
+                        <h5 class="mt-5 mb-3">Hasil Perhitungan</h5>
+                        <!-- Item 1 -->
+                        <div class="my-3">
+                            <div class="row justify-content-between">
+                                <div class="col-md-8">
+                                    <span class="text-standard"><span class="fw-bold text-standard">Job Name</span> (Opsional) + Tambahan </span><br>
+                                    <span class="text-standard">Harga cetak ukuran 30x21 Centimeter sebanyak 1000 lembar cetak Bolak-Balik Bahan Art Paper 150gsm</span>
+                                </div>
+                                <div class="col-md-4 text-end">
+                                    <span class="fw-bold text-standard">Harga Rp1.750</span><br>
+                                    <span class="text-standard">Per Lembar</span>
+                                </div>
+                            </div>
+                            <div class="justify-content-end d-flex">
+                                <button class="btn p-0" type="button">Hapus</button>
+                            </div>
+                        </div>
+                        <!-- Item 1 -->
+                        <div class="my-3">
+                            <div class="row justify-content-between">
+                                <div class="col-md-8">
+                                    <span class="text-standard"><span class="fw-bold text-standard">Job Name</span> (Opsional) + Tambahan </span><br>
+                                    <span class="text-standard">Harga cetak ukuran 30x21 Centimeter sebanyak 1000 lembar cetak Bolak-Balik Bahan Art Paper 150gsm</span>
+                                </div>
+                                <div class="col-md-4 text-end">
+                                    <span class="fw-bold text-standard">Harga Rp1.750</span><br>
+                                    <span class="text-standard">Per Lembar</span>
+                                </div>
+                            </div>
+                            <div class="justify-content-end d-flex">
+                                <button class="btn p-0" type="button">Hapus</button>
+                            </div>
+                        </div>
+                        <!-- Actions -->
+                        <div class="row justify-content-between mt-5 border-bottom py-2">
+                            <div class="col-6">
+                                <a href="#header-kalkulator-placeholder" class="btn fst-italic">+ Hitungan Baru</a>
+                            </div>
+                            <div class="col-6 text-end">
+                                <button class="btn fst-italic" type="button">Jadikan Penawaran pdf</button>
+                                <button class="btn my-btn-primary" type="button">Job Detail</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/component.js"></script>
+    <script src="js/kalkulator.js"></script>
+    <script src="js/easy-number-separator.js"></script>
+    <script src="js/pages/kalkulator-percetakan.js"></script>
+    <script src="js/pages/kalkulator-percetakan-events.js"></script>
+</body>
+</html>

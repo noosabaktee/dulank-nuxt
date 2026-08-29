@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mesin Cetak</title>
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Sweet Alert -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.22.2/dist/sweetalert2.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.22.2/dist/sweetalert2.all.min.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pages/mesin-cetak-inline.css">
+</head>
+
+<body>
+    <header>
+        <div id="navbar-kalkulator-placeholder"></div>
+    </header>
+
+    <main>
+        <!-- Main Content Area (placeholder) -->
+        <div class="container my-5">
+            <div class="row">
+                <!-- Sidebar Navigation -->
+                <div class="col-lg-3 mb-4" id="sidebar-kalkulator-placeholder"></div>
+
+                <!-- Main Profile Content -->
+                <div class="col-lg-9">
+
+                    <div class="mt-3 d-md-flex justify-content-md-between">
+                        <h4 class="fs-5">Mesin Cetak</h4>
+                    </div>
+                    <div class="d-flex justify-content-md-end justify-content-center">
+                        <button class="btn my-btn-primary col-md-3 col-6 me-3" data-bs-toggle="modal" data-bs-target="#addNewMachineModal" type="button">Add New Machine</button>
+                        <button class="btn my-btn-outline-primary col-md-3 col-6" data-js-click="mesin-cetak-001" type="button">Search Machine</button>
+                    </div>
+
+                    <div class="d-flex mb-3 mt-2 justify-content-between align-items-center">
+                        <div class="dropdown">
+                            <span role="button"></span>
+                            <span role="button" class="fs-6 fw-semibold" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <i class="bi bi-sliders me-2"></i> Filter
+                            </span>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Hanya tampilkan milik sendiri</a></li>
+                                <li><a class="dropdown-item" href="#">Tampilkan dari percetakan lain</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div id="formSearch"class="d-none">
+                        <form>
+                            <div class="mb-3">
+                                <label class="form-label text-standard">Cari Nama Percetakan</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control text-standard" placeholder="Nama Percetakan">
+                                    <span class="input-group-text"><i class="fa fa-search"></i></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3 col-md-4">
+                                    <label class="form-label text-standard">Provinsi</label>
+                                    <select class="form-select text-standard">
+                                        <option>Jawa Barat (26 Percetakan)</option>
+                                        <!-- Tambahkan opsi lain sesuai kebutuhan -->
+                                    </select>
+                                </div>
+                                <div class="mb-3 col-md-4">
+                                    <label class="form-label text-standard">Kabupaten</label>
+                                    <select class="form-select text-standard">
+                                        <option>Karawang (10 Percetakan)</option>
+                                        <!-- Tambahkan opsi lain sesuai kebutuhan -->
+                                    </select>
+                                </div>
+                                <div class="mb-3 col-md-4 ps-md-0">
+                                    <label class="form-label text-standard">Kecamatan</label>
+                                    <select class="form-select text-standard">
+                                        <option>Telukjambe Timur (3 Percetakan)</option>
+                                        <!-- Tambahkan opsi lain sesuai kebutuhan -->
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="d-flex justify-content-end ps-md-3">
+                            <button class="btn my-btn-primary mt-2 col-md-4 col-6" data-bs-toggle="modal" data-bs-target="#modalCariMesin" type="button">Tampilkan</button>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="row align-items-center py-2 px-3 d-none d-md-flex fw-bold">
+                            <div class="col-md-3 small">Sumber</div>
+                            <div class="col-md-3 small">Nama</div>
+                            <div class="col-md-2 small">Harga</div>
+                            <div class="col-md-2 small">Update</div>
+                            <div class="col-md-1 small">Status</div>
+                            <div class="col-md-1 small text-end"></div>
+                        </div>
+
+                        <!-- Items 1 -->
+                        <div class="row table-product align-items-md-center py-md-2 py-3 px-3 border-bottom-md-0">
+                            <div class="col-12 col-md-3" data-label="Sumber">
+                                Percetakan Grafika <br>
+                                Jakarta Pusat, Jakarta
+                            </div>
+                            <div class="col-12 col-md-3" data-label="Nama">
+                                Heidelberg GTO52 <br>
+                                4 Warna
+                            </div>
+                            <div class="col-12 col-md-2" data-label="Harga">
+                                minim: Rp240.000<br>
+                                druck: Rp60
+                            </div>
+                            <div class="col-12 col-md-2" data-label="Update">20/12/12 23:12</div>
+                            <div class="col-12 col-md-1" data-label="Status">
+                                <span class="badge status-publish">Publish</span>
+                                <span class="badge status-active">Active</span>
+                            </div>
+                            <div class="col-12 col-md-1">
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle" href="#" id="calculatorDropdown1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Aksi
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="calculatorDropdown1">
+                                        <li><a class="text-standard dropdown-item">Active</a></li>
+                                        <li><a class="text-standard dropdown-item">Deactive</a></li>
+                                        <hr>
+                                        <li><a class="text-standard dropdown-item">Publish</a></li>
+                                        <li><a class="text-standard dropdown-item">Private</a></li>
+                                        <hr>
+                                        <li><a class="text-standard dropdown-item" data-bs-toggle="modal" data-bs-target="#detailModal" role="button">Detail</a></li>
+                                        <li><a class="text-standard dropdown-item" href="/kalkulator-potong-kertas.html">Ubah</a></li>
+                                        <li><a class="text-standard dropdown-item" href="#" data-js-click="mesin-cetak-002">Hapus</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Items 1 -->
+                        <div class="row table-product align-items-md-center py-md-2 py-3 px-3 border-bottom-md-0">
+                            <div class="col-12 col-md-3" data-label="Sumber">
+                                Milik Sendiri
+                            </div>
+                            <div class="col-12 col-md-3" data-label="Nama">
+                                Heidelberg GTO52 <br>
+                                4 Warna
+                            </div>
+                            <div class="col-12 col-md-2" data-label="Harga">
+                                minim: Rp240.000<br>
+                                druck: Rp60
+                            </div>
+                            <div class="col-12 col-md-2" data-label="Update">20/12/12 23:12</div>
+                            <div class="col-12 col-md-1" data-label="Status">
+                                <span class="badge status-publish">Publish</span>
+                                <span class="badge status-active">Active</span>
+                            </div>
+                            <div class="col-12 col-md-1">
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle" href="#" id="calculatorDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Aksi
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="calculatorDropdown2">
+                                        <li><a class="text-standard dropdown-item">Active</a></li>
+                                        <li><a class="text-standard dropdown-item">Deactive</a></li>
+                                        <hr>
+                                        <li><a class="text-standard dropdown-item">Publish</a></li>
+                                        <li><a class="text-standard dropdown-item">Private</a></li>
+                                        <hr>
+                                        <li><a class="text-standard dropdown-item" data-bs-toggle="modal" data-bs-target="#detailModal" role="button">Detail</a></li>
+                                        <li><a class="text-standard dropdown-item" href="/kalkulator-potong-kertas.html">Ubah</a></li>
+                                        <li><a class="text-standard dropdown-item" href="#" data-js-click="mesin-cetak-003">Hapus</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Items 1 -->
+                        <div class="row table-product align-items-md-center py-md-2 py-3 px-3 border-bottom-md-0">
+                            <div class="col-12 col-md-3" data-label="Sumber">
+                                Percetakan Grafika <br>
+                                Jakarta Pusat, Jakarta
+                            </div>
+                            <div class="col-12 col-md-3" data-label="Nama">
+                                Heidelberg GTO52 <br>
+                                4 Warna
+                            </div>
+                            <div class="col-12 col-md-2" data-label="Harga">
+                                minim: Rp240.000<br>
+                                druck: Rp60
+                            </div>
+                            <div class="col-12 col-md-2" data-label="Update">20/12/12 23:12</div>
+                            <div class="col-12 col-md-1" data-label="Status">
+                                <span class="badge status-publish">Publish</span>
+                                <span class="badge status-active">Active</span>
+                            </div>
+                            <div class="col-12 col-md-1">
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle" href="#" id="calculatorDropdown3" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Aksi
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="calculatorDropdown3">
+                                        <li><a class="text-standard dropdown-item">Active</a></li>
+                                        <li><a class="text-standard dropdown-item">Deactive</a></li>
+                                        <hr>
+                                        <li><a class="text-standard dropdown-item">Publish</a></li>
+                                        <li><a class="text-standard dropdown-item">Private</a></li>
+                                        <hr>
+                                        <li><a class="text-standard dropdown-item" data-bs-toggle="modal" data-bs-target="#detailModal" role="button">Detail</a></li>
+                                        <li><a class="text-standard dropdown-item" href="/kalkulator-potong-kertas.html">Ubah</a></li>
+                                        <li><a class="text-standard dropdown-item" href="#" data-js-click="mesin-cetak-004">Hapus</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Items 1 -->
+                        <div class="row table-product align-items-md-center py-md-2 py-3 px-3 border-bottom-md-0">
+                            <div class="col-12 col-md-3" data-label="Sumber">
+                                Milik Sendiri
+                            </div>
+                            <div class="col-12 col-md-3" data-label="Nama">
+                                Heidelberg GTO52 <br>
+                                4 Warna
+                            </div>
+                            <div class="col-12 col-md-2" data-label="Harga">
+                                minim: Rp240.000<br>
+                                druck: Rp60
+                            </div>
+                            <div class="col-12 col-md-2" data-label="Update">20/12/12 23:12</div>
+                            <div class="col-12 col-md-1" data-label="Status">
+                                <span class="badge status-publish">Publish</span>
+                                <span class="badge status-active">Active</span>
+                            </div>
+                            <div class="col-12 col-md-1">
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle" href="#" id="calculatorDropdown4" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Aksi
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="calculatorDropdown4">
+                                        <li><a class="text-standard dropdown-item">Active</a></li>
+                                        <li><a class="text-standard dropdown-item">Deactive</a></li>
+                                        <hr>
+                                        <li><a class="text-standard dropdown-item">Publish</a></li>
+                                        <li><a class="text-standard dropdown-item">Private</a></li>
+                                        <hr>
+                                        <li><a class="text-standard dropdown-item" data-bs-toggle="modal" data-bs-target="#detailModal" role="button">Detail</a></li>
+                                        <li><a class="text-standard dropdown-item" href="/kalkulator-potong-kertas.html">Ubah</a></li>
+                                        <li><a class="text-standard dropdown-item" href="#" data-js-click="mesin-cetak-005">Hapus</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Items 1 -->
+                        <div class="row table-product align-items-md-center py-md-2 py-3 px-3 border-bottom-md-0">
+                            <div class="col-12 col-md-3" data-label="Sumber">
+                                Percetakan Grafika <br>
+                                Jakarta Pusat, Jakarta
+                            </div>
+                            <div class="col-12 col-md-3" data-label="Nama">
+                                Heidelberg GTO52 <br>
+                                4 Warna
+                            </div>
+                            <div class="col-12 col-md-2" data-label="Harga">
+                                minim: Rp240.000<br>
+                                druck: Rp60
+                            </div>
+                            <div class="col-12 col-md-2" data-label="Update">20/12/12 23:12</div>
+                            <div class="col-12 col-md-1" data-label="Status">
+                                <span class="badge status-publish">Publish</span>
+                                <span class="badge status-active">Active</span>
+                            </div>
+                            <div class="col-12 col-md-1">
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle" href="#" id="calculatorDropdown5" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Aksi
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="calculatorDropdown5">
+                                        <li><a class="text-standard dropdown-item">Active</a></li>
+                                        <li><a class="text-standard dropdown-item">Deactive</a></li>
+                                        <hr>
+                                        <li><a class="text-standard dropdown-item">Publish</a></li>
+                                        <li><a class="text-standard dropdown-item">Private</a></li>
+                                        <hr>
+                                        <li><a class="text-standard dropdown-item" data-bs-toggle="modal" data-bs-target="#detailModal" role="button">Detail</a></li>
+                                        <li><a class="text-standard dropdown-item" href="/kalkulator-potong-kertas.html">Ubah</a></li>
+                                        <li><a class="text-standard dropdown-item" href="#" data-js-click="mesin-cetak-006">Hapus</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal for add new machine -->
+    <div class="modal fade text-standard" id="addNewMachineModal" tabindex="-1"
+        aria-labelledby="addNewMachineModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header py-2">
+                    <h5 class="modal-title" id="addNewMachineModalLabel">Add New Machine Profile</h5>
+                    <div class="d-flex align-items-center">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <form>
+
+                            <div class="row mb-3">
+                                <div class="col-5">
+                                    <label for="pilihSatuan" class="form-label">Pilih Satuan Ukuran</label>
+                                </div>
+                                <div class="col-7">
+                                    <button class="btn btn-spec me-2 selected" type="button">Centimeter<span
+                                            class="ribbon"></span></button>
+                                    <button class="btn btn-spec me-2" type="button">Milimeter<span
+                                            class="ribbon d-none"></span></button>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-5">
+                                    <label for="name" class="form-label">Nama Mesin</label>
+                                </div>
+                                <div class="col-7">
+                                    <input type="text" class="form-control" id="name">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-5">
+                                    <label for="warna-unit" class="form-label">Warna Unit</label>
+                                </div>
+                                <div class="col-7">
+                                    <input type="text" class="form-control number-separator" id="warna-unit">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-5">
+                                    <label class="form-label">Area Kertas</label>
+                                </div>
+                                <div class="col-7">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="input-group input-group-sm">
+                                                <span class="input-group-text">P</span>
+                                                <input type="text" class="form-control number-separator"
+                                                    inputmode="numeric" pattern="[0-9]*">
+                                                <input type="hidden" class="result-input" id="width-add">
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="input-group input-group-sm">
+                                                <span class="input-group-text">L</span>
+                                                <input type="text" class="form-control number-separator"
+                                                    inputmode="numeric" pattern="[0-9]*">
+                                                <input type="hidden" class="result-input" id="height-add">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-5">
+                                    <label for="width-jepitan" class="form-label">Lebar Jepitan</label>
+                                </div>
+                                <div class="col-7">
+                                    <input type="text" class="form-control number-separator" inputmode="numeric"
+                                        pattern="[0-9]*">
+                                    <input type="hidden" id="width-jepitan" class="result-input">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-5">
+                                    <label for="max-gms" class="form-label">Maksimal GSM</label>
+                                </div>
+                                <div class="col-7">
+                                    <input type="text" class="form-control number-separator" inputmode="numeric"
+                                        pattern="[0-9]*">
+                                    <input type="hidden" class="result-input" id="max-gms">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-5">
+                                    <label for="price-plat" class="form-label">Harga Plat</label>
+                                </div>
+                                <div class="col-7">
+                                    <input type="text" class="form-control number-separator price-input" inputmode="numeric"
+                                        pattern="[0-9]*">
+                                    <input type="hidden" class="result-input" id="price-plat">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-5">
+                                    <label for="endurance-plat" class="form-label">Ketahanan Plat (Lbr)</label>
+                                </div>
+                                <div class="col-7">
+                                    <input type="text" class="form-control number-separator" inputmode="numeric"
+                                        pattern="[0-9]*">
+                                    <input type="hidden" class="result-input" id="endurance-plat">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-5">
+                                    <label for="insit" class="form-label">Insit Setelan</label>
+                                </div>
+                                <div class="col-7">
+                                    <input type="text" class="form-control number-separator" inputmode="numeric"
+                                        pattern="[0-9]*">
+                                    <input type="hidden" class="result-input" id="insit">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-5">
+                                    <label for="min-qty" class="form-label">Minimum Qty</label>
+                                </div>
+                                <div class="col-7">
+                                    <input type="text" class="form-control number-separator" inputmode="numeric"
+                                        pattern="[0-9]*">
+                                    <input type="hidden" class="result-input" id="min-qty">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-5">
+                                    <label for="min-price" class="form-label">Harga Minimum</label>
+                                </div>
+                                <div class="col-7">
+                                    <input type="text" class="form-control number-separator price-input" inputmode="numeric"
+                                        pattern="[0-9]*">
+                                    <input type="hidden" class="result-input" id="min-price">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-5">
+                                    <label for="price-duck" class="form-label">Harga Druck</label>
+                                </div>
+                                <div class="col-7">
+                                    <input type="text" class="form-control number-separator price-input" inputmode="numeric"
+                                        pattern="[0-9]*">
+                                    <input type="hidden" class="result-input" id="price-duck">
+                                </div>
+                            </div>
+
+                            <small class="d-none text-standard text-danger" id="info-selected-all"><i
+                                    class="fa-solid fa-circle-info"></i> please input your specification<br></small>
+                            <div class="row mb-3">
+                                <div class="col-5">
+                                    <button class="btn w-100" id="cancel-btn-1" type="button">Batal</button>
+                                </div>
+                                <div class="col-7">
+                                    <button class="btn my-btn-primary w-100" id="save-btn">Simpan</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Cari Data Mesin di Percetakan Lain -->
+    <div class="modal fade" id="modalCariMesin" tabindex="-1" aria-labelledby="modalCariMesinLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 pb-1">
+                <div class="modal-header">
+                    <h6 class="modal-title" id="modalCariMesinLabel"><i class="fa fa-search"></i> Hasil Pencarian Mesin di Percetakan lain</h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="inline-style-mesin-cetak-001">
+
+                    <!-- Hasil Pencarian -->
+                    <div class="mb-4" id="searchResult">
+                        <div>
+                            <div class="small border-bottom py-2">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <span class="fw-bold small">Percetakan Grafika 1</span><br>
+                                        <span class="text-secondary text-standard">Karawang Barat, Karawang, Jawa Barat</span>
+                                    </div>
+                                    <button class="btn my-btn-outline-primary" type="button">Pilih</button>
+                                </div>
+                                <div class="accordion my-1" id="accordionExample">
+                                    <div class="accordion-item border-0">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button text-standard p-0 shadow-none bg-white text-dark" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                Tampilkan Mesin Tersedia
+                                            </button>
+                                        </h2>
+                                        <div id="collapseOne" class="accordion-collapse collapse show"
+                                            data-bs-parent="#accordionExample">
+                                            <div class="accordion-body p-1">
+                                                <div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked1" checked>
+                                                        <label class="form-check-label text-standard" for="flexCheckChecked1">
+                                                            Mesin GTO 52 2 Warna
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked2" checked>
+                                                        <label class="form-check-label text-standard" for="flexCheckChecked2">
+                                                            Mesin Oliver 52 1 Warna
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked3" checked>
+                                                        <label class="form-check-label text-standard" for="flexCheckChecked3">
+                                                            Mesin SM 52 4 Warna
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked4" checked>
+                                                        <label class="form-check-label text-standard" for="flexCheckChecked4">
+                                                            Mesin Heidelberg MOV 66 4 Warna
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked5" checked>
+                                                        <label class="form-check-label text-standard" for="flexCheckChecked5">
+                                                            Mesin Oliver 66 2 Warna
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked6" checked>
+                                                        <label class="form-check-label text-standard" for="flexCheckChecked6">
+                                                            Mesin Heidelberg Sm74 4 Warna
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cari Data Mesin di Percetakan Lain -->
+    <div class="modal modal-sm fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 pb-1">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="detailModalLabel">Detail</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="inline-style-mesin-cetak-002">
+                    <div>
+                        <div class="mb-4">
+                        <span class="text-standard fw-semibold">Sumber : Percetakan Warna Grafika</span><br>
+                        <span class="text-secondary text-standard">Jakarta Pusat, Jakarta</span><br>
+                        <span class="text-secondary text-standard">Update : 20 Januari 2024</span>
+                        </div>
+                        <div class="mb-2 d-flex justify-content-between">
+                        <span class="text-standard">Nama Mesin</span>
+                        <span class="text-standard fw-semibold text-end">Heidelberg GTO52</span>
+                        </div>
+                        <div class="mb-2 d-flex justify-content-between">
+                        <span class="text-standard">Warna Unit</span>
+                        <span class="text-standard fw-semibold text-end">4 Warna</span>
+                        </div>
+                        <div class="mb-2 d-flex justify-content-between">
+                        <span class="text-standard">Area Kertas</span>
+                        <span class="text-standard fw-semibold text-end">520 x 430 Milimeter</span>
+                        </div>
+                        <div class="mb-2 d-flex justify-content-between">
+                        <span class="text-standard">Lebar Jepitan</span>
+                        <span class="text-standard fw-semibold text-end">15 Milimeter</span>
+                        </div>
+                        <div class="mb-2 d-flex justify-content-between">
+                        <span class="text-standard">Maksimal GSM</span>
+                        <span class="text-standard fw-semibold text-end">310 gsm</span>
+                        </div>
+                        <div class="mb-2 d-flex justify-content-between">
+                        <span class="text-standard">Harga Plat</span>
+                        <span class="text-standard fw-semibold text-end">Rp60.000</span>
+                        </div>
+                        <div class="mb-2 d-flex justify-content-between">
+                        <span class="text-standard">Ketahanan Plat</span>
+                        <span class="text-standard fw-semibold text-end">20.000 Lembar</span>
+                        </div>
+                        <div class="mb-2 d-flex justify-content-between">
+                        <span class="text-standard">Insit Setelan</span>
+                        <span class="text-standard fw-semibold text-end">100 Lembar</span>
+                        </div>
+                        <div class="mb-2 d-flex justify-content-between">
+                        <span class="text-standard">Minimum QTY</span>
+                        <span class="text-standard fw-semibold text-end">1.000 Lembar</span>
+                        </div>
+                        <div class="mb-2 d-flex justify-content-between">
+                        <span class="text-standard">Harga Minimum</span>
+                        <span class="text-standard fw-semibold text-end">Rp240.000</span>
+                        </div>
+                        <div class="mb-2 d-flex justify-content-between">
+                        <span class="text-standard">Harga Druck</span>
+                        <span class="text-standard fw-semibold text-end">Rp60</span>
+                        </div>
+                        <div class="mt-3 mb-2">
+                        <button class="btn btn-outline-info w-100 py-1" id="inline-style-mesin-cetak-003" type="button">
+                            <i class="bi bi-arrow-repeat me-1"></i> synchronize
+                        </button>
+                        </div>
+                        <div class="text-center mt-2">
+                        <button class="btn text-danger" type="button"><i class="bi bi-trash"></i> Hapus</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/easy-number-separator.js"></script>
+    <script src="js/component.js"></script>
+    <script src="js/kalkulator.js"></script>
+    <script src="js/pages/mesin-cetak.js"></script>
+    <script src="js/pages/mesin-cetak-events.js"></script>
+</body>
+
+</html>

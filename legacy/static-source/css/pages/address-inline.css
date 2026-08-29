@@ -1,0 +1,16 @@
+/* Extracted from former inline style attributes. */
+#clear-address#clear-address#clear-address#clear-address { width: 18px;
+                                                    height: 18px;
+                                                    font-size: 8px;
+                                                    right: 10px;
+                                                    cursor: pointer;
+                                                    z-index: 100; }
+#search-icon#search-icon#search-icon#search-icon { width: 16px;
+                                                    height: 16px;
+                                                    font-size: 12px;
+                                                    right: 10px;
+                                                    z-index: 99; }
+#alamat-dropdown-wrapper#alamat-dropdown-wrapper#alamat-dropdown-wrapper#alamat-dropdown-wrapper { display:none; position:absolute; width:100%; background:#fff; box-shadow:0 2px 8px rgba(0,0,0,0.08); border-radius:8px; }
+#alamat-search-result#alamat-search-result#alamat-search-result#alamat-search-result { display:none; }
+#inline-style-address-005#inline-style-address-005#inline-style-address-005#inline-style-address-005 { border-color: var(--primary-color) !important; }
+#inline-style-address-006#inline-style-address-006#inline-style-address-006#inline-style-address-006 { border-color: var(--primary-color) !important; }

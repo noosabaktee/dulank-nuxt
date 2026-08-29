@@ -1,0 +1,17 @@
+{
+  "source_pages": 55,
+  "page_components": 55,
+  "route_pages": 56,
+  "source_js": 56,
+  "public_js": 56,
+  "source_css": 63,
+  "public_css": 63,
+  "source_images": 13,
+  "public_images": 13,
+  "main_nav_pages": 30,
+  "calculator_nav_pages": 16,
+  "bootstrap_framework_css_loaded": false,
+  "bootstrap_framework_js_loaded": false,
+  "tailwind_dependency": true,
+  "ok": true
+}

@@ -1,0 +1,10 @@
+        .badge-status-arrived {
+            background: #fff8e1;
+            color: #f59c13;
+            border-radius: 6px;
+            padding: 3px 11px 3px 11px;
+            font-size: 13px;
+            font-weight: 600;
+            border: 1px solid #ffdd8b;
+            letter-spacing: 0.02em;
+        }

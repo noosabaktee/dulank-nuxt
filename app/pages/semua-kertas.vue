@@ -1,0 +1,1 @@
+<template><PagesSemuaKertasPage /></template>

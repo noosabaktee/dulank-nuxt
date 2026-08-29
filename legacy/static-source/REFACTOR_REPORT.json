@@ -1,0 +1,22 @@
+{
+  "html_files": 62,
+  "style_tags_extracted": 18,
+  "inline_scripts_extracted": 28,
+  "style_attributes_extracted": 191,
+  "event_attributes_extracted": 78,
+  "semantic_spec_inputs": 74,
+  "explicit_non_submit_buttons": 235,
+  "duplicate_ids_remaining": 0,
+  "inline_style_tags_remaining": 0,
+  "inline_scripts_remaining": 0,
+  "inline_style_attributes_remaining": 0,
+  "inline_event_attributes_remaining": 0,
+  "javascript_syntax_errors": 0,
+  "css_parse_error_files": 0,
+  "html_parse_errors": 0,
+  "missing_html_page_links": 0,
+  "known_missing_source_assets": [
+    "images/brandit.png",
+    "images/breadcrumb.jpg"
+  ]
+}

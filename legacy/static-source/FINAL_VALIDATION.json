@@ -1,0 +1,27 @@
+{
+  "summary": {
+    "html_files": 62,
+    "css_files": 63,
+    "js_files": 56,
+    "semantic_spec_radios": 74,
+    "inline_residue_count": 0
+  },
+  "html_parse_errors": [],
+  "css_parse_errors": [],
+  "duplicate_ids": [],
+  "bad_css_js_refs": [],
+  "bad_html_links": [],
+  "missing_asset_refs": [
+    [
+      "css/style-product-list.css",
+      "/images/breadcrumb.jpg"
+    ],
+    [
+      "product-list.html",
+      "/images/brandit.png"
+    ]
+  ],
+  "orphan_page_assets": [],
+  "visible_text_mismatch": [],
+  "key_structure_mismatch": []
+}

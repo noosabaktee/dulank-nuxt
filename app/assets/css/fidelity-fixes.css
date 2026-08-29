@@ -1,0 +1,173 @@
+/* Dulank fidelity fixes.
+   Tailwind and the Bootstrap-compatible class vocabulary share a few names.
+   These rules keep the original Dulank semantics without loading Bootstrap. */
+
+/* Tailwind's `collapse` utility uses visibility: collapse. Dulank uses
+   `.collapse` as the Bootstrap disclosure component. */
+.collapse { visibility: visible !important; }
+.navbar-collapse { visibility: visible !important; }
+
+/* Desktop Bootstrap behavior used throughout the original site. */
+@media (min-width: 768px) {
+  .navbar-expand-md .navbar-collapse { visibility: visible !important; display: flex !important; }
+  .profile-sidebar.collapse { visibility: visible !important; display: block !important; }
+}
+
+/* Preserve original cascade for profile avatar when used together with ratio. */
+.profile-avatar.ratio { width: 80px; height: 80px; }
+.profile-avatar.ratio > .profile-avatar-badge {
+  top: auto;
+  left: auto;
+  right: 0;
+  bottom: 0;
+  width: 24px;
+  height: 24px;
+}
+
+/* The source page sets the calculator profile image itself to 150px through
+   profile-kalkulator-inline.css. The containing .profile-avatar remains 80px,
+   matching the original cascade. */
+.dulank-page-profile-kalkulator .profile-avatar.ratio > .profile-avatar-badge {
+  width: 24px;
+  height: 24px;
+  top: auto;
+  left: auto;
+  right: 0;
+  bottom: 0;
+}
+
+/* Keep global nav above page content/dropdowns. */
+.dulank-global-header { position: relative; z-index: 1030; background: #fff; }
+.dulank-global-header .dropdown-menu { z-index: 1050; }
+
+/* Revision 3 — main navbar fidelity and stable Vue dropdowns. */
+.dulank-main-navbar .dulank-navbar-logo-link,
+.dulank-main-navbar .dulank-nav-static-action,
+.dulank-main-navbar .dulank-nav-icon-link,
+.dulank-main-navbar .dulank-quote-item {
+  text-decoration: none;
+}
+.dulank-main-navbar .dulank-navbar-action-wrap,
+.dulank-main-navbar .dulank-navbar-secondary-actions,
+.dulank-main-navbar .dulank-nav-static-action,
+.dulank-main-navbar .dulank-nav-action {
+  align-items: center;
+}
+.dulank-main-navbar .dulank-nav-static-action,
+.dulank-main-navbar .dulank-nav-action {
+  display: flex;
+  gap: .2rem;
+  white-space: nowrap;
+}
+.dulank-main-navbar .dulank-nav-action-trigger,
+.dulank-main-navbar .dulank-nav-menu-button {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  font: inherit;
+  line-height: inherit;
+  cursor: pointer;
+}
+.dulank-main-navbar .dulank-nav-menu-button {
+  padding: .5rem 1rem !important;
+  color: var(--secondary-color) !important;
+  font-size: 15px;
+  font-weight: 500;
+}
+.dulank-main-navbar .dulank-nav-action > .dropdown-menu {
+  top: calc(100% + .45rem);
+  right: 0;
+  left: auto;
+}
+.dulank-main-navbar .dulank-profile-dropdown {
+  min-width: 190px;
+}
+.dulank-main-navbar .dulank-quote-dropdown {
+  width: 300px !important;
+  max-width: min(300px, calc(100vw - 2rem));
+}
+.dulank-main-navbar .dropdown-menu.show {
+  display: block;
+}
+.dulank-main-navbar .dulank-quote-item {
+  white-space: normal;
+  color: var(--secondary-color);
+}
+
+/* Product custom controls: Bootstrap's original display utility precedence.
+   `d-flex d-none` must be hidden until JS removes d-none. */
+.dulank-page .d-flex.d-none,
+.dulank-page .d-inline-flex.d-none,
+.dulank-page .d-block.d-none,
+.dulank-page .d-inline.d-none,
+.dulank-page .d-inline-block.d-none {
+  display: none !important;
+}
+@media (min-width: 768px) {
+  .dulank-page .d-none.d-md-flex { display: flex !important; }
+  .dulank-page .d-none.d-md-block { display: block !important; }
+  .dulank-page .d-flex.d-md-none { display: none !important; }
+  .dulank-page .d-block.d-md-none { display: none !important; }
+}
+
+/* Bootstrap tab panes are out of normal layout unless active.
+   Without this, faded panes remain invisible but still reserve their height. */
+.tab-content > .tab-pane { display: none; }
+.tab-content > .tab-pane.active { display: block; }
+
+/* Calculator result state: after Hitung, the empty state must not compete
+   with the result table even though the source empty state also has d-flex. */
+.dulank-page-kalkulator-potong-kertas .empty-form.d-none { display: none !important; }
+.dulank-page-kalkulator-potong-kertas .form.d-none { display: none !important; }
+
+/* Profile Kalkulator: the source image is 150x150. Make the positioning
+   context match the image, then place the camera at the requested top-right. */
+.dulank-page-profile-kalkulator .profile-avatar.ratio {
+  width: 150px;
+  height: 150px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.dulank-page-profile-kalkulator .profile-avatar.ratio::before {
+  display: none;
+}
+.dulank-page-profile-kalkulator .profile-avatar.ratio > img {
+  position: absolute;
+  inset: 0;
+  width: 150px !important;
+  height: 150px !important;
+}
+.dulank-page-profile-kalkulator .profile-avatar.ratio > .profile-avatar-badge {
+  width: 24px;
+  height: 24px;
+  top: 4px;
+  right: 4px;
+  bottom: auto;
+  left: auto;
+}
+
+@media (max-width: 767.98px) {
+  .dulank-main-navbar .dulank-navbar-action-wrap {
+    width: 100%;
+    justify-content: center;
+  }
+  .dulank-main-navbar .action-icons {
+    width: 100%;
+  }
+  .dulank-main-navbar .dulank-navbar-secondary-actions {
+    margin-bottom: .5rem;
+  }
+  .dulank-main-navbar .dulank-nav-action > .dropdown-menu {
+    right: auto;
+    left: 0;
+  }
+}
+
+.dulank-main-navbar .dulank-nav-icon-link {
+  display: inline-flex;
+  align-items: center;
+  color: inherit;
+}

@@ -1,0 +1,1 @@
+<template><PagesInvoiceViewPage /></template>

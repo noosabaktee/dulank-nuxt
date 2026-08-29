@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Ticket</title>
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pages/support-ticket-kalkulator-inline.css">
+</head>
+<body>
+    <header>
+        <div id="navbar-kalkulator-placeholder"></div>
+    </header>
+
+
+    <main>
+
+        <!-- Main Content Area (placeholder) -->
+        <div class="container my-5">
+            <div class="row">
+                <!-- Sidebar Navigation -->
+                <div class="col-lg-3 mb-4" id="sidebar-kalkulator-placeholder"></div>
+
+                <!-- Main Profile Content -->
+                <div class="col-lg-9">
+                    <div class="recent-orders">
+                        <div class="mt-2 mt-md-0 d-flex justify-content-between">
+                            <h5 class="section-title mb-0">Support Ticket</h5>
+                            <div class="d-flex">
+                                <form action="" class="d-flex">
+                                    <input type="text" class="form-control" placeholder="search">
+                                    <button class="ms-2 btn my-btn-primary" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                </form>
+                                <div class="dropdown ms-2">
+                                    <button class="btn my-btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Sorting
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        <li><a class="dropdown-item" href="#">Newest</a></li>
+                                        <li><a class="dropdown-item" href="#">Oldest</a></li>
+                                        <li><a class="dropdown-item" href="#">Highest</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div>
+                            <div class="row align-items-center py-2 px-3 d-none d-md-flex fw-bold">
+                                <div class="col-md-4 small">Ticket Subject</div>
+                                <div class="col-md-3 small">Data Submitted | Update</div>
+                                <div class="col-md-2 small">Type</div>
+                                <div class="col-md-1 small">Priority</div>
+                                <div class="col-md-2 small text-end">Status</div>
+                            </div>
+
+                            <!-- Items 1 -->
+                            <div class="row table-product align-items-md-center py-3 px-3 border-bottom-md-0">
+                                <div class="col-12 col-md-4" data-label="Ticket Subject"><a href="support-ticket-detail-kalkulator.html">Tidak bisa upload</a></div>
+                                <div class="col-12 col-md-3" data-label="Data Submitted | Update">13/06/25, 13:50</div>
+                                <div class="col-12 col-md-2" data-label="Type">Website problem</div>
+                                <div class="col-12 col-md-1" data-label="Priority">Urgent</div>
+                                <div class="col-12 col-md-2 text-start text-md-end" data-label="Status">On proses</div>
+                            </div>
+                            <!-- Items 2 -->
+                            <div class="row table-product align-items-md-center py-3 px-3 border-bottom-md-0">
+                                <div class="col-12 col-md-4" data-label="Ticket Subject"><a href="support-ticket-detail-kalkulator.html">Hasil cetak kurang 500 pcs</a></div>
+                                <div class="col-12 col-md-3" data-label="Data Submitted | Update">13/06/25, 13:50</div>
+                                <div class="col-12 col-md-2" data-label="Type">Complaint</div>
+                                <div class="col-12 col-md-1" data-label="Priority">Urgent</div>
+                                <div class="col-12 col-md-2 text-start text-md-end" data-label="Status">Closed</div>
+                            </div>
+                        </div>
+
+                        <button class="btn my-btn-primary my-4" data-bs-toggle="modal" data-bs-target="#addNewTicketModal" type="button">Submit New Ticket</button>
+
+                        <div class="text-standard d-flex justify-content-end mt-2">
+                            Tampilkan
+                            <select class="text-standard mx-2" aria-label="Default select example">
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="50">50</option>
+                            </select>
+                            Per Halaman
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal for update die cutting -->
+    <div class="modal fade text-standard" id="addNewTicketModal" tabindex="-1" aria-labelledby="addNewTicketModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header py-2">
+                    <h5 class="modal-title" id="addNewTicketModalLabel">Submit New Ticket</h5>
+                    <div class="d-flex align-items-center">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-4">
+                        <div class="text-secondary mb-4" id="inline-style-support-ticket-kalkulator-001">
+                            We normally respond tickets within 2 business days.
+                        </div>
+
+                        <form>
+                            <div class="mb-3">
+                                <label class="form-label small">Subject</label>
+                                <input type="text" class="form-control" placeholder="Enter subject">
+                            </div>
+                            <div class="row g-3 mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label small">Type</label>
+                                    <select class="form-select text-standard">
+                                        <option selected>Choose Type</option>
+                                        <option>Website Problem</option>
+                                        <option>Partner Request</option>
+                                        <option>Complaint</option>
+                                        <option>Info Inquiry</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small">Priority</label>
+                                    <select class="form-select text-standard">
+                                        <option selected>How urgent is your issue?</option>
+                                        <option>Urgent</option>
+                                        <option>Low</option>
+                                        <option>Medium</option>
+                                        <option>High</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label small">Describe your issue</label>
+                                <textarea class="form-control border-danger-subtle text-standard" rows="4" placeholder="Describe your issue"></textarea>
+                            </div>
+                            <div class="mb-4">
+                                <div class="input-group">
+                                    <input type="file" class="form-control text-standard">
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-end gap-2">
+                                <button class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Close</button>
+                                <button type="submit" class="btn my-btn-primary">Submit Ticket</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div id="footer-placeholder"></div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/component.js"></script>
+    <script src="js/kalkulator.js"></script>
+</body>
+</html>

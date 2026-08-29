@@ -1,0 +1,27 @@
+.text-color { color: var(--text-color) !important; }
+.border-custom { border-color: var(--border-color) !important; }
+
+#shipping-section {
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  padding: 20px 25px 10px 20px;
+  box-shadow: none;
+}
+
+.badge.bg-accent {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.form-check-input:checked {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+
+@media (max-width: 700px) {
+  #shipping-section {
+    padding: 14px 5px 7px 5px;
+  }
+}

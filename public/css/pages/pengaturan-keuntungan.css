@@ -1,0 +1,7 @@
+        
+        .input-add-other, .input-add-other:focus{
+            outline: 0;
+            border:0;
+            field-sizing: content;
+            max-width: 450px;
+        }

@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cetak Buku | Dulank</title>
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pages/cetak-buku.css">
+    <link rel="stylesheet" href="css/pages/cetak-buku-inline.css">
+</head>
+<body>
+    <header>
+        <div id="navbar-placeholder"></div>
+    </header>
+
+    <!-- Category Navbar -->
+    <div class="container mt-3">
+      <p class="text-standard">Home > Products > Cetak Buku</p>
+    </div>
+
+    <main>
+      <!-- Main Content Area (placeholder) -->
+      <div class="container mt-3">
+        <!-- Main Content -->
+        <div class="section-card">
+          <!-- start row -->
+          <div class="row flex-lg-row">
+            <!-- Kiri: Gambar -->
+            <div class="col-lg-5">
+              <h1 class="fs-4 mb-4 bg-light p-3 title">Cetak Buku</h1>
+              <p class="text-muted text-standard">Cetak buku untuk kebutuhan buku bacaan, buku paket, modul, company profile tebal, sampai buku tulis custom. Pilih spesifikasi ukuran, cover, isi, jilid, dan tipe cetak sesuai kebutuhan produksi.</p>
+              <div class="row justify-content-center align-items-center">
+                <div class="col-md-9 px-3 order-md-2">
+                  <div class="my-3 ratio ratio-1x1" >
+                    <img src="/images/yasin.jpg" class="object-fit-cover img-product">
+                  </div>
+                </div>
+                <div class="col-md-3 text-center order-md-1 list-img-variant">
+                  <img role="button" src="/images/yasin.jpg" class="object-fit-cover border border-2 my-2 img-variant border-primary" width="80">
+                  <img role="button" src="/images/yasin.jpg" class="object-fit-cover border border-2 my-2 img-variant" width="80">
+                  <img role="button" src="/images/yasin.jpg" class="object-fit-cover border border-2 my-2 img-variant" width="80">
+                  <img role="button" src="/images/yasin.jpg" class="object-fit-cover border border-2 my-2 img-variant" width="80">
+                  <img role="button" src="/images/yasin.jpg" class="object-fit-cover border border-2 my-2 img-variant" width="80">
+                </div>
+              </div>
+            </div>
+            <!-- Kanan: Form-->
+            <div class="col-lg-7 mb-4 mb-md-0 ps-md-4 mt-5 mt-md-0">
+              <h1 class="fs-4 mb-md-4 bg-light p-3 title">Tentukan Spesifikasi</h1>
+              <!-- Header & Sorting -->
+              <div class="sorting-nav">
+                <p role="button" class="nav-product fw-bold">Buku Bacaan / Buku Paket</p>
+                <p role="button" class="nav-product fw-light">Buku Tulis Custom</p>
+              </div>
+              <p class="text-standard" id="spec-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, harum repudiandae nihil sint obcaecati consequuntur veniam dignissimos saepe nobis ipsa velit eum. Perferendis sed nulla alias veniam? Illum, dolore consectetur!</p>
+              <form id="specForm">
+                <div class="mb-3">
+                  <div class="row spec">
+                    <div class="col-3">
+                      <label class="custom-label text-standard">Orientasi</label>
+                    </div>
+                    <div class="col-9 list-spec" id="orientation">
+                      <label class="btn text-standard btn-spec me-2 mb-2 selected"><input class="visually-hidden spec-input" type="radio" name="cetak-buku-orientation" value="Portrait (Berdiri)" checked>Portrait (Berdiri)<span class="ribbon"></span></label>
+                      <label class="btn text-standard btn-spec me-2 mb-2"><input class="visually-hidden spec-input" type="radio" name="cetak-buku-orientation" value="Landscape (Tidur)">Landscape (Tidur)<span class="ribbon d-none"></span></label>
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="row spec">
+                    <div class="col-3">
+                      <label class="custom-label text-standard">Ukuran</label>
+                    </div>
+                    <div class="col-9">
+                      <div id="size" class="d-inline list-spec">
+                        <label class="btn btn-spec me-2 mb-2 selected" data-price="50000"><input class="visually-hidden spec-input" type="radio" name="cetak-buku-size" value="A4 (210x297mm)" checked>A4 (210x297mm)<span class="ribbon"></span></label>
+                        <label class="btn btn-spec me-2 mb-2" data-price="35000"><input class="visually-hidden spec-input" type="radio" name="cetak-buku-size" value="A5 (148x210mm)">A5 (148x210mm)<span class="ribbon d-none"></span></label>
+                        <label class="btn btn-spec me-2 mb-2" data-price="90000"><input class="visually-hidden spec-input" type="radio" name="cetak-buku-size" value="B4 (250x353mm)">B4 (250x353mm)<span class="ribbon d-none"></span></label>
+                        <label class="btn btn-spec me-2 mb-2" data-price="90000"><input class="visually-hidden spec-input" type="radio" name="cetak-buku-size" value="B5 (250x176mm)">B5 (250x176mm)<span class="ribbon d-none"></span></label>
+                      </div>
+                      <div class="d-flex d-none mb-2" id="custom-size">
+                        <div class="flex-fill me-2">
+                          <input min="0" type="text" class="text-standard form-control rounded-0 number-separator" inputmode="numeric" pattern="[0-9]*" placeholder="Width" id="widthSize" data-js-input="cetak-buku-001">
+                          <input type="hidden" class="result-input" id="widthSizeValue">
+                        </div>
+                        <div class="flex-fill me-2">
+                          <input min="0" type="text" class="text-standard form-control rounded-0 number-separator" inputmode="numeric" pattern="[0-9]*" placeholder="Height" id="heightSize" data-js-input="cetak-buku-002">
+                          <input type="hidden" class="result-input" id="heightSizeValue">
+                        </div>
+                        <select class="form-select w-auto rounded-0 text-standard" aria-label="Default select example" id="unit" data-js-change="cetak-buku-003">
+                          <option value="cm">centimeter</option>
+                          <option value="mm">milimeter</option>
+                        </select>
+                      </div>
+                      <small class="d-none text-standard text-danger" id="info-custom"><i class="fa-solid fa-circle-info"></i> Min Max</small>
+                      <button type="button" class="btn btn-spec custom-size-btn d-md-inline d-block">Custom</button><br>
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="row spec">
+                    <div class="col-3">
+                      <label class="custom-label text-standard">Binding/Jilid</label>
+                    </div>
+                    <div class="col-9 list-spec" id="binding">
+                      <label class="btn text-standard btn-spec me-2 mb-2 selected"><input class="visually-hidden spec-input" type="radio" name="cetak-buku-binding" value="Lem Panas" checked>Lem Panas<span class="ribbon"></span></label>
+                      <label class="btn text-standard btn-spec me-2 mb-2"><input class="visually-hidden spec-input" type="radio" name="cetak-buku-binding" value="Spiral">Spiral<span class="ribbon d-none"></span></label>
+                      <label class="btn text-standard btn-spec me-2 mb-2"><input class="visually-hidden spec-input" type="radio" name="cetak-buku-binding" value="Steples">Steples<span class="ribbon d-none"></span></label>
+                      <label class="btn text-standard btn-spec me-2 mb-2"><input class="visually-hidden spec-input" type="radio" name="cetak-buku-binding" value="Perfect Binding">Perfect Binding<span class="ribbon d-none"></span></label>
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="row spec">
+                    <div class="col-3">
+                      <label class="custom-label text-standard">Jenis Kertas Isi Buku</label>
+                    </div>
+                    <div class="col-9 list-spec" id="type">
+                      <label class="btn text-standard btn-spec me-2 mb-2 selected" data-price="12000"><input class="visually-hidden spec-input" type="radio" name="cetak-buku-type" value="HVS 70gr" checked>HVS 70gr<span class="ribbon"></span></label>
+                      <label class="btn text-standard btn-spec me-2 mb-2" data-price="8000"><input class="visually-hidden spec-input" type="radio" name="cetak-buku-type" value="Bookpaper 70gr">Bookpaper 70gr<span class="ribbon d-none"></span></label>
+                      <label class="btn text-standard btn-spec me-2 mb-2" data-price="5000"><input class="visually-hidden spec-input" type="radio" name="cetak-buku-type" value="Art Paper 100gr">Art Paper 100gr<span class="ribbon d-none"></span></label>
+                      <label class="btn text-standard btn-spec me-2 mb-2 d-none" data-price="5000"><input class="visually-hidden spec-input" type="radio" name="cetak-buku-type" value="HVS 80gr">HVS 80gr<span class="ribbon d-none"></span></label>
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="row spec">
+                    <div class="col-3">
+                      <label class="custom-label text-standard">Laminasi Cover</label>
+                    </div>
+                    <div class="col-9 list-spec" id="lamination">
+                      <label class="btn text-standard btn-spec me-2 mb-2 selected" data-price="0"><input class="visually-hidden spec-input" type="radio" name="cetak-buku-lamination" value="Tanpa Laminasi" checked>Tanpa Laminasi<span class="ribbon"></span></label>
+                      <label class="btn text-standard btn-spec me-2 mb-2" data-price="8000"><input class="visually-hidden spec-input" type="radio" name="cetak-buku-lamination" value="Glossy">Glossy<span class="ribbon d-none"></span></label>
+                      <label class="btn text-standard btn-spec me-2 mb-2" data-price="8000"><input class="visually-hidden spec-input" type="radio" name="cetak-buku-lamination" value="Doff">Doff<span class="ribbon d-none"></span></label>
+                      <label class="btn text-standard btn-spec me-2 mb-2" data-price="8000"><input class="visually-hidden spec-input" type="radio" name="cetak-buku-lamination" value="UV Vernish">UV Vernish<span class="ribbon d-none"></span></label>
+                      <label class="btn text-standard btn-spec me-2 mb-2" data-price="8000"><input class="visually-hidden spec-input" type="radio" name="cetak-buku-lamination" value="Spot UV">Spot UV<span class="ribbon d-none"></span></label>
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="row spec">
+                    <div class="col-3">
+                      <label class="custom-label text-standard">Tipe Cetak</label>
+                    </div>
+                    <div class="col-9 list-spec" id="side">
+                      <label class="btn text-standard btn-spec me-2 mb-2 selected"><input class="visually-hidden spec-input" type="radio" name="cetak-buku-side" value="1 Warna" checked>1 Warna<span class="ribbon"></span></label>
+                      <label class="btn text-standard btn-spec me-2 mb-2"><input class="visually-hidden spec-input" type="radio" name="cetak-buku-side" value="Full Color">Full Color<span class="ribbon d-none"></span></label>
+                      <label class="btn text-standard btn-spec me-2 mb-2"><input class="visually-hidden spec-input" type="radio" name="cetak-buku-side" value="1 Warna &amp; Full Color">1 Warna & Full Color<span class="ribbon d-none"></span></label>
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="row spec">
+                    <div class="col-3">
+                      <label class="custom-label text-standard">Jenis Cover</label>
+                    </div>
+                    <div class="col-9 list-spec" id="cover">
+                      <label class="btn text-standard btn-spec me-2 mb-2 selected" data-price="3000"><input class="visually-hidden spec-input" type="radio" name="cetak-buku-cover" value="Softcover" checked>Softcover<span class="ribbon"></span></label>
+                      <label class="btn text-standard btn-spec me-2 mb-2" data-price="5000"><input class="visually-hidden spec-input" type="radio" name="cetak-buku-cover" value="HardCover">HardCover<span class="ribbon d-none"></span></label>
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="row spec">
+                    <div class="col-3">
+                      <label class="custom-label text-standard">Finishing Cover</label>
+                    </div>
+                    <div class="col-9 list-spec" id="position">
+                      <label class="btn text-standard btn-spec me-2 mb-2 selected" data-price="3000"><input class="visually-hidden spec-input" type="radio" name="cetak-buku-position" value="Glossy" checked>Glossy<span class="ribbon"></span></label>
+                      <label class="btn text-standard btn-spec me-2 mb-2" data-price="5000"><input class="visually-hidden spec-input" type="radio" name="cetak-buku-position" value="Doff">Doff<span class="ribbon d-none"></span></label>
+                      <label class="btn text-standard btn-spec me-2 mb-2" data-price="5000"><input class="visually-hidden spec-input" type="radio" name="cetak-buku-position" value="Spot UV">Spot UV<span class="ribbon d-none"></span></label>
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-3 page-row page-bw-row">
+                  <div class="row">
+                    <div class="col-3">
+                      <label class="custom-label text-standard" id="pageBwLabel">Jumlah Halaman 1 Warna</label>
+                    </div>
+                    <div class="col-9">
+                      <div class="input-group" id="inline-style-cetak-buku-001">
+                        <input type="text" min="1" class="form-control rounded-0 text-standard number-separator" inputmode="numeric" pattern="[0-9]*" id="pageBw" data-js-input="cetak-buku-004">
+                        <input type="hidden" class="result-input" id="pageBwValue">
+                        <span class="input-group-text rounded-0 text-standard">Page</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-3 page-row page-color-row">
+                  <div class="row">
+                    <div class="col-3">
+                      <label class="custom-label text-standard">Jumlah Halaman Full Color</label>
+                    </div>
+                    <div class="col-9">
+                      <div class="input-group" id="inline-style-cetak-buku-002">
+                        <input type="text" min="1" class="form-control rounded-0 text-standard number-separator" inputmode="numeric" pattern="[0-9]*" id="pageColor" data-js-input="cetak-buku-005">
+                        <input type="hidden" class="result-input" id="pageColorValue">
+                        <span class="input-group-text rounded-0 text-standard">Page</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <small class="d-none text-standard text-danger" id="info-selected-all"><i class="fa-solid fa-circle-info"></i> please select your specification<br></small>
+                <button class="btn my-btn-primary rounded-0 w-100" type="button" id="btnHitung">Hitung Harga</button>
+              </form>
+            </div>
+          </div>
+          <!-- end row -->
+
+          <!-- start row -->
+          <div class="row mt-md-3" id="scrollTo">
+            <!-- Kiri: List Harga -->
+            <div class="col-md-12">
+              <div class="mb-2 mt-4">
+                <h1 class="fs-4 bg-light p-3 title">List Harga Cetak Buku</h1>
+              </div>
+
+              <div class="d-md-flex justify-content-between mt-4">
+                <p>Silahkan Pilih Harga Yang Terbaik</p>
+
+                <!-- Share Section -->
+                <div class="text-md-end share-disabled" id="share-section">
+                    <span class="me-2">Share:</span>
+                    <a href="#" class="social-share-icon me-2" id="inline-style-cetak-buku-003"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-share-icon me-2" id="inline-style-cetak-buku-004"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="social-share-icon" id="inline-style-cetak-buku-005"><i class="fa-solid fa-link"></i></a>
+                </div>
+
+              </div>
+
+              <div class="mb-3 mt-4">
+                <p id="result" class="text-standard fw-bold">Tentukan pilihan produk yang anda inginkan pada Spesifikasi</p>
+              </div>
+              <button class="btn my-btn-primary" data-bs-toggle="modal" data-bs-target="#qtyModal" type="button">Ubah Quantity</button>
+
+              <div class="text-center empty-spec d-none py-5">
+                <i class="bi bi-journal fs-1 mb-4"></i>
+                <h6>Please select the specification</h6>
+                <p class="text-muted text-standard mb-4">You have not selected product specifications</p>
+              </div>
+              <div class="table-responsive table-spec my-3">
+                <table class="table table-hover align-middle text-center mb-0" id="hargaTable">
+                  <thead class="bg-light">
+                    <tr>
+                      <th class="fw-normal">Qty</th>
+                      <th class="fw-normal">Harga Satuan</th>
+                      <th class="fw-normal">Sub Total</th>
+                      <th class="fw-normal">Berat</th>
+                      <th class="fw-normal">Pengerjaan</th>
+                      <th class="fw-normal" id="inline-style-cetak-buku-006"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="table-list">
+                      <td><span class="qty-value">10</span> Rim</td><td class="my-text-primary">Rp<span class="price-value">65.000</span></td><td>Rp<span class="sub-total">650.000</span></td><td>30 Kg</td><td>3 Hari</td>
+                      <td>
+                        <button class="align-items-center me-5 add-wishlist-btn btn" type="button"><i class="bi bi-heart me-2 my-text-primary"></i><span class="text-standard my-text-primary">Add to Wishist</span></button>
+                        <a href="checkout.html" class="btn my-btn-primary px-5 buy-btn">Beli</a>
+                      </td>
+                    </tr>
+                    <tr class="table-list">
+                      <td><span class="qty-value">13</span> Rim</td><td class="my-text-primary">Rp<span class="price-value">64.000</span></td><td>Rp<span class="sub-total">832.000</span><br><span class="table-disc">Hemat Rp130.000</span></td><td>38 Kg</td><td>3 Hari</td>
+                      <td>
+                        <button class="align-items-center me-5 add-wishlist-btn btn" type="button"><i class="bi bi-heart me-2 my-text-primary"></i><span class="text-standard my-text-primary">Add to Wishist</span></button>
+                        <a href="checkout.html" class="btn my-btn-primary px-5 buy-btn">Beli</a>
+                      </td>
+                    </tr>
+                    <tr class="table-list">
+                      <td><span class="qty-value">17</span> Rim</td><td class="my-text-primary">Rp<span class="price-value">64.000</span></td><td>Rp<span class="sub-total">1.088.000</span><br><span class="table-disc">Hemat Rp170.000</span></td><td>42 Kg</td><td>3 Hari</td>
+                      <td>
+                        <button class="align-items-center me-5 add-wishlist-btn btn" type="button"><i class="bi bi-heart me-2 my-text-primary"></i><span class="text-standard my-text-primary">Add to Wishist</span></button>
+                        <a href="checkout.html" class="btn my-btn-primary px-5 buy-btn">Beli</a>
+                      </td>
+                    </tr>
+                    <tr class="table-list">
+                      <td><span class="qty-value">20</span> Rim</td><td class="my-text-primary">Rp<span class="price-value">62.000</span></td><td>Rp<span class="sub-total">1.240.000</span><br><span class="table-disc">Hemat Rp600.000</span></td><td>49 Kg</td><td>3 Hari</td>
+                      <td>
+                        <button class="align-items-center me-5 add-wishlist-btn btn" type="button"><i class="bi bi-heart me-2 my-text-primary"></i><span class="text-standard my-text-primary">Add to Wishist</span></button>
+                        <a href="checkout.html" class="btn my-btn-primary px-5 buy-btn">Beli</a>
+                      </td>
+                    </tr>
+                    <tr class="table-list">
+                      <td><span class="qty-value">25</span> Rim</td><td class="my-text-primary">Rp<span class="price-value">60.000</span></td><td>Rp<span class="sub-total">1.500.000</span><br><span class="table-disc">Hemat Rp1.250.000</span></td><td>55 Kg</td><td>4 Hari</td>
+                      <td>
+                        <button class="align-items-center me-5 add-wishlist-btn btn" type="button"><i class="bi bi-heart me-2 my-text-primary"></i><span class="text-standard my-text-primary">Add to Wishist</span></button>
+                        <a href="checkout.html" class="btn my-btn-primary px-5 buy-btn">Beli</a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end section-card -->
+
+        <!-- Design Buku Section -->
+        <p class="fs-5 mb-4">Design Cetak Buku</p>
+        <div class="section-card">
+          <!-- Tabs kategori -->
+          <ul class="nav nav-tabs category-tab mb-3" id="kategoriTab">
+            <li class="nav-item"><a class="nav-link fw-normal text-standard active" data-bs-toggle="tab" href="#kat-all">Semua</a></li>
+            <li class="nav-item"><a class="nav-link fw-normal text-standard" data-bs-toggle="tab" href="#kat-kuliner">Kuliner</a></li>
+            <li class="nav-item"><a class="nav-link fw-normal text-standard" data-bs-toggle="tab" href="#kat-laundry">Laundry</a></li>
+            <li class="nav-item"><a class="nav-link fw-normal text-standard" data-bs-toggle="tab" href="#kat-kursus">Kursus</a></li>
+            <li class="nav-item"><a class="nav-link fw-normal text-standard" data-bs-toggle="tab" href="#kat-otomotif">Otomotif</a></li>
+          </ul>
+          <!-- Kartu desain per kategori -->
+          <div class="tab-content">
+            <div class="tab-pane fade show active" id="kat-all">
+              <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-3">
+                <div class="col"><div class="design-card text-standard"><img class="design-img" src="https://skala.or.id/wp-content/uploads/2024/01/dummy-post-square-1-1.jpg" /><div>Buku Paket</div><button class="btn my-btn-outline-primary my-2 rounded-0 text-standard" type="button">Customize</button></div></div>
+                <div class="col"><div class="design-card text-standard"><img class="design-img" src="https://skala.or.id/wp-content/uploads/2024/01/dummy-post-square-1-1.jpg" /><div>Buku Bacaan</div><button class="btn my-btn-outline-primary my-2 rounded-0 text-standard" type="button">Customize</button></div></div>
+                <div class="col"><div class="design-card text-standard"><img class="design-img" src="https://skala.or.id/wp-content/uploads/2024/01/dummy-post-square-1-1.jpg" /><div>Modul Belajar</div><button class="btn my-btn-outline-primary my-2 rounded-0 text-standard" type="button">Customize</button></div></div>
+                <div class="col"><div class="design-card text-standard"><img class="design-img" src="https://skala.or.id/wp-content/uploads/2024/01/dummy-post-square-1-1.jpg" /><div>Buku Tulis</div><button class="btn my-btn-outline-primary my-2 rounded-0 text-standard" type="button">Customize</button></div></div>
+                <div class="col"><div class="design-card text-standard"><img class="design-img" src="https://skala.or.id/wp-content/uploads/2024/01/dummy-post-square-1-1.jpg" /><div>Notebook Custom</div><button class="btn my-btn-outline-primary my-2 rounded-0 text-standard" type="button">Customize</button></div></div>
+                <div class="col"><div class="design-card text-standard"><img class="design-img" src="https://skala.or.id/wp-content/uploads/2024/01/dummy-post-square-1-1.jpg" /><div>Agenda</div><button class="btn my-btn-outline-primary my-2 rounded-0 text-standard" type="button">Customize</button></div></div>
+              </div>
+              <div class="text-end mt-2"><a href="#" class="text-decoration-none text-standard">Tampilkan Semua</a></div>
+            </div>
+            <!-- 4 kategori tab isi bisa isi ulang image/keterangan sesuai kebutuhan -->
+            <div class="tab-pane fade" id="kat-kuliner">
+              <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-3">
+                <div class="col"><div class="design-card text-standard"><img class="design-img" src="https://skala.or.id/wp-content/uploads/2024/01/dummy-post-square-1-1.jpg" /><div>Buku Resep</div><button class="btn my-btn-outline-primary my-2 rounded-0 text-standard" type="button">Customize</button></div></div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="kat-laundry">
+              <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-3">
+                <div class="col"><div class="design-card text-standard"><img class="design-img" src="https://skala.or.id/wp-content/uploads/2024/01/dummy-post-square-1-1.jpg" /><div>Buku Nota</div><button class="btn my-btn-outline-primary my-2 rounded-0 text-standard" type="button">Customize</button></div></div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="kat-kursus">
+              <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-3">
+                <div class="col"><div class="design-card text-standard"><img class="design-img" src="https://skala.or.id/wp-content/uploads/2024/01/dummy-post-square-1-1.jpg" /><div>Modul Kursus</div><button class="btn my-btn-outline-primary my-2 rounded-0 text-standard" type="button">Customize</button></div></div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="kat-otomotif">
+              <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-3">
+                <div class="col"><div class="design-card text-standard"><img class="design-img" src="https://skala.or.id/wp-content/uploads/2024/01/dummy-post-square-1-1.jpg" /><div>Katalog Sparepart</div><button class="btn my-btn-outline-primary my-2 rounded-0 text-standard" type="button">Customize</button></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Panduan Design & FAQ Tabs -->
+        <div class="section-card pt-2 pb-1">
+          <ul class="nav nav-tabs mb-4" id="panduanTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link text-standard fw-normal active" id="panduan-tab" data-bs-toggle="tab" data-bs-target="#panduan" type="button" role="tab" aria-controls="panduan" aria-selected="true">Panduan Design</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link text-standard fw-normal" id="faq-tab" data-bs-toggle="tab" data-bs-target="#faq" type="button" role="tab" aria-controls="faq" aria-selected="false">FAQ</button>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="panduan" role="tabpanel" aria-labelledby="panduan-tab">
+              <div class="table-responsive">
+                <table class="table align-middle mb-0">
+                  <thead>
+                    <tr><th class="text-standard">Download Panduan Design Pdf</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td class="text-standard"><i class="fa-solid fa-file-pdf download-icon"></i>Buku A4 Portrait</td></tr>
+                    <tr><td class="text-standard"><i class="fa-solid fa-file-pdf download-icon"></i>Buku A5 Portrait</td></tr>
+                    <tr><td class="text-standard"><i class="fa-solid fa-file-pdf download-icon"></i>Buku B5 Landscape</td></tr>
+                    <tr><td class="text-standard"><i class="fa-solid fa-file-pdf download-icon"></i>Buku Tulis Custom</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="faq" role="tabpanel" aria-labelledby="faq-tab">
+              <div class="faq-section">
+                <span class="text-standard">
+                  <strong>Q: Apakah bisa request ukuran khusus?</strong><br>
+                  A: Bisa, silakan konsultasikan dengan tim kami.
+                  <br><br>
+                  <strong>Q: Berapa lama proses pengerjaan?</strong><br>
+                  A: Estimasi sesuai tabel dan variasi pesanan.
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bought Together -->
+        <p class="text-center my-3 fs-5">Buy Together</p>
+        <div class="row mb-5 g-3">
+          <div class="col-md-3 col-6">
+              <div class="card card-product h-100">
+              <span class="badge badge-new position-absolute m-2">New</span>
+              <img src="https://percetakan-dulank.com/wp-content/uploads/2023/04/140630376_4088b1f6-664b-4ace-92ae-1b90ca464988_1200_968.jpg" class="card-img-top p-3 object-fit-contain">
+              <div class="card-body">
+                  <div class="card-product-title text-standard">Kop Surat letter head</div>
+                  <div class="product-price text-standard fs-6">Rp75.000</div>
+                  <button class="btn my-btn-outline-primary w-100 btn-sm text-standard mt-2" type="button">Buy now at Rp75.000</button>
+              </div>
+              </div>
+          </div>
+          <div class="col-md-3 col-6">
+              <div class="card card-product h-100">
+              <span class="badge badge-sale position-absolute m-2">Sale</span>
+              <img src="https://percetakan-dulank.com/wp-content/uploads/2023/04/Kalender-Plakat-Acrilyc-570x570.jpg" class="card-img-top p-3 object-fit-contain">
+              <div class="card-body">
+                  <div class="card-product-title text-standard">Kalender Plakat Acrilyc</div>
+                  <div class="product-price text-standard fs-6">Rp262.500</div>
+                  <button class="btn my-btn-outline-primary w-100 btn-sm text-standard mt-2" type="button">Select Options</button>
+              </div>
+              </div>
+          </div>
+          <div class="col-md-3 col-6">
+              <div class="card card-product h-100">
+              <span class="badge badge-new position-absolute m-2">New</span>
+              <img src="https://percetakan-dulank.com/wp-content/uploads/2023/08/kn_48.jpg" class="card-img-top p-3 object-fit-contain">
+              <div class="card-body">
+                  <div class="card-product-title text-standard">Kartu Nama</div>
+                  <div class="product-price text-standard fs-6">Rp50.000</div>
+                  <button class="btn my-btn-outline-primary w-100 btn-sm text-standard mt-2" type="button">Select Options</button>
+              </div>
+              </div>
+          </div>
+          <div class="col-md-3 col-6">
+              <div class="card card-product h-100">
+              <span class="badge badge-discount position-absolute m-2">-37%</span>
+              <img src="https://percetakan-dulank.com/wp-content/uploads/2023/04/Bendera-1-570x570.jpg" class="card-img-top p-3 object-fit-contain">
+              <div class="card-body">
+                  <div class="card-product-title text-standard">Bendera</div>
+                  <div class="product-old-price small">Rp80.000</div>
+                  <div class="product-price text-standard fs-6">Rp50.400</div>
+                  <button class="btn my-btn-outline-primary w-100 btn-sm text-standard mt-2" type="button">Buy now at Rp50.400</button>
+              </div>
+              </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <footer>
+        <div id="footer-placeholder"></div>
+    </footer>
+
+    <!-- Modal for qty -->
+    <div class="modal fade text-standard" id="qtyModal" tabindex="-1" aria-labelledby="qtyModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header py-2">
+                    <h5 class="modal-title" id="qtyModalLabel">Input Your Quantity</h5>
+                    <div class="d-flex align-items-center">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                </div>
+                <div class="modal-body">
+                  <div class="row align-items-center">
+                    <div class="col-5">
+                      <label class="custom-label text-standard">Qty Pesanan (Pcs)</label>
+                    </div>
+                    <div class="col-7 pe-4 d-flex list-spec align-items-center" id="qty">
+                      <button class="btn quantity-btn" type="button" id="minQty">-</button>
+                      <input id="qtyInput" type="text" class="form-control rounded-0 bg-white mx-2 number-separator" inputmode="numeric" pattern="[0-9]*" placeholder="0" required>
+                      <input type="hidden" class="result-input" value="0">
+                      <button class="btn quantity-btn " type="button" id="plusQty">+</button>
+                    </div>
+                  </div>
+                  <div class="text-end mt-3">
+                    <button class="btn my-btn-primary w-50" data-bs-dismiss="modal" aria-label="Close" type="button">Simpan</button>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/component.js"></script>
+    <script src="js/easy-number-separator.js"></script>
+    <script src="js/pages/cetak-buku-01.js"></script>
+    <script src="js/product.js"></script>
+    <script src="js/pages/cetak-buku-02.js"></script>
+    <script src="js/pages/cetak-buku-events.js"></script>
+</body>
+</html>

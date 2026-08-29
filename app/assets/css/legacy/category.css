@@ -1,0 +1,49 @@
+
+.category-sale-image{
+  transition: transform 0.4s ease;
+  transform-origin: 50% 50%;
+}
+.category-sale-image-scale{
+  transform: scale(1.05);
+  transform-origin: center;
+  -webkit-transform: scale(1.05);
+}
+.category-card {
+  border-radius: 10px;
+  transition: box-shadow 0.2s, border-color 0.2s;
+  padding: 24px 12px 20px;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+}
+.category-image {
+  margin: 0 auto 25px auto;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .4s; 
+}
+.category-image-scale{
+  transform: scale(1.1);
+}
+.category-image img {
+  width: 70%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+.category-name {
+  font-size: 1.08rem;
+  font-weight: 500;
+  color: var(--secondary-color);
+  margin-bottom: 6px;
+}
+.category-count {
+  display: inline-block;
+  background: var(--primary-color);
+  color: #fff;
+  font-size: .85rem;
+  border-radius: 14px;
+  padding: 3px 13px;
+  margin-top: 2px;
+}

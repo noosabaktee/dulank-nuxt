@@ -1,0 +1,17 @@
+{
+  "revision": "navbar-sidebar-profile-v2",
+  "sourcePages": 55,
+  "pageComponents": 55,
+  "routeFiles": 56,
+  "sharedComponents": 23,
+  "calculatorSidebarInstances": 13,
+  "profileSidebarInstances": 10,
+  "pageLevelSharedNavbarsRemaining": 0,
+  "oldHtmlRouteReferences": 0,
+  "collapseTailwindConflictFixed": true,
+  "profileAvatarBadgeFixed": true,
+  "typescriptSyntaxFilesChecked": 71,
+  "typescriptSyntaxErrors": 0,
+  "bootstrapFrameworkRuntime": false,
+  "staticValidation": "OK"
+}

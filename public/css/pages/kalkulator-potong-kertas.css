@@ -1,0 +1,24 @@
+        .input-group-text {
+            background-color: #ffffff;
+            color: #6c757d;
+        }
+        .collapse {
+          &:not(.show) {
+              display: none;
+          }
+      }
+
+      .accordion-button {
+            color: #0099ff;
+            background-color: #f8f9fa;
+            font-size: 14px;
+            font-weight: normal;
+            padding: 10px 15px;
+        }
+        .accordion-button:not(.collapsed) {
+            background-color: #e9f0f8;
+            color: #0066cc;
+        }
+        .accordion-button:focus {
+            box-shadow: none;
+        }

@@ -1,0 +1,768 @@
+[
+  {
+    "source": "404.html",
+    "route": "/404",
+    "component": "404Page",
+    "styles": [
+      "/css/style.css"
+    ],
+    "scripts": [
+      "/js/component.js"
+    ]
+  },
+  {
+    "source": "address.html",
+    "route": "/address",
+    "component": "AddressPage",
+    "styles": [
+      "/css/style.css",
+      "/css/pages/address-inline.css"
+    ],
+    "scripts": [
+      "/js/component.js",
+      "/js/profile.js",
+      "/js/address-input.js",
+      "/js/pages/address.js"
+    ]
+  },
+  {
+    "source": "billing.html",
+    "route": "/billing",
+    "component": "BillingPage",
+    "styles": [
+      "/css/style.css"
+    ],
+    "scripts": [
+      "/js/component.js",
+      "/js/profile.js"
+    ]
+  },
+  {
+    "source": "blog.html",
+    "route": "/blog",
+    "component": "BlogPage",
+    "styles": [
+      "/css/style.css",
+      "/css/blog.css"
+    ],
+    "scripts": [
+      "/js/component.js"
+    ]
+  },
+  {
+    "source": "cart.html",
+    "route": "/cart",
+    "component": "CartPage",
+    "styles": [
+      "/css/style.css",
+      "/css/pages/cart.css",
+      "/css/pages/cart-inline.css"
+    ],
+    "scripts": [
+      "/js/component.js",
+      "/js/save.js",
+      "/js/easy-number-separator.js",
+      "/js/pages/cart.js"
+    ]
+  },
+  {
+    "source": "categories.html",
+    "route": "/categories",
+    "component": "CategoriesPage",
+    "styles": [
+      "/css/style.css",
+      "/css/category.css"
+    ],
+    "scripts": [
+      "/js/component.js",
+      "/js/profile.js",
+      "/js/pages/categories.js"
+    ]
+  },
+  {
+    "source": "cetak-buku.html",
+    "route": "/cetak-buku",
+    "component": "CetakBukuPage",
+    "styles": [
+      "/css/style.css",
+      "/css/pages/cetak-buku.css",
+      "/css/pages/cetak-buku-inline.css"
+    ],
+    "scripts": [
+      "/js/component.js",
+      "/js/easy-number-separator.js",
+      "/js/pages/cetak-buku-01.js",
+      "/js/product.js",
+      "/js/pages/cetak-buku-02.js",
+      "/js/pages/cetak-buku-events.js"
+    ]
+  },
+  {
+    "source": "cetak-full-color.html",
+    "route": "/cetak-full-color",
+    "component": "CetakFullColorPage",
+    "styles": [
+      "/css/style.css",
+      "/css/pages/cetak-full-color.css",
+      "/css/pages/cetak-full-color-inline.css"
+    ],
+    "scripts": [
+      "/js/component.js",
+      "/js/easy-number-separator.js",
+      "/js/product.js",
+      "/js/pages/cetak-full-color-events.js"
+    ]
+  },
+  {
+    "source": "checkout.html",
+    "route": "/checkout",
+    "component": "CheckoutPage",
+    "styles": [
+      "/css/style.css",
+      "/css/checkout.css",
+      "/css/pages/checkout-inline.css"
+    ],
+    "scripts": [
+      "/js/component.js",
+      "/js/checkout.js",
+      "/js/pages/checkout-events.js"
+    ]
+  },
+  {
+    "source": "contact.html",
+    "route": "/contact",
+    "component": "ContactPage",
+    "styles": [
+      "/css/style.css",
+      "/css/pages/contact-inline.css"
+    ],
+    "scripts": [
+      "/js/component.js",
+      "/js/pages/contact.js"
+    ]
+  },
+  {
+    "source": "faqs.html",
+    "route": "/faqs",
+    "component": "FaqsPage",
+    "styles": [
+      "/css/style.css",
+      "/css/pages/faqs.css"
+    ],
+    "scripts": [
+      "/js/component.js"
+    ]
+  },
+  {
+    "source": "forgot-password.html",
+    "route": "/forgot-password",
+    "component": "ForgotPasswordPage",
+    "styles": [
+      "/css/style.css"
+    ],
+    "scripts": [
+      "/js/component.js"
+    ]
+  },
+  {
+    "source": "history.html",
+    "route": "/history",
+    "component": "HistoryPage",
+    "styles": [
+      "/css/style.css",
+      "/css/pages/history-inline.css"
+    ],
+    "scripts": [
+      "/js/component.js",
+      "/js/profile.js"
+    ]
+  },
+  {
+    "source": "hitung-plano.html",
+    "route": "/hitung-plano",
+    "component": "HitungPlanoPage",
+    "styles": [
+      "/css/style.css",
+      "/css/pages/hitung-plano.css",
+      "/css/pages/hitung-plano-inline.css"
+    ],
+    "scripts": [
+      "/js/pages/hitung-plano.js",
+      "/js/easy-number-separator.js",
+      "/js/component.js",
+      "/js/pages/hitung-plano-events.js"
+    ]
+  },
+  {
+    "source": "index.html",
+    "route": "/",
+    "component": "IndexPage",
+    "styles": [
+      "/css/style.css",
+      "/css/pages/index-inline.css"
+    ],
+    "scripts": [
+      "/js/component.js",
+      "/js/pages/index.js"
+    ]
+  },
+  {
+    "source": "invoice-view.html",
+    "route": "/invoice-view",
+    "component": "InvoiceViewPage",
+    "styles": [
+      "/css/style.css",
+      "/css/pages/invoice-view-inline.css"
+    ],
+    "scripts": [
+      "/js/component.js"
+    ]
+  },
+  {
+    "source": "kalender.html",
+    "route": "/kalender",
+    "component": "KalenderPage",
+    "styles": [
+      "/css/style.css",
+      "/css/pages/kalender.css",
+      "/css/pages/kalender-inline.css"
+    ],
+    "scripts": [
+      "/js/component.js",
+      "/js/easy-number-separator.js",
+      "/js/pages/kalender.js",
+      "/js/product.js",
+      "/js/pages/kalender-events.js"
+    ]
+  },
+  {
+    "source": "kalkulator-berat-kertas.html",
+    "route": "/kalkulator-berat-kertas",
+    "component": "KalkulatorBeratKertasPage",
+    "styles": [
+      "/css/style.css",
+      "/css/pages/kalkulator-berat-kertas.css"
+    ],
+    "scripts": [
+      "/js/component.js",
+      "/js/kalkulator.js",
+      "/js/easy-number-separator.js",
+      "/js/pages/kalkulator-berat-kertas.js",
+      "/js/pages/kalkulator-berat-kertas-events.js"
+    ]
+  },
+  {
+    "source": "kalkulator-percetakan.html",
+    "route": "/kalkulator-percetakan",
+    "component": "KalkulatorPercetakanPage",
+    "styles": [
+      "/css/style.css"
+    ],
+    "scripts": [
+      "/js/component.js",
+      "/js/kalkulator.js",
+      "/js/easy-number-separator.js",
+      "/js/pages/kalkulator-percetakan.js",
+      "/js/pages/kalkulator-percetakan-events.js"
+    ]
+  },
+  {
+    "source": "kalkulator-potong-kertas.html",
+    "route": "/kalkulator-potong-kertas",
+    "component": "KalkulatorPotongKertasPage",
+    "styles": [
+      "/css/style.css",
+      "/css/pages/kalkulator-potong-kertas.css",
+      "/css/pages/kalkulator-potong-kertas-inline.css"
+    ],
+    "scripts": [
+      "/js/component.js",
+      "/js/kalkulator.js",
+      "/js/easy-number-separator.js",
+      "/js/generate-plano.js",
+      "/js/pages/kalkulator-potong-kertas.js",
+      "/js/pages/kalkulator-potong-kertas-events.js"
+    ]
+  },
+  {
+    "source": "login.html",
+    "route": "/login",
+    "component": "LoginPage",
+    "styles": [
+      "/css/style.css"
+    ],
+    "scripts": [
+      "/js/component.js"
+    ]
+  },
+  {
+    "source": "mesin-cetak.html",
+    "route": "/mesin-cetak",
+    "component": "MesinCetakPage",
+    "styles": [
+      "/css/style.css",
+      "/css/pages/mesin-cetak-inline.css"
+    ],
+    "scripts": [
+      "/js/easy-number-separator.js",
+      "/js/component.js",
+      "/js/kalkulator.js",
+      "/js/pages/mesin-cetak.js",
+      "/js/pages/mesin-cetak-events.js"
+    ]
+  },
+  {
+    "source": "mesin-laminasi.html",
+    "route": "/mesin-laminasi",
+    "component": "MesinLaminasiPage",
+    "styles": [
+      "/css/style.css",
+      "/css/pages/mesin-laminasi-inline.css"
+    ],
+    "scripts": [
+      "/js/easy-number-separator.js",
+      "/js/component.js",
+      "/js/kalkulator.js",
+      "/js/pages/mesin-laminasi.js",
+      "/js/pages/mesin-laminasi-events.js"
+    ]
+  },
+  {
+    "source": "mesin-poli.html",
+    "route": "/mesin-poli",
+    "component": "MesinPoliPage",
+    "styles": [
+      "/css/style.css",
+      "/css/pages/mesin-poli-inline.css"
+    ],
+    "scripts": [
+      "/js/easy-number-separator.js",
+      "/js/component.js",
+      "/js/kalkulator.js",
+      "/js/pages/mesin-poli.js",
+      "/js/pages/mesin-poli-events.js"
+    ]
+  },
+  {
+    "source": "mesin-pond.html",
+    "route": "/mesin-pond",
+    "component": "MesinPondPage",
+    "styles": [
+      "/css/style.css",
+      "/css/pages/mesin-pond-inline.css"
+    ],
+    "scripts": [
+      "/js/easy-number-separator.js",
+      "/js/component.js",
+      "/js/kalkulator.js",
+      "/js/pages/mesin-pond.js",
+      "/js/pages/mesin-pond-events.js"
+    ]
+  },
+  {
+    "source": "modal-percetakan.html",
+    "route": "/modal-percetakan",
+    "component": "ModalPercetakanPage",
+    "styles": [
+      "/css/pages/modal-percetakan.css"
+    ],
+    "scripts": []
+  },
+  {
+    "source": "next.html",
+    "route": "/next",
+    "component": "NextPage",
+    "styles": [
+      "/css/style.css",
+      "/css/pages/next.css",
+      "/css/pages/next-inline.css"
+    ],
+    "scripts": [
+      "/js/component.js",
+      "/js/easy-number-separator.js",
+      "/js/pages/next.js",
+      "/js/pages/next-events.js"
+    ]
+  },
+  {
+    "source": "order-view.html",
+    "route": "/order-view",
+    "component": "OrderViewPage",
+    "styles": [
+      "/css/style.css",
+      "/css/pages/order-view-inline.css"
+    ],
+    "scripts": [
+      "/js/pages/order-view.js",
+      "/js/component.js",
+      "/js/profile.js"
+    ]
+  },
+  {
+    "source": "orders.html",
+    "route": "/orders",
+    "component": "OrdersPage",
+    "styles": [
+      "/css/style.css",
+      "/css/pages/orders-inline.css"
+    ],
+    "scripts": [
+      "/js/component.js",
+      "/js/profile.js",
+      "/js/pages/orders.js"
+    ]
+  },
+  {
+    "source": "our-client.html",
+    "route": "/our-client",
+    "component": "OurClientPage",
+    "styles": [
+      "/css/style.css"
+    ],
+    "scripts": [
+      "/js/component.js"
+    ]
+  },
+  {
+    "source": "pengaturan-keuntungan.html",
+    "route": "/pengaturan-keuntungan",
+    "component": "PengaturanKeuntunganPage",
+    "styles": [
+      "/css/style.css",
+      "/css/pages/pengaturan-keuntungan.css"
+    ],
+    "scripts": [
+      "/js/easy-number-separator.js",
+      "/js/component.js",
+      "/js/kalkulator.js",
+      "/js/pengaturan-keuntungan.js"
+    ]
+  },
+  {
+    "source": "post.html",
+    "route": "/post",
+    "component": "PostPage",
+    "styles": [
+      "/css/style.css",
+      "/css/blog.css",
+      "/css/pages/post-inline.css"
+    ],
+    "scripts": [
+      "/js/component.js"
+    ]
+  },
+  {
+    "source": "print-order.html",
+    "route": "/print-order",
+    "component": "PrintOrderPage",
+    "styles": [
+      "/css/style.css",
+      "/css/pages/print-order.css",
+      "/css/pages/print-order-inline.css"
+    ],
+    "scripts": [
+      "/js/pages/print-order.js"
+    ]
+  },
+  {
+    "source": "product-list.html",
+    "route": "/catalog",
+    "component": "ProductListPage",
+    "styles": [
+      "/css/style-product-list.css"
+    ],
+    "scripts": [
+      "/js/pages/product-list-01.js",
+      "/js/component.js",
+      "/js/profile.js"
+    ]
+  },
+  {
+    "source": "profile-kalkulator.html",
+    "route": "/profile-kalkulator",
+    "component": "ProfileKalkulatorPage",
+    "styles": [
+      "/css/style.css",
+      "/css/pages/profile-kalkulator-inline.css"
+    ],
+    "scripts": [
+      "/js/component.js",
+      "/js/kalkulator.js",
+      "/js/address-input.js",
+      "/js/pages/profile-kalkulator.js"
+    ]
+  },
+  {
+    "source": "profile.html",
+    "route": "/profile",
+    "component": "ProfilePage",
+    "styles": [
+      "/css/style.css",
+      "/css/pages/profile.css",
+      "/css/pages/profile-inline.css"
+    ],
+    "scripts": [
+      "/js/component.js",
+      "/js/profile.js",
+      "/js/pages/profile.js"
+    ]
+  },
+  {
+    "source": "quotation-add.html",
+    "route": "/quotation-add",
+    "component": "QuotationAddPage",
+    "styles": [
+      "/css/style.css",
+      "/css/checkout.css",
+      "/css/pages/quotation-add-inline.css"
+    ],
+    "scripts": [
+      "/js/component.js",
+      "/js/checkout.js",
+      "/js/pages/quotation-add-events.js"
+    ]
+  },
+  {
+    "source": "quotation-send.html",
+    "route": "/quotation-send",
+    "component": "QuotationSendPage",
+    "styles": [
+      "/css/style.css",
+      "/css/pages/quotation-send.css"
+    ],
+    "scripts": [
+      "/js/component.js",
+      "/js/profile.js"
+    ]
+  },
+  {
+    "source": "quotation-success.html",
+    "route": "/quotation-success",
+    "component": "QuotationSuccessPage",
+    "styles": [
+      "/css/style.css",
+      "/css/pages/quotation-success-inline.css"
+    ],
+    "scripts": [
+      "/js/component.js"
+    ]
+  },
+  {
+    "source": "quotation-view.html",
+    "route": "/quotation-view",
+    "component": "QuotationViewPage",
+    "styles": [
+      "/css/style.css",
+      "/css/pages/quotation-view.css",
+      "/css/pages/quotation-view-inline.css"
+    ],
+    "scripts": [
+      "/js/component.js",
+      "/js/profile.js"
+    ]
+  },
+  {
+    "source": "quotation.html",
+    "route": "/quotation",
+    "component": "QuotationPage",
+    "styles": [
+      "/css/style.css",
+      "/css/save.css",
+      "/css/pages/quotation.css",
+      "/css/pages/quotation-inline.css"
+    ],
+    "scripts": [
+      "/js/component.js",
+      "/js/save.js",
+      "/js/pages/quotation.js"
+    ]
+  },
+  {
+    "source": "register.html",
+    "route": "/register",
+    "component": "RegisterPage",
+    "styles": [
+      "/css/style.css"
+    ],
+    "scripts": [
+      "/js/component.js",
+      "/js/profile.js"
+    ]
+  },
+  {
+    "source": "result-page.html",
+    "route": "/result-page",
+    "component": "ResultPagePage",
+    "styles": [
+      "/css/style.css",
+      "/css/pages/result-page-inline.css"
+    ],
+    "scripts": [
+      "/js/component.js",
+      "/js/profile.js"
+    ]
+  },
+  {
+    "source": "semua-kertas.html",
+    "route": "/semua-kertas",
+    "component": "SemuaKertasPage",
+    "styles": [
+      "/css/style.css",
+      "/css/pages/semua-kertas-inline.css"
+    ],
+    "scripts": [
+      "/js/easy-number-separator.js",
+      "/js/component.js",
+      "/js/kalkulator.js",
+      "/js/pages/semua-kertas.js",
+      "/js/pages/semua-kertas-events.js"
+    ]
+  },
+  {
+    "source": "semua-percetakan.html",
+    "route": "/semua-percetakan",
+    "component": "SemuaPercetakanPage",
+    "styles": [
+      "/css/style.css",
+      "/css/pages/semua-percetakan-inline.css"
+    ],
+    "scripts": [
+      "/js/easy-number-separator.js",
+      "/js/component.js",
+      "/js/kalkulator.js"
+    ]
+  },
+  {
+    "source": "semua-toko-kertas.html",
+    "route": "/semua-toko-kertas",
+    "component": "SemuaTokoKertasPage",
+    "styles": [
+      "/css/style.css",
+      "/css/pages/semua-toko-kertas-inline.css"
+    ],
+    "scripts": [
+      "/js/easy-number-separator.js",
+      "/js/component.js",
+      "/js/kalkulator.js"
+    ]
+  },
+  {
+    "source": "store-kertas.html",
+    "route": "/store-kertas",
+    "component": "StoreKertasPage",
+    "styles": [
+      "/css/style.css"
+    ],
+    "scripts": [
+      "/js/easy-number-separator.js",
+      "/js/component.js",
+      "/js/kalkulator.js",
+      "/js/pages/store-kertas.js",
+      "/js/pages/store-kertas-events.js"
+    ]
+  },
+  {
+    "source": "store.html",
+    "route": "/store",
+    "component": "StorePage",
+    "styles": [
+      "/css/style.css"
+    ],
+    "scripts": [
+      "/js/easy-number-separator.js",
+      "/js/component.js",
+      "/js/kalkulator.js",
+      "/js/pages/store.js",
+      "/js/pages/store-events.js"
+    ]
+  },
+  {
+    "source": "success.html",
+    "route": "/success",
+    "component": "SuccessPage",
+    "styles": [
+      "/css/style.css",
+      "/css/pages/success-inline.css"
+    ],
+    "scripts": [
+      "/js/component.js",
+      "/js/pages/success-events.js"
+    ]
+  },
+  {
+    "source": "support-ticket-detail-kalkulator.html",
+    "route": "/support-ticket-detail-kalkulator",
+    "component": "SupportTicketDetailKalkulatorPage",
+    "styles": [
+      "/css/style.css",
+      "/css/pages/support-ticket-detail-kalkulator-inline.css"
+    ],
+    "scripts": [
+      "/js/component.js",
+      "/js/kalkulator.js"
+    ]
+  },
+  {
+    "source": "support-ticket-detail.html",
+    "route": "/support-ticket-detail",
+    "component": "SupportTicketDetailPage",
+    "styles": [
+      "/css/style.css",
+      "/css/pages/support-ticket-detail-inline.css"
+    ],
+    "scripts": [
+      "/js/component.js",
+      "/js/profile.js"
+    ]
+  },
+  {
+    "source": "support-ticket-kalkulator.html",
+    "route": "/support-ticket-kalkulator",
+    "component": "SupportTicketKalkulatorPage",
+    "styles": [
+      "/css/style.css",
+      "/css/pages/support-ticket-kalkulator-inline.css"
+    ],
+    "scripts": [
+      "/js/component.js",
+      "/js/kalkulator.js"
+    ]
+  },
+  {
+    "source": "support-ticket.html",
+    "route": "/support-ticket",
+    "component": "SupportTicketPage",
+    "styles": [
+      "/css/style.css",
+      "/css/pages/support-ticket-inline.css"
+    ],
+    "scripts": [
+      "/js/component.js",
+      "/js/profile.js"
+    ]
+  },
+  {
+    "source": "verify-email.html",
+    "route": "/verify-email",
+    "component": "VerifyEmailPage",
+    "styles": [
+      "/css/style.css"
+    ],
+    "scripts": [
+      "/js/component.js"
+    ]
+  },
+  {
+    "source": "wishlist.html",
+    "route": "/wishlist",
+    "component": "WishlistPage",
+    "styles": [
+      "/css/style.css",
+      "/css/save.css"
+    ],
+    "scripts": [
+      "/js/component.js",
+      "/js/save.js"
+    ]
+  }
+]

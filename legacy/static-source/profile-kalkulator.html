@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Kalkulator</title>
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pages/profile-kalkulator-inline.css">
+</head>
+<body>
+    <header>
+        <div id="navbar-kalkulator-placeholder"></div>
+    </header>
+
+    <main>
+        <!-- Main Content Area (placeholder) -->
+        <div class="container my-5">
+            <div class="row">
+                <!-- Sidebar Navigation -->
+                <div class="col-lg-3 mb-4" id="sidebar-kalkulator-placeholder"></div>
+
+                <!-- Main Profile Content -->
+                <div class="col-lg-9">
+                    <!-- Profile -->
+                    <div class="row justify-content-start">
+                        <h4 class="fs-5 mb-md-5 mb-3">Profile Kalkulator</h4>
+                        <div class="col-md-3 col-6">
+                            <div class="text-center">
+                                <div class="profile-avatar ratio ratio-4x3">
+                                    <img src="images/tab.png" alt="User Avatar" class="rounded-circle" id="inline-style-profile-kalkulator-001">
+                                    <div class="profile-avatar-badge">
+                                        <i class="fas fa-camera"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-6">
+                            <p class="text-standard">ID User 4525745415</p>
+                            <p class="text-standard">Free User <span class="badge bg-primary">Upgrade Member</span></p>
+                            <p class="text-standard">Join 15/06/2025</p>
+                            <p class="text-standard">Active until : 15/06/2026</p>
+                        </div>
+                    </div>
+                    <!-- Form -->
+                    <div class="text-standard mt-5">
+                        <div class="row mb-4">
+                            <div class="col-4">
+                                <label for="lots-print" class="form-label">Judul</label>
+                            </div>
+                            <div class="col-8">
+                                <input type="text" class="form-control" id="title" placeholder="your title" value="Kalkulator Cetak">
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-4">
+                                <label for="lots-print" class="form-label">Nama Percetakan</label>
+                            </div>
+                            <div class="col-8">
+                                <input type="text" class="form-control" id="name" placeholder="your name" value="Perctekan Grafika-Ku">
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-4">
+                                <label for="lots-print" class="form-label">Alamat</label>
+                            </div>
+                            <div class="col-8">
+                                <div>
+                                    <div class="form-group position-relative">
+                                        <div class="input-group position-relative d-inline-flex align-items-center">
+                                        <input class="form-control text-standard" id="alamat-lengkap" placeholder="Provinsi, Kota, Kecamatan">
+                                        <span id="clear-address"  class="d-none position-absolute bg-secondary text-white rounded-circle d-flex align-items-center">
+                                            <i class="bi bi-x-lg m-auto"></i>
+                                        </span>
+                                        <span id="search-icon"  class="position-absolute">
+                                            <i class="bi bi-search"></i>
+                                        </span>
+                                    </div>
+
+                                        <div id="alamat-dropdown-wrapper">
+                                            <ul class="nav nav-tabs" id="alamatTab" role="tablist">
+                                                <li class="nav-item" role="presentation">
+                                                    <button class="btn rounded-0 border-top-0 border-start-0 border-end-0 text-standard active" id="provinsi-tab" type="button" role="tab">Provinsi</button>
+                                                </li>
+                                                <li class="nav-item" role="presentation">
+                                                    <button class="btn rounded-0 border-top-0 border-start-0 border-end-0 text-standard" id="kota-tab" type="button" role="tab">Kota</button>
+                                                </li>
+                                                <li class="nav-item" role="presentation">
+                                                    <button class="btn rounded-0 border-top-0 border-start-0 border-end-0 text-standard" id="kecamatan-tab" type="button" role="tab">Kecamatan</button>
+                                                </li>
+                                            </ul>
+                                            <div class="tab-content p-2 shadow-sm" id="alamatTabContent">
+                                                <div class="tab-pane show active" id="provinsi-pane">
+                                                    <ul class="list-unstyled mb-0 text-standard" id="provinsi-list"></ul>
+                                                </div>
+                                                <div class="tab-pane" id="kota-pane">
+                                                    <ul class="list-unstyled mb-0 text-standard" id="kota-list"></ul>
+                                                </div>
+                                                <div class="tab-pane" id="kecamatan-pane">
+                                                    <ul class="list-unstyled mb-0 text-standard" id="kecamatan-list"></ul>
+                                                </div>
+                                            </div>
+                                            <div id="alamat-search-result" class="p-2">
+                                                <ul class="list-unstyled mb-0 text-standard fw-light" id="alamat-search-list"></ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-4">
+                                <label for="lots-print" class="form-label">Whatsapp</label>
+                            </div>
+                            <div class="col-8">
+                                <input type="text" class="form-control" id="wa" placeholder="your whatsapp number" value="0851762762">
+                            </div>
+                        </div>
+
+                        <div class="mb-4 row">
+                            <div class="col-4">
+                                <label for="jumlah" class="form-label">Tampilkan Profile pada</label>
+                            </div>
+                            <div class="col-8 multiple-select" id="display">
+                                <button class="btn btn-spec me-2 selected" type="button">Header Hitung Berat Kertas<span class="ribbon"></span></button>
+                                <button class="btn btn-spec me-2" type="button">Header Potong Kertas<span class="ribbon d-none"></span></button>
+                                <button class="btn btn-spec me-2" type="button">Header Kalkulator Percetakan<span class="ribbon d-none"></span></button>
+                                <br>
+                                <div class="mt-5">
+                                    <small class="d-none text-standard text-danger" id="info-selected-all"><i class="fa-solid fa-circle-info"></i> please select your specification<br></small>
+                                    <button class="btn my-btn-primary w-100 mt-2" id="update-btn" type="button">Update Profile</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/component.js"></script>
+    <script src="js/kalkulator.js"></script>
+    <script src="js/address-input.js"></script>
+    <script src="js/pages/profile-kalkulator.js"></script>
+</body>
+</html>

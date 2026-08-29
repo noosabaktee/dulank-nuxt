@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beli Lagi</title>
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pages/history-inline.css">
+</head>
+<body>
+    <header>
+        <div id="navbar-placeholder"></div>
+    </header>
+
+    <!-- Order Tracking Modal -->
+    <div class="modal fade" id="orderTrackingModal" tabindex="-1" aria-labelledby="orderTrackingModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold small" id="orderTrackingModalLabel"> NO. PESANAN 2504027H2DQ68B</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Progress Stepper-->
+                        <div class="alert alert-success mb-4 small">
+                            <i class="fas fa-check-circle me-2"></i>
+                            <strong>Status: Delivered</strong> - The order has delivered.
+                        </div>
+
+                        <!-- Progress Steps -->
+                        <div class="progress-steps mb-4">
+                            <div class="steps-container position-relative">
+                                <div class="step completed">
+                                    <div class="step-icon"><i class="fas fa-shopping-cart"></i></div>
+                                    <div class="step-label">Ordered</div>
+                                </div>
+                                <div class="step completed">
+                                    <div class="step-icon"><i class="fa-solid fa-gear"></i></div>
+                                    <div class="step-label">Proses</div>
+                                </div>
+                                <div class="step completed">
+                                    <div class="step-icon"><i class="fas fa-shipping-fast"></i></div>
+                                    <div class="step-label">Out For Delivery</div>
+                                </div>
+                                <div class="step completed">
+                                    <div class="step-icon bg-success"><i class="fas fa-check"></i></div>
+                                    <div class="step-label">Delivered</div>
+                                </div>
+                                <div id="inline-style-history-001">
+                                    <div class="progress-connector"></div>
+                                </div>
+                            </div>
+                        </div>
+                    <!-- Invoice & Alamat Pengiriman -->
+                    <div class="bg-white rounded-3 border border-custom mt-4 px-0 pb-4 mb-4">
+                        <div class="px-4 pb-2 pt-4">
+                        <div class="row align-items-start">
+                            <div class="col-md-6 pe-lg-5">
+                            <div class="mb-2">
+                                <span class="fw-semibold text-dark small">Alamat Pengiriman</span>
+                            </div>
+                            <div class="fw-semibold small">Ahmad Dhani</div>
+                            <div class="small mb-2 small">(+62) 852053769</div>
+                            <div class="small mb-3 text-standard">Toko Kelontong Depan Desa Teluk Jambe,<br> 515 Sarah Shore Suite 828, Port Kennethstad, Iowa, TH,<br>KAB. KARAWANG - TELUK JAMBE TIMUR, JAWA BARAT, ID 41360</div>
+                            </div>
+                            <div class="col-md-6">
+                                <!-- Tracking Timeline -->
+                                <div class="timeline">
+                                    <div class="timeline-item">
+                                        <div class="timeline-marker bg-success"></div>
+                                        <div class="timeline-content">
+                                            <div class="d-flex justify-content-between align-items-start">
+                                                <div>
+                                                    <h6 class="fw-bold mb-1 small">Out For Delivery</h6>
+                                                    <p class="mb-0 text-standard">Out For Delivery</p>
+                                                </div>
+                                                <small class="text-muted">2025-04-14 10:33 WIB</small>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="timeline-item">
+                                        <div class="timeline-marker"></div>
+                                        <div class="timeline-content">
+                                            <div class="d-flex justify-content-between align-items-start">
+                                                <div>
+                                                    <h6 class="fw-bold mb-1 small">Out For Delivery</h6>
+                                                    <p class="mb-0 text-standard">Out For Delivery</p>
+                                                </div>
+                                                <small class="text-muted">2025-04-14 10:33 WIB</small>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="timeline-item">
+                                        <div class="timeline-marker"></div>
+                                        <div class="timeline-content">
+                                            <div class="d-flex justify-content-between align-items-start">
+                                                <div>
+                                                    <h6 class="fw-bold mb-1 small">Proses</h6>
+                                                    <p class="mb-0 text-standard">Arrived at Post Office</p>
+                                                </div>
+                                                <small class="text-muted">2025-04-14 04:28 WIB</small>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="timeline-item">
+                                        <div class="timeline-marker"></div>
+                                        <div class="timeline-content">
+                                            <div class="d-flex justify-content-between align-items-start">
+                                                <div>
+                                                    <h6 class="fw-bold mb-1 small">Ordered</h6>
+                                                    <p class="mb-0 text-standard">You ordered</p>
+                                                </div>
+                                                <small class="text-muted">2025-04-14 04:17 WIB</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <!-- Produk & Ringkasan -->
+                    <div class="bg-white rounded-3 border border-custom px-0 mb-4">
+                        <div class="px-4 pt-3 pb-2 border-bottom border-custom">
+                            <div class="align-items-center">
+                            <div class="d-flex">
+                                <img src="images/brosur.jpg" alt="Kaos" class="object-fit-cover rounded-2" width="64" height="64">
+                                <div class="ps-2">
+                                <div class="fw-semibold text-color small">Brosur Full Color</div>
+                                <div class="text-secondary text-standard">Brosur Full Color A4 (210x297 Milimeter), Art paper 150gr, Tanpa Laminasi, Tanpa Lipatan</div>
+                                <span class="fw-semibold text-dark text-standard">Rp65.000</span>
+                                <span class="text-color text-standard">x2</span>
+                                </div>
+                            </div>
+                            <div class="text-end">
+                                <span class="fw-semibold text-dark" id="inline-style-history-002">Rp130.000</span>
+                            </div>
+                            </div>
+                            <div class="align-items-center">
+                            <div class="d-flex">
+                                <img src="images/yasin.jpg" alt="Kaos" class="object-fit-cover rounded-2" width="64" height="64">
+                                <div class="ps-2">
+                                <div class="fw-semibold text-color small">Yasin Tahlil</div>
+                                <div class="text-secondary text-standard">Brosur Full Color A4 (210x297 Milimeter), Art paper 150gr, Tanpa Laminasi, Tanpa Lipatan</div>
+                                <span class="fw-semibold text-dark text-standard">Rp65.000</span>
+                                <span class="text-color text-standard">x1</span>
+                                </div>
+                            </div>
+                            <div class="text-end">
+                                <span class="fw-semibold text-dark" id="inline-style-history-003">Rp65.000</span>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="px-4 pt-3 pb-4">
+                        <div class="row small mb-1"><div class="col text-end text-secondary">Subtotal Produk</div><div class="col-auto" id="inline-style-history-004">Rp195.000</div></div>
+                        <div class="row small mb-1"><div class="col text-end text-secondary">Subtotal Pengiriman</div><div class="col-auto" id="inline-style-history-005">Rp20.000</div></div>
+                        <div class="row small mb-1"><div class="col text-end text-secondary">Subtotal Diskon Pengiriman</div><div class="col-auto text-success" id="inline-style-history-006">-Rp10.000</div></div>
+                        <div class="row small"><div class="col text-end fw-semibold my-text-primary">Total Pesanan</div><div class="col-auto fw-bold my-text-primary fs-6" id="inline-style-history-007">Rp205.000</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <main>
+
+
+        <!-- Main Content Area (placeholder) -->
+        <div class="container my-5">
+            <div class="row">
+                <!-- Sidebar Navigation -->
+                <div class="col-lg-3 mb-4" id="sidebar-profile-placeholder"></div>
+
+                <!-- Main Profile Content -->
+                <div class="col-lg-9">
+                    <!-- For Empty -->
+                    <div class="text-center py-5 d-none">
+                        <img src="images/profile-null.svg" width="150" class="mb-4">
+                        <h4>There is no history here</h4>
+                        <p class="text-muted mb-4">Happy shopping!</p>
+                        <a href="#" class="btn btn-dark my-bg-primary px-4 py-2 rounded-0">Continue Shopping</a>
+                    </div>
+                    <div class="profile-content bg-white p-4 rounded-3">
+                        <!-- history Section -->
+                        <div class="recent-orders">
+                            <div class="d-md-flex justify-content-between align-items-center mb-3">
+                                <h5 class="section-title mb-0">History</h5>
+                                <div class="mt-2 mt-md-0 d-flex">
+                                    <form action="" class="d-flex">
+                                        <input type="text" class="form-control" placeholder="search">
+                                        <button class="ms-2 btn my-btn-primary" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                    </form>
+                                    <div class="dropdown ms-2">
+                                        <button class="btn my-btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Sorting
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                            <li><a class="dropdown-item" href="#">Newest</a></li>
+                                            <li><a class="dropdown-item" href="#">Oldest</a></li>
+                                            <li><a class="dropdown-item" href="#">Highest</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div>
+                                <div class="row align-items-center py-2 px-3 d-none d-md-flex fw-bold">
+                                    <div class="col-md-3 small">Product</div>
+                                    <div class="col-md-2 small">Date</div>
+                                    <div class="col-md-1 small">Qty</div>
+                                    <div class="col-md-2 small">Price</div>
+                                    <div class="col-md-2 small">Period Time</div>
+                                    <div class="col-md-2 small text-end">Total</div>
+                                </div>
+
+                                <!-- Items 1 -->
+                                <a href="cetak-full-color.html" class="row table-product align-items-md-center py-3 px-3 border-bottom-md-0">
+                                    <div class="col-12 col-md-3" data-label="Product">
+                                        <div class="d-flex">
+                                            <img src="images/brosur.jpg" alt="" width="50" height="50">
+                                            <span class="text-standard ms-2 object-fit-cover">Brosur Full Color A4 (210x297 Milimeter), Art paper 150gr, Tanpa...</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-2" data-label="Date">13/06/25</div>
+                                    <div class="col-12 col-md-1" data-label="Qty">2</div>
+                                    <div class="col-12 col-md-2" data-label="Price">Rp65.000</div>
+                                    <div class="col-12 col-md-2" data-label="Period Time">Discontinued</div>
+                                    <div class="col-12 col-md-2 text-end" data-label="Total">Rp130.000</div>
+                                </a>
+
+                            </div>
+                        </div>
+
+                        <div class="text-standard d-flex justify-content-end mt-2">
+                            Tampilkan
+                            <select class="text-standard mx-2" aria-label="Default select example">
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="50">50</option>
+                            </select>
+                            Per Halaman
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div id="footer-placeholder"></div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/component.js"></script>
+    <script src="js/profile.js"></script>
+</body>
+</html>

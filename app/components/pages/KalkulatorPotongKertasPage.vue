@@ -1,0 +1,280 @@
+<script setup lang="ts">
+useLegacyPage({
+  "title": "Hitung Potong Kertas",
+  "styles": [
+    "/css/style.css",
+    "/css/pages/kalkulator-potong-kertas.css",
+    "/css/pages/kalkulator-potong-kertas-inline.css"
+  ],
+  "scripts": [
+    "/js/component.js",
+    "/js/kalkulator.js",
+    "/js/easy-number-separator.js",
+    "/js/generate-plano.js",
+    "/js/pages/kalkulator-potong-kertas.js",
+    "/js/pages/kalkulator-potong-kertas-events.js"
+  ],
+  "sweetAlert": false
+})
+</script>
+
+<template>
+<div class="dulank-page dulank-page-kalkulator-potong-kertas">
+<main>
+
+<div class="container">
+<div class="calculator-container text-standard">
+<div><LayoutCalculatorHeader /></div>
+<div class="row mt-5">
+<div>
+<div>
+<h1 class="fs-4">Hitung Potong Kertas</h1>
+<p class="text-muted text-standard">Isi Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras metu mautu, mattis eget ipsum ut, finibus pellentesque lectus. Etiam pulvinar ipsum vel sagittis facilisis. Suspendisse non porta porta. Proin id lobortis sapien, id ultricies elit. Donec lectus mauris, dignissim vel facilisis id, varius ut lacinia. Fusce dignissim neque eu effringeresr, at auctor nulla rutrum. Vestibulum sit amet felis quis quam accumsanlativis vitae et eros.</p>
+</div>
+<div class="mt-5">
+<h3 class="fs-6">Hitung potong kertas</h3>
+<div class="mb-4 row">
+<div class="col-4">
+<label class="form-label" for="jumlah">Satuan Panjang</label>
+</div>
+<div class="col-8" id="unit-1">
+<button class="btn btn-spec me-2 selected" type="button">Centimeter<span class="ribbon"></span></button>
+<button class="btn btn-spec me-2" type="button">Milimeter<span class="ribbon d-none"></span></button>
+</div>
+</div>
+<div class="mb-4 row">
+<div class="col-4">
+<label class="form-label" for="jumlah">Ukuran Potongan</label>
+</div>
+<div class="col-8" id="unit-2">
+<div class="row">
+<div class="col-6">
+<div class="input-group input-group-sm">
+<span class="input-group-text">P</span>
+<input class="form-control number-separator" inputmode="numeric" pattern="[0-9]*" type="text"/>
+<input class="result-input" id="width-potong" type="hidden"/>
+</div>
+</div>
+<div class="col-6">
+<div class="input-group input-group-sm">
+<span class="input-group-text">L</span>
+<input class="form-control number-separator" inputmode="numeric" pattern="[0-9]*" type="text"/>
+<input class="result-input" id="height-potong" type="hidden"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mb-4 row">
+<div class="col-4">
+<label class="form-label">Pilihan Ukuran Plano</label>
+</div>
+<div class="col-8">
+<div class="mb-2">
+<a class="text-center text-primary" data-js-click="kalkulator-potong-kertas-001" role="button">Lihat ukuran yang tersedia</a>
+<div class="d-none mt-2" id="size">
+<button class="btn btn-spec me-2" data-kertas="Art Carton" type="button">Art Carton<span class="ribbon d-none"></span></button>
+<button class="btn btn-spec me-2" data-kertas="Art Paper" type="button">Art Paper<span class="ribbon d-none"></span></button>
+<button class="btn btn-spec me-2" data-kertas="HVS" type="button">HVS<span class="ribbon d-none"></span></button>
+</div>
+</div>
+<div>
+<div class="multiple-select" id="ukuran-plano">
+<button class="btn btn-spec me-2 selected" type="button">Plano 650 x 900 Min<span class="ribbon"></span></button>
+<button class="btn btn-spec me-2" type="button">Plano 650 x 1.000 Min<span class="ribbon d-none"></span></button>
+<button class="btn btn-spec me-2" type="button">Plano 720 x 1.000 Min<span class="ribbon d-none"></span></button>
+<button class="btn btn-spec me-2" type="button">Plano 610 x 860 Min<span class="ribbon d-none"></span></button>
+<button class="btn btn-spec me-2" type="button">Plano 610 x 930 Min<span class="ribbon d-none"></span></button>
+<button class="btn btn-spec me-2" id="select-all-btn" type="button">Pilih Semua<span class="ribbon d-none"></span></button>
+</div>
+<div class="d-none" id="ukuran-plano-custom">
+<div class="row">
+<div class="col-6">
+<div class="input-group input-group-sm">
+<span class="input-group-text">P</span>
+<input class="form-control number-separator" inputmode="numeric" pattern="[0-9]*" type="text"/>
+<input class="result-input" id="width-plano" type="hidden"/>
+</div>
+</div>
+<div class="col-6">
+<div class="input-group input-group-sm">
+<span class="input-group-text">L</span>
+<input class="form-control number-separator" inputmode="numeric" pattern="[0-9]*" type="text"/>
+<input class="result-input" id="height-plano" type="hidden"/>
+</div>
+</div>
+</div>
+</div>
+<button class="btn btn-spec me-2" id="custom-btn" type="button">Custom<span class="ribbon d-none"></span></button>
+</div>
+
+</div>
+</div>
+<div class="mb-4 row">
+<div class="col-4">
+<label class="form-label" for="jumlah">Kebutuhan Potongan (optional)</label>
+</div>
+<div class="col-8" id="unit-3">
+<input class="form-control number-separator" type="text"/>
+<small class="d-none text-standard text-danger" id="info-selected-all"><i class="fa-solid fa-circle-info"></i> please input your specification<br/></small>
+<div class="mb-4 mt-3">
+<button class="btn my-btn-primary btn-block w-100" id="btn-hitung" type="button">Hitung</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div>
+<div class="empty-form align-items-center d-flex h-100">
+<div class="text-center w-100">
+<i class="bi bi-journal fs-1 mb-4"></i>
+<h6>Please select the specification</h6>
+<p class="text-muted text-standard mb-4">You have not selected product specifications</p>
+</div>
+</div>
+<div class="form d-none">
+<h3 class="fs-6">Hasil Hitungan Potongan</h3>
+<p>Hasil Perhitungan 1 ukuran kertas</p>
+<table class="table">
+<thead class="bg-light">
+<tr>
+<th>Ukuran Plano</th>
+<th>Hasil Potongan</th>
+<th>Area</th>
+<th>Aksi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Plano 650 x 900 Min</td>
+<td>9 Lembar</td>
+<td>98%</td>
+<td><span class="text-primary text-standard" data-bs-target="#generatePatternModal" data-bs-toggle="modal" role="button">Generate</span></td>
+</tr>
+<tr>
+<td>Plano 650 x 1.000 Min</td>
+<td>10 Lembar</td>
+<td>97%</td>
+<td><span class="text-primary text-standard" role="button">Generate</span></td>
+</tr>
+<tr>
+<td>Plano 720 x 1.000 Min</td>
+<td>12 Lembar</td>
+<td>96%</td>
+<td><span class="text-primary text-standard" role="button">Generate</span></td>
+</tr>
+<tr>
+<td>Plano 610 x 860 Min</td>
+<td>7 Lembar</td>
+<td>96%</td>
+<td><span class="text-primary text-standard" role="button">Generate</span></td>
+</tr>
+<tr>
+<td>Plano 610 x 920 Min</td>
+<td>8 Lembar</td>
+<td>96%</td>
+<td><span class="text-primary text-standard" role="button">Generate</span></td>
+</tr>
+</tbody>
+</table>
+<p class="text-muted small">Klik Generate untuk memilih ukuran plano dengan potongan</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+<div aria-hidden="true" aria-labelledby="generatePatternModalLabel" class="modal fade" id="generatePatternModal" tabindex="-1">
+<div class="modal-dialog modal-xl modal-dialog-centered">
+<div class="modal-content">
+<div class="modal-header py-2">
+<h5 class="modal-title" id="generatePatternModalLabel">Generate Pattern Potongan</h5>
+<button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+</div>
+<div class="modal-body">
+
+<div>
+<h2 id="inline-style-kalkulator-potong-kertas-001">Plano</h2>
+<form class="d-md-flex d-inline-block align-items-end" data-js-submit="kalkulator-potong-kertas-002" id="planoForm">
+<div class="me-3">
+<label class="mb-2">Ukuran Plano</label>
+<div class="d-flex align-items-center">
+<input class="form-control" id="plano_x" min="1" type="number"/> <span class="mx-1">X</span>
+<input class="form-control" id="plano_y" min="1" type="number"/>
+</div>
+</div>
+<div class="me-3 mt-md-0 mt-3">
+<label class="mb-2">Ukuran Cetak</label>
+<div class="d-flex align-items-center">
+<input class="form-control" id="ukuran_cetak_x" min="1" type="number"/> <span class="mx-1">X</span>
+<input class="form-control" id="ukuran_cetak_y" min="1" type="number"/>
+</div>
+</div>
+</form>
+<div class="row p-2 mt-3">
+<p>Layout Potong Kertas</p>
+<div class="col-lg-6">
+<div class="svg-wrap p-2 d-none" id="inline-style-kalkulator-potong-kertas-002">
+<svg id="planoSVG"></svg>
+<br/>
+<div class="d-flex justify-content-end">
+<button class="btn my-btn-primary mt-2 me-2" id="downloadSVG" type="button">Download SVG</button>
+</div>
+</div>
+</div>
+<div class="col-lg-6">
+<div id="mainForm">
+<span class="text-standard my-2 d-block"><b>Qty PCS</b> <input class="form-control number-separator" id="qty" type="text"/></span>
+<span class="text-standard my-2 d-block"><b>Panjang Canvas X</b> <input class="form-control number-separator" id="canvas_x" type="text"/></span>
+<span class="text-standard my-2 d-block"><b>Panjang Canvas Y</b> <input class="form-control number-separator" id="canvas_y" type="text"/></span>
+<span class="text-standard my-2 d-block"><b>Panjang Cetak X</b> <input class="form-control number-separator" id="cetak_x" type="text"/></span>
+<span class="text-standard my-2 d-block"><b>Panjang Cetak Y</b> <input class="form-control number-separator" id="cetak_y" type="text"/></span>
+<span class="text-standard my-2 d-block"><b>Posisi Kotak awal</b>
+<select class="form-select text-standard" id="posisi_awal">
+<option value="Portrait">Portrait</option>
+<option value="Landscape">Landscape</option>
+</select>
+</span>
+<span class="text-standard my-2 d-block"><b>Duplikat Kotak center X</b> <input class="form-control number-separator" id="dup_x" type="text"/></span>
+<span class="text-standard my-2 d-block"><b>Duplikat Kotak center Y</b> <input class="form-control number-separator" id="dup_y" type="text"/></span>
+<span class="text-standard my-2 d-block"><b>Penempatan Arah Sisa</b>
+<select class="form-select text-standard" id="arah_sisa">
+<option value="-">-</option>
+<option value="Kanan">Kanan</option>
+<option value="Bawah">Bawah</option>
+</select>
+</span>
+<span class="text-standard my-2 d-block"><b>Posisi Kotak Sisa</b>
+<select class="form-select text-standard" id="posisi_sisa">
+<option value="-">-</option>
+<option value="Portrait">Portrait</option>
+<option value="Landscape">Landscape</option>
+</select>
+</span>
+<span class="text-standard my-2 d-block"><b>kotak sisa X</b> <input class="form-control" id="sisa_x" type="text"/></span>
+<span class="text-standard my-2 d-block"><b>kotak sisa Y</b> <input class="form-control" id="sisa_y" type="text"/></span>
+</div>
+<div class="mt-md-0 mt-3">
+<button class="my-btn-primary btn" id="generateBtn" type="button">Generate</button>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+</div>
+</template>

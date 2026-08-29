@@ -1,0 +1,30 @@
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+
+        .input-edit,
+        .input-edit:focus,
+        .job-name {
+            outline: 0;
+            border: 0;
+            field-sizing: content;
+            max-width: 450px;
+            font-size: 15px;
+        }
+
+        @media (max-width: 767.98px) {
+
+            .input-edit,
+            .input-edit:focus,
+            .job-name {
+                max-width: 250px;
+            }
+        }

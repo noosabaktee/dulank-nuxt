@@ -1,0 +1,7 @@
+         .save-item td {
+            border-bottom: 1px solid var(--primary-color);
+        }
+
+        .form-control::-webkit-input-placeholder {
+            font-weight: bold;
+        }

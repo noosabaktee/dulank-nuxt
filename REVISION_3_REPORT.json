@@ -1,0 +1,26 @@
+{
+  "revision": "3",
+  "ok": true,
+  "fixed": {
+    "navbar_dropdowns": true,
+    "product_custom_toggle": true,
+    "section_card_tabs": true,
+    "calculator_empty_state": true,
+    "profile_camera_top_right": true
+  },
+  "coverage": {
+    "source_pages": 55,
+    "page_components": 55,
+    "route_files": 56,
+    "shared_components": 23,
+    "javascript_files_checked": 56,
+    "css_files": 63,
+    "images": 13,
+    "json_files": 3
+  },
+  "revision_checks": {
+    "passed": 18,
+    "failed": 0
+  },
+  "bootstrap_framework_runtime": false
+}

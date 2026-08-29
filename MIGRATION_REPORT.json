@@ -1,0 +1,863 @@
+{
+  "source_pages": 55,
+  "generated_page_components": 55,
+  "generated_route_files": 60,
+  "shared_layout_components": 8,
+  "bootstrap_runtime_dependencies": 0,
+  "tailwind": "4.3.3",
+  "nuxt": "4.5.2",
+  "routes": [
+    {
+      "source": "404.html",
+      "route": "/404",
+      "component": "404Page",
+      "title": "404 - Page Not Found",
+      "styles": [
+        "/legacy-css/style.css"
+      ],
+      "scripts": [
+        "/legacy-js/component.js"
+      ]
+    },
+    {
+      "source": "address.html",
+      "route": "/address",
+      "component": "AddressPage",
+      "title": "Addresses",
+      "styles": [
+        "/legacy-css/style.css",
+        "/legacy-css/pages/address-inline.css"
+      ],
+      "scripts": [
+        "/legacy-js/component.js",
+        "/legacy-js/profile.js",
+        "/legacy-js/address-input.js",
+        "/legacy-js/pages/address.js"
+      ]
+    },
+    {
+      "source": "billing.html",
+      "route": "/billing",
+      "component": "BillingPage",
+      "title": "Billing",
+      "styles": [
+        "/legacy-css/style.css"
+      ],
+      "scripts": [
+        "/legacy-js/component.js",
+        "/legacy-js/profile.js"
+      ]
+    },
+    {
+      "source": "blog.html",
+      "route": "/blog",
+      "component": "BlogPage",
+      "title": "Blog List",
+      "styles": [
+        "/legacy-css/style.css",
+        "/legacy-css/blog.css"
+      ],
+      "scripts": [
+        "/legacy-js/component.js"
+      ]
+    },
+    {
+      "source": "cart.html",
+      "route": "/cart",
+      "component": "CartPage",
+      "title": "Cart | Dulank",
+      "styles": [
+        "/legacy-css/style.css",
+        "/legacy-css/pages/cart.css",
+        "/legacy-css/pages/cart-inline.css"
+      ],
+      "scripts": [
+        "/legacy-js/component.js",
+        "/legacy-js/save.js",
+        "/legacy-js/easy-number-separator.js",
+        "/legacy-js/pages/cart.js"
+      ]
+    },
+    {
+      "source": "categories.html",
+      "route": "/categories",
+      "component": "CategoriesPage",
+      "title": "Percetakan Dulank - Online Printing Shop",
+      "styles": [
+        "/legacy-css/style.css",
+        "/legacy-css/category.css"
+      ],
+      "scripts": [
+        "/legacy-js/component.js",
+        "/legacy-js/profile.js",
+        "/legacy-js/pages/categories.js"
+      ]
+    },
+    {
+      "source": "cetak-buku.html",
+      "route": "/cetak-buku",
+      "component": "CetakBukuPage",
+      "title": "Cetak Buku | Dulank",
+      "styles": [
+        "/legacy-css/style.css",
+        "/legacy-css/pages/cetak-buku.css",
+        "/legacy-css/pages/cetak-buku-inline.css"
+      ],
+      "scripts": [
+        "/legacy-js/component.js",
+        "/legacy-js/easy-number-separator.js",
+        "/legacy-js/pages/cetak-buku-01.js",
+        "/legacy-js/product.js",
+        "/legacy-js/pages/cetak-buku-02.js",
+        "/legacy-js/pages/cetak-buku-events.js"
+      ]
+    },
+    {
+      "source": "cetak-full-color.html",
+      "route": "/cetak-full-color",
+      "component": "CetakFullColorPage",
+      "title": "Cetak Full Color | Dulank",
+      "styles": [
+        "/legacy-css/style.css",
+        "/legacy-css/pages/cetak-full-color.css",
+        "/legacy-css/pages/cetak-full-color-inline.css"
+      ],
+      "scripts": [
+        "/legacy-js/component.js",
+        "/legacy-js/easy-number-separator.js",
+        "/legacy-js/product.js",
+        "/legacy-js/pages/cetak-full-color-events.js"
+      ]
+    },
+    {
+      "source": "checkout.html",
+      "route": "/checkout",
+      "component": "CheckoutPage",
+      "title": "Checkout",
+      "styles": [
+        "/legacy-css/style.css",
+        "/legacy-css/checkout.css",
+        "/legacy-css/pages/checkout-inline.css"
+      ],
+      "scripts": [
+        "/legacy-js/component.js",
+        "/legacy-js/checkout.js",
+        "/legacy-js/pages/checkout-events.js"
+      ]
+    },
+    {
+      "source": "contact.html",
+      "route": "/contact",
+      "component": "ContactPage",
+      "title": "Contact Us | Dulank",
+      "styles": [
+        "/legacy-css/style.css",
+        "/legacy-css/pages/contact-inline.css"
+      ],
+      "scripts": [
+        "/legacy-js/component.js",
+        "/legacy-js/pages/contact.js"
+      ]
+    },
+    {
+      "source": "faqs.html",
+      "route": "/faqs",
+      "component": "FaqsPage",
+      "title": "FAQ |Dulank",
+      "styles": [
+        "/legacy-css/style.css",
+        "/legacy-css/pages/faqs.css"
+      ],
+      "scripts": [
+        "/legacy-js/component.js"
+      ]
+    },
+    {
+      "source": "forgot-password.html",
+      "route": "/forgot-password",
+      "component": "ForgotPasswordPage",
+      "title": "Forgot Password",
+      "styles": [
+        "/legacy-css/style.css"
+      ],
+      "scripts": [
+        "/legacy-js/component.js"
+      ]
+    },
+    {
+      "source": "history.html",
+      "route": "/history",
+      "component": "HistoryPage",
+      "title": "Beli Lagi",
+      "styles": [
+        "/legacy-css/style.css",
+        "/legacy-css/pages/history-inline.css"
+      ],
+      "scripts": [
+        "/legacy-js/component.js",
+        "/legacy-js/profile.js"
+      ]
+    },
+    {
+      "source": "hitung-plano.html",
+      "route": "/hitung-plano",
+      "component": "HitungPlanoPage",
+      "title": "Hitung Plano",
+      "styles": [
+        "/legacy-css/style.css",
+        "/legacy-css/pages/hitung-plano.css",
+        "/legacy-css/pages/hitung-plano-inline.css"
+      ],
+      "scripts": [
+        "/legacy-js/pages/hitung-plano.js",
+        "/legacy-js/easy-number-separator.js",
+        "/legacy-js/component.js",
+        "/legacy-js/pages/hitung-plano-events.js"
+      ]
+    },
+    {
+      "source": "index.html",
+      "route": "/",
+      "component": "IndexPage",
+      "title": "Percetakan Dulank - Online Printing Shop",
+      "styles": [
+        "/legacy-css/style.css",
+        "/legacy-css/pages/index-inline.css"
+      ],
+      "scripts": [
+        "/legacy-js/component.js",
+        "/legacy-js/pages/index.js"
+      ]
+    },
+    {
+      "source": "invoice-view.html",
+      "route": "/invoice-view",
+      "component": "InvoiceViewPage",
+      "title": "Invoice",
+      "styles": [
+        "/legacy-css/style.css",
+        "/legacy-css/pages/invoice-view-inline.css"
+      ],
+      "scripts": [
+        "/legacy-js/component.js"
+      ]
+    },
+    {
+      "source": "kalender.html",
+      "route": "/kalender",
+      "component": "KalenderPage",
+      "title": "Kalender 2027 | Dulank",
+      "styles": [
+        "/legacy-css/style.css",
+        "/legacy-css/pages/kalender.css",
+        "/legacy-css/pages/kalender-inline.css"
+      ],
+      "scripts": [
+        "/legacy-js/component.js",
+        "/legacy-js/easy-number-separator.js",
+        "/legacy-js/pages/kalender.js",
+        "/legacy-js/product.js",
+        "/legacy-js/pages/kalender-events.js"
+      ]
+    },
+    {
+      "source": "kalkulator-berat-kertas.html",
+      "route": "/kalkulator-berat-kertas",
+      "component": "KalkulatorBeratKertasPage",
+      "title": "Berat Kertas",
+      "styles": [
+        "/legacy-css/style.css",
+        "/legacy-css/pages/kalkulator-berat-kertas.css"
+      ],
+      "scripts": [
+        "/legacy-js/component.js",
+        "/legacy-js/kalkulator.js",
+        "/legacy-js/easy-number-separator.js",
+        "/legacy-js/pages/kalkulator-berat-kertas.js",
+        "/legacy-js/pages/kalkulator-berat-kertas-events.js"
+      ]
+    },
+    {
+      "source": "kalkulator-percetakan.html",
+      "route": "/kalkulator-percetakan",
+      "component": "KalkulatorPercetakanPage",
+      "title": "Kalkulator Percetakan",
+      "styles": [
+        "/legacy-css/style.css"
+      ],
+      "scripts": [
+        "/legacy-js/component.js",
+        "/legacy-js/kalkulator.js",
+        "/legacy-js/easy-number-separator.js",
+        "/legacy-js/pages/kalkulator-percetakan.js",
+        "/legacy-js/pages/kalkulator-percetakan-events.js"
+      ]
+    },
+    {
+      "source": "kalkulator-potong-kertas.html",
+      "route": "/kalkulator-potong-kertas",
+      "component": "KalkulatorPotongKertasPage",
+      "title": "Hitung Potong Kertas",
+      "styles": [
+        "/legacy-css/style.css",
+        "/legacy-css/pages/kalkulator-potong-kertas.css",
+        "/legacy-css/pages/kalkulator-potong-kertas-inline.css"
+      ],
+      "scripts": [
+        "/legacy-js/component.js",
+        "/legacy-js/kalkulator.js",
+        "/legacy-js/easy-number-separator.js",
+        "/legacy-js/generate-plano.js",
+        "/legacy-js/pages/kalkulator-potong-kertas.js",
+        "/legacy-js/pages/kalkulator-potong-kertas-events.js"
+      ]
+    },
+    {
+      "source": "login.html",
+      "route": "/login",
+      "component": "LoginPage",
+      "title": "Login",
+      "styles": [
+        "/legacy-css/style.css"
+      ],
+      "scripts": [
+        "/legacy-js/component.js"
+      ]
+    },
+    {
+      "source": "mesin-cetak.html",
+      "route": "/mesin-cetak",
+      "component": "MesinCetakPage",
+      "title": "Mesin Cetak",
+      "styles": [
+        "/legacy-css/style.css",
+        "/legacy-css/pages/mesin-cetak-inline.css"
+      ],
+      "scripts": [
+        "/legacy-js/easy-number-separator.js",
+        "/legacy-js/component.js",
+        "/legacy-js/kalkulator.js",
+        "/legacy-js/pages/mesin-cetak.js",
+        "/legacy-js/pages/mesin-cetak-events.js",
+        "/legacy-js/pages/sidebar-kalkulator-events.js"
+      ]
+    },
+    {
+      "source": "mesin-laminasi.html",
+      "route": "/mesin-laminasi",
+      "component": "MesinLaminasiPage",
+      "title": "Laminasi",
+      "styles": [
+        "/legacy-css/style.css",
+        "/legacy-css/pages/mesin-laminasi-inline.css"
+      ],
+      "scripts": [
+        "/legacy-js/easy-number-separator.js",
+        "/legacy-js/component.js",
+        "/legacy-js/kalkulator.js",
+        "/legacy-js/pages/mesin-laminasi.js",
+        "/legacy-js/pages/mesin-laminasi-events.js",
+        "/legacy-js/pages/sidebar-kalkulator-events.js"
+      ]
+    },
+    {
+      "source": "mesin-poli.html",
+      "route": "/mesin-poli",
+      "component": "MesinPoliPage",
+      "title": "Poli",
+      "styles": [
+        "/legacy-css/style.css",
+        "/legacy-css/pages/mesin-poli-inline.css"
+      ],
+      "scripts": [
+        "/legacy-js/easy-number-separator.js",
+        "/legacy-js/component.js",
+        "/legacy-js/kalkulator.js",
+        "/legacy-js/pages/mesin-poli.js",
+        "/legacy-js/pages/mesin-poli-events.js",
+        "/legacy-js/pages/sidebar-kalkulator-events.js"
+      ]
+    },
+    {
+      "source": "mesin-pond.html",
+      "route": "/mesin-pond",
+      "component": "MesinPondPage",
+      "title": "Mesin Pond",
+      "styles": [
+        "/legacy-css/style.css",
+        "/legacy-css/pages/mesin-pond-inline.css"
+      ],
+      "scripts": [
+        "/legacy-js/easy-number-separator.js",
+        "/legacy-js/component.js",
+        "/legacy-js/kalkulator.js",
+        "/legacy-js/pages/mesin-pond.js",
+        "/legacy-js/pages/mesin-pond-events.js",
+        "/legacy-js/pages/sidebar-kalkulator-events.js"
+      ]
+    },
+    {
+      "source": "modal-percetakan.html",
+      "route": "/modal-percetakan",
+      "component": "ModalPercetakanPage",
+      "title": "Bootstrap 5 Modals",
+      "styles": [
+        "/legacy-css/pages/modal-percetakan.css"
+      ],
+      "scripts": []
+    },
+    {
+      "source": "next.html",
+      "route": "/next",
+      "component": "NextPage",
+      "title": "Cart | Dulank",
+      "styles": [
+        "/legacy-css/style.css",
+        "/legacy-css/pages/next.css",
+        "/legacy-css/pages/next-inline.css"
+      ],
+      "scripts": [
+        "/legacy-js/component.js",
+        "/legacy-js/easy-number-separator.js",
+        "/legacy-js/pages/next.js",
+        "/legacy-js/pages/next-events.js"
+      ]
+    },
+    {
+      "source": "order-view.html",
+      "route": "/order-view",
+      "component": "OrderViewPage",
+      "title": "Pesan #600268557",
+      "styles": [
+        "/legacy-css/style.css",
+        "/legacy-css/pages/order-view-inline.css"
+      ],
+      "scripts": [
+        "/legacy-js/pages/order-view.js",
+        "/legacy-js/component.js",
+        "/legacy-js/profile.js"
+      ]
+    },
+    {
+      "source": "orders.html",
+      "route": "/orders",
+      "component": "OrdersPage",
+      "title": "Orders",
+      "styles": [
+        "/legacy-css/style.css",
+        "/legacy-css/pages/orders-inline.css"
+      ],
+      "scripts": [
+        "/legacy-js/component.js",
+        "/legacy-js/profile.js",
+        "/legacy-js/pages/orders.js"
+      ]
+    },
+    {
+      "source": "our-client.html",
+      "route": "/our-client",
+      "component": "OurClientPage",
+      "title": "Our Client",
+      "styles": [
+        "/legacy-css/style.css"
+      ],
+      "scripts": [
+        "/legacy-js/component.js"
+      ]
+    },
+    {
+      "source": "pengaturan-keuntungan.html",
+      "route": "/pengaturan-keuntungan",
+      "component": "PengaturanKeuntunganPage",
+      "title": "Pengaturan Keuntungan",
+      "styles": [
+        "/legacy-css/style.css",
+        "/legacy-css/pages/pengaturan-keuntungan.css"
+      ],
+      "scripts": [
+        "/legacy-js/easy-number-separator.js",
+        "/legacy-js/component.js",
+        "/legacy-js/kalkulator.js",
+        "/legacy-js/pengaturan-keuntungan.js",
+        "/legacy-js/pages/sidebar-kalkulator-events.js"
+      ]
+    },
+    {
+      "source": "post.html",
+      "route": "/post",
+      "component": "PostPage",
+      "title": "Detail Blog",
+      "styles": [
+        "/legacy-css/style.css",
+        "/legacy-css/blog.css",
+        "/legacy-css/pages/post-inline.css"
+      ],
+      "scripts": [
+        "/legacy-js/component.js"
+      ]
+    },
+    {
+      "source": "print-order.html",
+      "route": "/print-order",
+      "component": "PrintOrderPage",
+      "title": "Print Order #60404168",
+      "styles": [
+        "/legacy-css/style.css",
+        "/legacy-css/pages/print-order.css",
+        "/legacy-css/pages/print-order-inline.css"
+      ],
+      "scripts": [
+        "/legacy-js/pages/print-order.js"
+      ]
+    },
+    {
+      "source": "product-list.html",
+      "route": "/product-list",
+      "component": "ProductListPage",
+      "title": "Produk",
+      "styles": [
+        "/legacy-css/style-product-list.css"
+      ],
+      "scripts": [
+        "/legacy-js/pages/product-list-01.js",
+        "/legacy-js/component.js",
+        "/legacy-js/profile.js"
+      ]
+    },
+    {
+      "source": "profile-kalkulator.html",
+      "route": "/profile-kalkulator",
+      "component": "ProfileKalkulatorPage",
+      "title": "Profile Kalkulator",
+      "styles": [
+        "/legacy-css/style.css",
+        "/legacy-css/pages/profile-kalkulator-inline.css"
+      ],
+      "scripts": [
+        "/legacy-js/component.js",
+        "/legacy-js/kalkulator.js",
+        "/legacy-js/address-input.js",
+        "/legacy-js/pages/profile-kalkulator.js",
+        "/legacy-js/pages/sidebar-kalkulator-events.js"
+      ]
+    },
+    {
+      "source": "profile.html",
+      "route": "/profile",
+      "component": "ProfilePage",
+      "title": "Profile",
+      "styles": [
+        "/legacy-css/style.css",
+        "/legacy-css/pages/profile.css",
+        "/legacy-css/pages/profile-inline.css"
+      ],
+      "scripts": [
+        "/legacy-js/component.js",
+        "/legacy-js/profile.js",
+        "/legacy-js/pages/profile.js"
+      ]
+    },
+    {
+      "source": "quotation-add.html",
+      "route": "/quotation-add",
+      "component": "QuotationAddPage",
+      "title": "Checkout",
+      "styles": [
+        "/legacy-css/style.css",
+        "/legacy-css/checkout.css",
+        "/legacy-css/pages/quotation-add-inline.css"
+      ],
+      "scripts": [
+        "/legacy-js/component.js",
+        "/legacy-js/checkout.js",
+        "/legacy-js/pages/quotation-add-events.js"
+      ]
+    },
+    {
+      "source": "quotation-send.html",
+      "route": "/quotation-send",
+      "component": "QuotationSendPage",
+      "title": "Quotation",
+      "styles": [
+        "/legacy-css/style.css",
+        "/legacy-css/pages/quotation-send.css"
+      ],
+      "scripts": [
+        "/legacy-js/component.js",
+        "/legacy-js/profile.js"
+      ]
+    },
+    {
+      "source": "quotation-success.html",
+      "route": "/quotation-success",
+      "component": "QuotationSuccessPage",
+      "title": "Quotation Success",
+      "styles": [
+        "/legacy-css/style.css",
+        "/legacy-css/pages/quotation-success-inline.css"
+      ],
+      "scripts": [
+        "/legacy-js/component.js"
+      ]
+    },
+    {
+      "source": "quotation-view.html",
+      "route": "/quotation-view",
+      "component": "QuotationViewPage",
+      "title": "Quotation View",
+      "styles": [
+        "/legacy-css/style.css",
+        "/legacy-css/pages/quotation-view.css",
+        "/legacy-css/pages/quotation-view-inline.css"
+      ],
+      "scripts": [
+        "/legacy-js/component.js",
+        "/legacy-js/profile.js"
+      ]
+    },
+    {
+      "source": "quotation.html",
+      "route": "/quotation",
+      "component": "QuotationPage",
+      "title": "Quotation | Dulank",
+      "styles": [
+        "/legacy-css/style.css",
+        "/legacy-css/save.css",
+        "/legacy-css/pages/quotation.css",
+        "/legacy-css/pages/quotation-inline.css"
+      ],
+      "scripts": [
+        "/legacy-js/component.js",
+        "/legacy-js/save.js",
+        "/legacy-js/pages/quotation.js"
+      ]
+    },
+    {
+      "source": "register.html",
+      "route": "/register",
+      "component": "RegisterPage",
+      "title": "Register",
+      "styles": [
+        "/legacy-css/style.css"
+      ],
+      "scripts": [
+        "/legacy-js/component.js",
+        "/legacy-js/profile.js"
+      ]
+    },
+    {
+      "source": "result-page.html",
+      "route": "/result-page",
+      "component": "ResultPagePage",
+      "title": "Result Page",
+      "styles": [
+        "/legacy-css/style.css",
+        "/legacy-css/pages/result-page-inline.css"
+      ],
+      "scripts": [
+        "/legacy-js/component.js",
+        "/legacy-js/profile.js"
+      ]
+    },
+    {
+      "source": "semua-kertas.html",
+      "route": "/semua-kertas",
+      "component": "SemuaKertasPage",
+      "title": "Jenis Kertas",
+      "styles": [
+        "/legacy-css/style.css",
+        "/legacy-css/pages/semua-kertas-inline.css"
+      ],
+      "scripts": [
+        "/legacy-js/easy-number-separator.js",
+        "/legacy-js/component.js",
+        "/legacy-js/kalkulator.js",
+        "/legacy-js/pages/semua-kertas.js",
+        "/legacy-js/pages/semua-kertas-events.js",
+        "/legacy-js/pages/sidebar-kalkulator-events.js"
+      ]
+    },
+    {
+      "source": "semua-percetakan.html",
+      "route": "/semua-percetakan",
+      "component": "SemuaPercetakanPage",
+      "title": "Semua Percetakan",
+      "styles": [
+        "/legacy-css/style.css",
+        "/legacy-css/pages/semua-percetakan-inline.css"
+      ],
+      "scripts": [
+        "/legacy-js/easy-number-separator.js",
+        "/legacy-js/component.js",
+        "/legacy-js/kalkulator.js",
+        "/legacy-js/pages/sidebar-kalkulator-events.js"
+      ]
+    },
+    {
+      "source": "semua-toko-kertas.html",
+      "route": "/semua-toko-kertas",
+      "component": "SemuaTokoKertasPage",
+      "title": "Semua Toko Kertas",
+      "styles": [
+        "/legacy-css/style.css",
+        "/legacy-css/pages/semua-toko-kertas-inline.css"
+      ],
+      "scripts": [
+        "/legacy-js/easy-number-separator.js",
+        "/legacy-js/component.js",
+        "/legacy-js/kalkulator.js",
+        "/legacy-js/pages/sidebar-kalkulator-events.js"
+      ]
+    },
+    {
+      "source": "store-kertas.html",
+      "route": "/store-kertas",
+      "component": "StoreKertasPage",
+      "title": "Toko Kertasindo",
+      "styles": [
+        "/legacy-css/style.css"
+      ],
+      "scripts": [
+        "/legacy-js/easy-number-separator.js",
+        "/legacy-js/component.js",
+        "/legacy-js/kalkulator.js",
+        "/legacy-js/pages/store-kertas.js",
+        "/legacy-js/pages/store-kertas-events.js",
+        "/legacy-js/pages/sidebar-kalkulator-events.js"
+      ]
+    },
+    {
+      "source": "store.html",
+      "route": "/store",
+      "component": "StorePage",
+      "title": "Percetaan Grafika 1",
+      "styles": [
+        "/legacy-css/style.css"
+      ],
+      "scripts": [
+        "/legacy-js/easy-number-separator.js",
+        "/legacy-js/component.js",
+        "/legacy-js/kalkulator.js",
+        "/legacy-js/pages/store.js",
+        "/legacy-js/pages/store-events.js",
+        "/legacy-js/pages/sidebar-kalkulator-events.js"
+      ]
+    },
+    {
+      "source": "success.html",
+      "route": "/success",
+      "component": "SuccessPage",
+      "title": "Order Success",
+      "styles": [
+        "/legacy-css/style.css",
+        "/legacy-css/pages/success-inline.css"
+      ],
+      "scripts": [
+        "/legacy-js/component.js",
+        "/legacy-js/pages/success-events.js"
+      ]
+    },
+    {
+      "source": "support-ticket-detail-kalkulator.html",
+      "route": "/support-ticket-detail-kalkulator",
+      "component": "SupportTicketDetailKalkulatorPage",
+      "title": "Support Ticket",
+      "styles": [
+        "/legacy-css/style.css",
+        "/legacy-css/pages/support-ticket-detail-kalkulator-inline.css"
+      ],
+      "scripts": [
+        "/legacy-js/component.js",
+        "/legacy-js/kalkulator.js",
+        "/legacy-js/pages/sidebar-kalkulator-events.js"
+      ]
+    },
+    {
+      "source": "support-ticket-detail.html",
+      "route": "/support-ticket-detail",
+      "component": "SupportTicketDetailPage",
+      "title": "Support Ticket",
+      "styles": [
+        "/legacy-css/style.css",
+        "/legacy-css/pages/support-ticket-detail-inline.css"
+      ],
+      "scripts": [
+        "/legacy-js/component.js",
+        "/legacy-js/profile.js"
+      ]
+    },
+    {
+      "source": "support-ticket-kalkulator.html",
+      "route": "/support-ticket-kalkulator",
+      "component": "SupportTicketKalkulatorPage",
+      "title": "Support Ticket",
+      "styles": [
+        "/legacy-css/style.css",
+        "/legacy-css/pages/support-ticket-kalkulator-inline.css"
+      ],
+      "scripts": [
+        "/legacy-js/component.js",
+        "/legacy-js/kalkulator.js",
+        "/legacy-js/pages/sidebar-kalkulator-events.js"
+      ]
+    },
+    {
+      "source": "support-ticket.html",
+      "route": "/support-ticket",
+      "component": "SupportTicketPage",
+      "title": "Support Ticket",
+      "styles": [
+        "/legacy-css/style.css",
+        "/legacy-css/pages/support-ticket-inline.css"
+      ],
+      "scripts": [
+        "/legacy-js/component.js",
+        "/legacy-js/profile.js"
+      ]
+    },
+    {
+      "source": "verify-email.html",
+      "route": "/verify-email",
+      "component": "VerifyEmailPage",
+      "title": "Verify Email",
+      "styles": [
+        "/legacy-css/style.css"
+      ],
+      "scripts": [
+        "/legacy-js/component.js"
+      ]
+    },
+    {
+      "source": "wishlist.html",
+      "route": "/wishlist",
+      "component": "WishlistPage",
+      "title": "Wishlist | Dulank",
+      "styles": [
+        "/legacy-css/style.css",
+        "/legacy-css/save.css"
+      ],
+      "scripts": [
+        "/legacy-js/component.js",
+        "/legacy-js/save.js"
+      ]
+    }
+  ],
+  "validation": {
+    "ok": true,
+    "source_pages": 55,
+    "page_components": 55,
+    "route_files": 60,
+    "shared_components": 21,
+    "component_folders": 12,
+    "css_files": 63,
+    "javascript_files": 56,
+    "javascript_syntax_failures": 0,
+    "images": 13,
+    "json_files": 3,
+    "old_html_routes_in_vue": 0,
+    "bootstrap_css_runtime": false,
+    "bootstrap_js_runtime": false,
+    "tailwind": "4.3.3",
+    "nuxt": "4.5.2"
+  }
+}

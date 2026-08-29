@@ -1,0 +1,1 @@
+<template><PagesStoreKertasPage /></template>

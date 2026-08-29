@@ -1,0 +1,98 @@
+{
+  "ok": true,
+  "total": 18,
+  "passed": 18,
+  "failed": [],
+  "checks": [
+    {
+      "name": "display utility precedence",
+      "ok": true,
+      "details": "d-flex=3323, d-none=3399"
+    },
+    {
+      "name": "tab panes inactive hidden",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "tab pane active visible",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "quote Vue dropdown state",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "profile Vue dropdown state",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "calculator Vue dropdown state",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "quote menu content preserved",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "profile menu content preserved",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "CetakFullColorPage.vue id=\"custom-size\" default hidden",
+      "ok": true,
+      "details": "<div class=\"d-flex d-none mb-2\" id=\"custom-size\">"
+    },
+    {
+      "name": "KalenderPage.vue id=\"custom-content\" default hidden",
+      "ok": true,
+      "details": "<div class=\"d-flex d-none mb-2\" id=\"custom-content\">"
+    },
+    {
+      "name": "KalenderPage.vue id=\"custom-size\" default hidden",
+      "ok": true,
+      "details": "<div class=\"d-flex d-none mb-2\" id=\"custom-size\">"
+    },
+    {
+      "name": "CetakBukuPage.vue id=\"custom-size\" default hidden",
+      "ok": true,
+      "details": "<div class=\"d-flex d-none mb-2\" id=\"custom-size\">"
+    },
+    {
+      "name": "custom size swaps preset/custom",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "custom content swaps preset/custom",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "potong result shows and empty state hides",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "potong empty state hard hide",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "profile calculator camera top-right",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "profile calculator positioning context 150px",
+      "ok": true,
+      "details": ""
+    }
+  ]
+}
