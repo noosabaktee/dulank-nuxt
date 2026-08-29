@@ -98,6 +98,14 @@ input[type="email"], input[type="date"], input[type="search"], input[type="numbe
 /* Navbar Styles */
 .navbar {
   border-bottom: 1px solid var(--border-color);
+  border-top: 0 !important;
+  border-right: 0 !important;
+  border-left: 0 !important;
+}
+
+#my-navbar #inline-style-navbar-001 {
+  border: 0 !important;
+  border-bottom: 1px solid var(--border-color) !important;
 }
 
 .nav-link {

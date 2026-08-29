@@ -41,6 +41,15 @@
 .dulank-global-header .dropdown-menu { z-index: 1050; }
 
 /* Revision 3 — main navbar fidelity and stable Vue dropdowns. */
+.dulank-main-navbar {
+  border-top: 0 !important;
+  border-right: 0 !important;
+  border-left: 0 !important;
+}
+.dulank-main-navbar #inline-style-navbar-001 {
+  border: 0 !important;
+  border-bottom: 1px solid var(--border-color) !important;
+}
 .dulank-main-navbar .dulank-navbar-logo-link,
 .dulank-main-navbar .dulank-nav-static-action,
 .dulank-main-navbar .dulank-nav-icon-link,

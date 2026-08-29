@@ -55,7 +55,7 @@ watch(() => route.fullPath, closeDropdowns)
 
       <div id="navcol-1" class="collapse navbar-collapse">
         <div class="row w-100">
-          <div id="inline-style-navbar-001" class="col-12 mb-2 border-3 py-3">
+          <div id="inline-style-navbar-001" class="col-12 mb-2 py-3">
             <div class="row justify-content-between container mx-auto dulank-navbar-top-row">
               <div class="col-12 col-md-6 d-md-flex align-items-center">
                 <a href="/" class="dulank-navbar-logo-link">
