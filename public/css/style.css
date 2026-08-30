@@ -183,10 +183,20 @@ input[type="email"], input[type="date"], input[type="search"], input[type="numbe
   position: relative;
 }
 
+.icon-link > .position-relative,
+.dulank-main-navbar .dulank-nav-icon-link > .position-relative {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+}
+
 .icon-badge {
   position: absolute;
-  top: -8px;
-  right: -1px;
+  top: -9px;
+  right: -6px;
   font-size: 10px;
   background-color: var(--primary-color);
   color: white;
@@ -870,16 +880,26 @@ input[type="email"], input[type="date"], input[type="search"], input[type="numbe
 }
 
 .ribbon::before{
-  content: '\25E2';
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 18px 18px;
+  border-color: transparent transparent var(--primary-color) transparent;
 }
 
 .ribbon{
   position: absolute;
-  margin-left: -2px;
-  margin-top: 2px;
-  color: var(--primary-color);
-  font-size: 1.25rem !important;
-  right: -1.5px;
+  right: -1px;
+  bottom: -1px;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  overflow: hidden;
+  pointer-events: none;
 }
 
 .btn-spec{
@@ -969,6 +989,14 @@ input[type="email"], input[type="date"], input[type="search"], input[type="numbe
     font-size: 0.75rem !important;
 }
 
+.table-product .actions-mobile-separator {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    gap: .75rem;
+}
+
 
 /* Responsive styles untuk mobile */
 @media (max-width: 767.98px) {
@@ -1003,6 +1031,7 @@ input[type="email"], input[type="date"], input[type="search"], input[type="numbe
         border-top: 1px dashed #eee;
         padding-top: 10px;
         margin-top: 10px;
+        justify-content: flex-start;
     }
     .table-product .col-12.actions-mobile-separator::before {
         content: none; /* Hapus label untuk actions */
