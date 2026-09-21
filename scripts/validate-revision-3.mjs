@@ -22,9 +22,9 @@ check('quote menu content preserved', navbar.includes('Online Quotation') && nav
 check('profile menu content preserved', ['Akun Saya','Pesanan Saya','Beli Lagi','Billing','Alamat','Quotation','Login','Sign In','Logout'].every(x => navbar.includes(x)))
 
 const productPages = [
-  ['app/components/pages/CetakFullColorPage.vue', ['id="custom-size"']],
-  ['app/components/pages/KalenderPage.vue', ['id="custom-content"','id="custom-size"']],
-  ['app/components/pages/CetakBukuPage.vue', ['id="custom-size"']],
+  ['app/components/pages/cetak-full-color/SpecForm.vue', ['id="custom-size"']],
+  ['app/components/pages/kalender/SpecForm.vue', ['id="custom-content"','id="custom-size"']],
+  ['app/components/pages/cetak-buku/SpecForm.vue', ['id="custom-size"']],
 ]
 for (const [file, ids] of productPages) {
   const s = read(file)

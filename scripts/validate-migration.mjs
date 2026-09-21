@@ -23,6 +23,7 @@ const assert = (condition, message) => {
 }
 
 const sourcePages = fs.readdirSync(sourceRoot).filter(name => name.endsWith('.html'))
+const pageEntries = fs.readdirSync(path.join(root, 'app/components/pages'))
 const pageComponents = walk(path.join(root, 'app/components/pages'), p => p.endsWith('.vue'))
 const routeFiles = walk(path.join(root, 'app/pages'), p => p.endsWith('.vue'))
 const sharedComponents = walk(path.join(root, 'app/components'), p => p.endsWith('.vue') && !p.includes(`${path.sep}pages${path.sep}`))
@@ -32,7 +33,8 @@ const images = walk(path.join(root, 'public/images'))
 const jsonFiles = walk(path.join(root, 'public/json'), p => p.endsWith('.json'))
 
 assert(sourcePages.length === 55, `Expected 55 static source pages, got ${sourcePages.length}`)
-assert(pageComponents.length === 55, `Expected 55 page components, got ${pageComponents.length}`)
+assert(pageEntries.length === 55, `Expected 55 page modules/components entries, got ${pageEntries.length}`)
+assert(pageComponents.length >= 55, `Expected at least 55 page component files, got ${pageComponents.length}`)
 assert(routeFiles.length >= 55, `Expected at least 55 route files, got ${routeFiles.length}`)
 assert(jsFiles.length === 56, `Expected 56 legacy feature scripts, got ${jsFiles.length}`)
 assert(cssFiles.length === 63, `Expected 63 source CSS files, got ${cssFiles.length}`)
@@ -57,6 +59,7 @@ assert(htmlRouteRefs.length === 0, `Found old .html routes in Vue pages: ${htmlR
 console.log(JSON.stringify({
   ok: true,
   sourcePages: sourcePages.length,
+  pageModules: pageEntries.length,
   pageComponents: pageComponents.length,
   routeFiles: routeFiles.length,
   sharedComponents: sharedComponents.length,
