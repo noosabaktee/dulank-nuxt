@@ -17,7 +17,7 @@ useLegacyPage({
 
 <template>
   <div class="dulank-page dulank-page-checkout">
-    <PagesCheckoutCheckoutHeader />
+    <PagesCheckoutHeader />
     <main class="container py-4">
       <div class="row">
         <div class="col-md-8">

@@ -4,7 +4,7 @@
 
 - All 55 source HTML pages are represented as Nuxt file-based routes.
 - Original page-specific JavaScript is retained under `public/legacy-js` and initialized after the Vue page mounts.
-- Shared fragments are Vue components under `app/components/layout` and are no longer fetched at runtime.
+- Shared fragments are Vue components under `app/components/Layout` and are no longer fetched at runtime.
 - Bootstrap CSS and Bootstrap JS are not loaded by the active Nuxt application.
 - Tailwind CSS 4 is the active utility system through `@nuxt/ui` / `tailwindcss`.
 - Original custom CSS is retained page-by-page to minimize visual drift.
@@ -24,7 +24,7 @@ Matches the reference repository style: `app/assets`, `app/components`, `app/lay
 - `LayoutCalculatorNavbar`
 - `LayoutPrivacyTermsContent`
 
-Each original HTML page has a route composer under `app/pages` and named UI components under `app/components/pages/<route>`.
+Each original HTML page has a route composer under `app/pages` and named UI components under `app/components/Pages/<Route>`.
 
 ## Run
 

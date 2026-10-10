@@ -25,7 +25,7 @@ const assert = (condition, message) => {
 const sourcePages = fs
   .readdirSync(sourceRoot)
   .filter((name) => name.endsWith(".html"));
-const pageComponentsRoot = path.join(root, "app/components/pages");
+const pageComponentsRoot = path.join(root, "app/components/Pages");
 const pageComponents = walk(pageComponentsRoot, (p) => p.endsWith(".vue"));
 const pageComponentFolders = fs
   .readdirSync(pageComponentsRoot, { withFileTypes: true })
@@ -35,7 +35,7 @@ const routeFiles = walk(path.join(root, "app/pages"), (p) =>
 );
 const sharedComponents = walk(
   path.join(root, "app/components"),
-  (p) => p.endsWith(".vue") && !p.includes(`${path.sep}pages${path.sep}`),
+  (p) => p.endsWith(".vue") && !p.includes(`${path.sep}Pages${path.sep}`),
 );
 const jsFiles = walk(path.join(root, "public/js"), (p) => p.endsWith(".js"));
 const cssFiles = walk(path.join(root, "public/css"), (p) => p.endsWith(".css"));

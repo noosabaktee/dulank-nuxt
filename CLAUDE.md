@@ -27,7 +27,7 @@ Registry npm mungkin tidak terjangkau di lingkungan terisolasi. `npm install`, t
 Halaman pakai dua strategi:
 
 1. **Page composition layer** (`app/pages/*.vue`) — metadata, data fetching, dan penyusunan komponen
-2. **Named UI components** (`app/components/pages/<route>/*.vue`) — section, form, table, list, state, dan modal dengan nama Inggris
+2. **Named UI components** (`app/components/Pages/<Route>/*.vue`) — section, form, table, list, state, dan modal dengan nama Inggris
 3. **Legacy JS runtime** — file JS asli dimuat via `useLegacyPage()` composable:
    - Inject Google Fonts, Font Awesome, Bootstrap Icons, SweetAlert2
    - Fetch & eval legacy JS setelah mount, patch `DOMContentLoaded` agar script existing jalan
@@ -96,7 +96,7 @@ Route file (`app/pages/*.vue`) mengambil data melalui composable dan menyusun be
 - **Pisahkan berdasarkan tanggung jawab UI** — hindari komponen monolitik, tetapi jangan membuat komponen hanya untuk sebuah nilai data
 - **Halaman calculator** beda layout (sidebar + header) dari halaman utama
 - **Link navigasi** yang指向 `.html` harus diubah ke Nuxt route (tanpa extension)
-- **Tambah halaman baru**: buat route di `app/pages/`, folder komponen di `app/components/pages/<route>/`, data di `server/data`, dan salin JS/CSS terkait ke `public/`
+- **Tambah halaman baru**: buat route di `app/pages/`, folder komponen di `app/components/Pages/<Route>/`, data di `server/data`, dan salin JS/CSS terkait ke `public/`
 
 ## Documentation
 

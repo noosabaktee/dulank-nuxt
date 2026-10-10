@@ -19,8 +19,8 @@ const { items: clients } = useCatalog<Client>("clients");
     <main>
       <div class="container my-5">
         <section class="py-3 py-md-5 py-xl-8">
-          <PagesOurClientClientIntroduction />
-          <PagesOurClientClientGrid :clients="clients" />
+          <PagesOurClientIntroduction />
+          <PagesOurClientGrid :clients="clients" />
         </section>
       </div>
     </main>

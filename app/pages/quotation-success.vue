@@ -13,7 +13,7 @@ useLegacyPage({
       <section class="py-3 py-md-5 py-xl-8">
         <div class="container">
           <div class="row justify-content-center">
-            <PagesQuotationSuccessQuotationSuccessMessage />
+            <PagesQuotationSuccessMessage />
           </div>
         </div>
       </section>

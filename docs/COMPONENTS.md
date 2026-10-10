@@ -1,19 +1,19 @@
 # Component Structure
 
-Setiap route memiliki folder komponen sendiri di `app/components/pages`. Page hanya mengatur metadata, mengambil data, dan menyusun komponen berdasarkan tanggung jawab UI.
+Setiap route memiliki folder komponen sendiri di `app/components/Pages`. Page hanya mengatur metadata, mengambil data, dan menyusun komponen berdasarkan tanggung jawab UI.
 
 ```text
 app/components/
-├── layout/
-├── common/
-├── product/
-├── profile/
-└── pages/
-    ├── index/
+├── Layout/
+├── Common/
+├── Product/
+├── Profile/
+└── Pages/
+    ├── Index/
     │   ├── AboutSection.vue
     │   ├── HeroCarousel.vue
     │   └── ProductGroups.vue
-    ├── cart/
+    ├── Cart/
     │   ├── CartItems.vue
     │   ├── CheckoutSteps.vue
     │   ├── EmptyCartState.vue
@@ -24,7 +24,7 @@ app/components/
 ## Rules
 
 - Component files use English names that describe their UI responsibility.
-- Route folders may retain Indonesian names because they correspond to existing URLs.
+- Route folders keep Indonesian names in PascalCase because they correspond to existing URLs (e.g. `Pages/CetakBuku`).
 - Generic page components such as `Content.vue` or `SomethingPage.vue` are not used.
 - Data lives in `server/data`, is exposed through `server/api`, and is read by composables.
 - Pages pass data into presentational components through typed props.

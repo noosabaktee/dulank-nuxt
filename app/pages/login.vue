@@ -15,8 +15,8 @@ useLegacyPage({
         <div class="row justify-content-center">
           <div class="col-lg-10 col-md-12">
             <div class="row justify-content-center">
-              <PagesLoginLoginIllustration />
-              <PagesLoginLoginForm />
+              <PagesLoginIllustration />
+              <PagesLoginForm />
             </div>
           </div>
         </div>

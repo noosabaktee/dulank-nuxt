@@ -21,7 +21,7 @@ useLegacyPage({
           <div class="col-lg-3 mb-4"><CalculatorSidebar /></div>
 
           <div class="col-lg-9">
-            <PagesStoreStoreHeader />
+            <PagesStoreHeader />
             <div class="text-standard my-2">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui
               voluptate soluta excepturi, aperiam velit laudantium hic fugit

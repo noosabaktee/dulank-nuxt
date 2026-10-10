@@ -25,7 +25,7 @@ check(
   compat.includes(".tab-content>.active{display:block}"),
 );
 
-const navbar = read("app/components/layout/MainNavbar.vue");
+const navbar = read("app/components/Layout/MainNavbar.vue");
 check(
   "quote Vue dropdown state",
   navbar.includes("const quoteOpen = ref(false)") &&
@@ -62,15 +62,15 @@ check(
 
 const productPages = [
   [
-    "app/components/pages/cetak-full-color/SpecificationForm.vue",
+    "app/components/Pages/CetakFullColor/SpecificationForm.vue",
     ['id="custom-size"'],
   ],
   [
-    "app/components/pages/kalender/SpecificationForm.vue",
+    "app/components/Pages/Kalender/SpecificationForm.vue",
     ['id="custom-content"', 'id="custom-size"'],
   ],
   [
-    "app/components/pages/cetak-buku/SpecificationForm.vue",
+    "app/components/Pages/CetakBuku/SpecificationForm.vue",
     ['id="custom-size"'],
   ],
 ];

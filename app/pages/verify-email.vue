@@ -14,7 +14,7 @@ useLegacyPage({
       <div class="container my-5">
         <div class="row justify-content-center">
           <div class="col-md-8 col-lg-7">
-            <PagesVerifyEmailEmailVerificationMessage />
+            <PagesVerifyEmailVerificationMessage />
           </div>
         </div>
       </div>
