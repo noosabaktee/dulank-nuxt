@@ -1,8 +1,19 @@
+<script setup lang="ts">
+export interface FeaturedService {
+  title: string;
+  subtitle: string;
+  description: string;
+  image: string;
+}
+
+defineProps<{ services: FeaturedService[] }>();
+</script>
+
 <template>
   <div>
     <div
       v-for="(service, index) in services"
-      :key="service.image"
+      :key="service.title"
       class="row mb-4 mb-md-0"
     >
       <div
@@ -27,22 +38,3 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-const services = [
-  {
-    title: "Heading 1",
-    subtitle: "Heading 3",
-    description:
-      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus omnis cumque quas voluptas amet sunt excepturi.",
-    image: "/images/brosur.jpg",
-  },
-  {
-    title: "Heading 1",
-    subtitle: "Heading 3",
-    description:
-      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus omnis cumque quas voluptas amet sunt excepturi.",
-    image: "/images/yasin.jpg",
-  },
-];
-</script>

@@ -21,5 +21,8 @@ export default defineNuxtConfig({
     '/api/v1/**': {
       proxy: `${process.env.NUXT_BACKEND_URL || 'http://127.0.0.1:8000'}/api/v1/**`,
     },
+    '/storage/**': {
+      proxy: `${process.env.NUXT_BACKEND_URL || 'http://127.0.0.1:8000'}/storage/**`,
+    },
   },
 })

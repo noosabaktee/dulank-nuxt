@@ -27,6 +27,7 @@ defineProps<{ rows: PaperServiceRow[] }>();
       </div>
 
       <div
+        v-if="rows.length"
         v-for="row in rows"
         :key="row.name"
         class="row table-product align-items-md-center py-md-2 py-3 px-3 border-bottom-md-0"
@@ -37,6 +38,9 @@ defineProps<{ rows: PaperServiceRow[] }>();
         <div class="col-12 col-md-2" data-label="Update">{{ row.updatedAt }}</div>
         <div class="col-12 col-md-2 text-center"></div>
       </div>
+      <p v-if="!rows.length" class="text-muted text-standard py-3 px-3">
+        Belum ada data jenis kertas untuk toko ini.
+      </p>
     </div>
   </div>
 </template>

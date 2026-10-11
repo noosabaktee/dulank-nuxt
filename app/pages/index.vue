@@ -2,6 +2,7 @@
 import type { Product } from "#server/types/product";
 import type { BlogPost } from "#server/types/blog";
 import type { SaleBanner } from "#server/types/sale-banner";
+import type { FeaturedService } from "~/components/Pages/Index/FeaturedServices.vue";
 
 useLegacyPage({
   title: "Percetakan Dulank - Online Printing Shop",
@@ -13,11 +14,17 @@ useLegacyPage({
 const { data: banners } = useApi<SaleBanner[]>("/sale-banners");
 const { data: products } = useApi<Product[]>("/products?page=1&limit=6");
 const { data: posts } = useApi<BlogPost[]>("/blog?page=1&limit=2");
+const { data: appearance } = useApi<{ featuredServices?: FeaturedService[] }>(
+  "/settings/appearance",
+);
 
 const heroBanners = computed(() => banners.value ?? []);
 const highlightProducts = computed(() => products.value ?? []);
 const latestPosts = computed(() => posts.value ?? []);
 const offerBanner = computed(() => banners.value?.[0] ?? null);
+const featuredServices = computed(
+  () => appearance.value?.featuredServices ?? [],
+);
 </script>
 
 <template>
@@ -30,7 +37,7 @@ const offerBanner = computed(() => banners.value?.[0] ?? null);
             <PagesIndexProductHighlights :products="highlightProducts" />
             <PagesIndexAboutSection />
           </div>
-          <PagesIndexFeaturedServices />
+          <PagesIndexFeaturedServices :services="featuredServices" />
           <PagesIndexInformationColumns :articles="latestPosts" />
         </section>
       </div>
