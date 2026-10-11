@@ -48,3 +48,9 @@ The storefront now consumes the Laravel backend at `/home/bacink/DULANK/2026/dul
 - Convert legacy `*.html` links to extension-less Nuxt routes.
 - Adding a route requires: page composer + component folder, an entry in the matching navbar list in `app/layouts/default.vue`, data/API/composable if needed, and legacy assets copied into `public/`.
 - New storefront API endpoints go into `dulank-backend/routes/api/store.php` (public `throttle:api` group or the `abilities:store` group), never into `routes/api/admin.php`. Seed product-page/config data via seeders, then re-seed the target table.
+
+## Data ownership
+
+- **Store consumes backend data driven by dulank-admin CRUD.** All storefront pages read the same Eloquent tables that dulank-admin manages (products, categories, banners, paper prices/sizes, machines, partners, clients, blog, faqs, orders, etc.). A change made in admin (create/update/delete) is immediately reflected in the store — no duplicated data lives in the storefront.
+- **Exception: calculator pages are where storefront-side CRUD lives** (partners manage their own machines/paper/calculator listings from the store client). This is currently read-only: the store has no calculator write endpoints yet, and calculator data is admin-maintained. Add store CRUD routes under `routes/api/store.php` (`abilities:store`) before building any calculator write UI.
+- `product-pages` settings (spec prices, price lists, galleries, guides) are backend settings, not admin CRUD — treat as content config; point admin tooling at them when admin editing is needed.
