@@ -5,7 +5,7 @@ Nuxt 4 + Vue 3 + Tailwind CSS 4 migration of **Percetakan Dulank**, a static Ind
 The storefront now consumes the Laravel backend at `/home/bacink/DULANK/2026/dulank-backend` (port 8000) instead of local JSON files. The same backend also serves **dulank-admin** (`/api/v1/admin/*`); storefront endpoints live under `/api/v1/*` (store routes in `routes/api/store.php`). Changes to shared models (Product, Category, User, BlogPost, Faq, Banner) must not break dulank-admin.
 
 - Site content is Indonesian (`<html lang="id">`); page component names are English.
-- `docs/ROUTES.md` maps every source `*.html` → Nuxt route → page component; `CLAUDE.md` has a longer architecture write-up.
+- `docs/ROUTES.md` maps every source `*.html` → Nuxt route → page component; `CLAUDE.md` has a longer architecture write-up. `docs/IMPLEMENTATION.md` is the newer cross-repo status doc (API migration, merchant terminology, calculator CRUD, image storage, route conventions, recovery).
 
 ## Commands
 
