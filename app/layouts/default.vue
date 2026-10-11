@@ -47,7 +47,7 @@ const calculatorNavbarRoutes = new Set([
   "/mesin-poli",
   "/mesin-pond",
   "/pengaturan-keuntungan",
-  "/profile-kalkulator",
+  "/profile-merchant",
   "/semua-kertas",
   "/semua-percetakan",
   "/semua-toko-kertas",

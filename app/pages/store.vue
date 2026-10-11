@@ -50,8 +50,8 @@ interface PaperSizeRecord {
 }
 
 const route = useRoute();
-const partnerId = computed(() => String(route.query.id || 1));
-const { data: shop } = useApi<PrintingShop>(`/partners/${partnerId.value}`);
+const merchantId = computed(() => String(route.query.id || 1));
+const { data: shop } = useApi<PrintingShop>(`/merchants/${merchantId.value}`);
 
 const { items: machines } = useCatalog<MachineRecord>("printing-machines");
 const { items: paperTypes } = useCatalog<PaperTypeRecord>("paper-types");

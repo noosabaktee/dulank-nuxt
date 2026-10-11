@@ -23,8 +23,8 @@ watch(path, value => {
     </div>
     <div class="profile-sidebar bg-white rounded-3 p-0 shadow-sm collapse" id="collapseSidebarProfile">
       <ul class="profile-nav list-unstyled m-0">
-        <li class="profile-nav-item" :class="{ active: isActive('/profile-kalkulator') }">
-          <NuxtLink to="/profile-kalkulator" class="profile-nav-link">Profile Kalkulator</NuxtLink>
+        <li class="profile-nav-item" :class="{ active: isActive('/profile-merchant') }">
+          <NuxtLink to="/profile-merchant" class="profile-nav-link">Profile Merchant</NuxtLink>
         </li>
 
         <li class="profile-nav-item">

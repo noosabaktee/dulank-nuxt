@@ -122,7 +122,7 @@ check(
 );
 check(
   "profile calculator positioning context 150px",
-  fidelity.includes(".dulank-page-profile-kalkulator .profile-avatar.ratio") &&
+  fidelity.includes(".dulank-page-profile-merchant .profile-avatar.ratio") &&
     fidelity.includes("width: 150px;") &&
     fidelity.includes("height: 150px;"),
 );

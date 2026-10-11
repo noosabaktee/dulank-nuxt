@@ -20,7 +20,7 @@
 <a class="nav-link inline-flex items-center cursor-pointer" href="/kalkulator-percetakan"><i class="fa-solid fa-calculator me-2 mr-2"></i>Kalkulator Percetakan</a>
 </li>
 <li class="nav-item">
-<a class="nav-link inline-flex items-center cursor-pointer" href="/profile-kalkulator"><i class="fa-solid fa-gear me-2 mr-2"></i>Pengaturan</a>
+<a class="nav-link inline-flex items-center cursor-pointer" href="/profile-merchant"><i class="fa-solid fa-gear me-2 mr-2"></i>Pengaturan</a>
 </li>
 </ul>
 </div>

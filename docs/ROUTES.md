@@ -36,7 +36,7 @@
 | `post.html` | `/post` | `PostPage` |
 | `print-order.html` | `/print-order` | `PrintOrderPage` |
 | `product-list.html` | `/product-list` | `ProductListPage` |
-| `profile-kalkulator.html` | `/profile-kalkulator` | `ProfileKalkulatorPage` |
+| `profile-kalkulator.html` | `/profile-merchant` | `ProfileMerchantPage` |
 | `profile.html` | `/profile` | `ProfilePage` |
 | `quotation-add.html` | `/quotation-add` | `QuotationAddPage` |
 | `quotation-send.html` | `/quotation-send` | `QuotationSendPage` |

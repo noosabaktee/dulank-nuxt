@@ -1,13 +1,13 @@
 <template>
   <div class="row justify-content-start">
-    <h4 class="fs-5 mb-md-5 mb-3">Profile Kalkulator</h4>
+    <h4 class="fs-5 mb-md-5 mb-3">Profile Merchant</h4>
     <div class="col-md-3 col-6">
       <div class="text-center">
         <div class="profile-avatar ratio ratio-4x3">
           <img
             alt="User Avatar"
             class="rounded-circle"
-            id="inline-style-profile-kalkulator-001"
+            id="inline-style-profile-merchant-001"
             src="/images/tab.png"
           />
           <div class="profile-avatar-badge">
