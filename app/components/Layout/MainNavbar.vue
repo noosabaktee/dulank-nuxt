@@ -4,6 +4,26 @@ const profileOpen = ref(false)
 const calculatorOpen = ref(false)
 const route = useRoute()
 
+const auth = useAuthStore()
+const cart = useCartStore()
+const wishlist = useWishlistStore()
+
+// Badge cart/wishlist: fetch hanya saat terautentikasi; guest tetap 0
+// dan tidak memicu request 401.
+watch(
+  () => auth.isAuthenticated,
+  (isAuthenticated) => {
+    if (isAuthenticated) {
+      cart.fetch().catch(() => {})
+      wishlist.fetch().catch(() => {})
+    } else {
+      cart.reset()
+      wishlist.reset()
+    }
+  },
+  { immediate: true },
+)
+
 function closeDropdowns() {
   quoteOpen.value = false
   profileOpen.value = false
@@ -30,6 +50,12 @@ function toggleCalculator() {
 
 function handleDocumentClick() {
   closeDropdowns()
+}
+
+async function onLogout() {
+  await auth.logout()
+  closeDropdowns()
+  await navigateTo('/login')
 }
 
 onMounted(() => document.addEventListener('click', handleDocumentClick))
@@ -78,7 +104,7 @@ watch(() => route.fullPath, closeDropdowns)
                       <a href="/wishlist" class="icon-link me-3 link dulank-nav-static-action">
                         <span class="position-relative fs-5">
                           <i class="bi bi-heart"></i>
-                          <span class="badge rounded-pill icon-badge">2</span>
+                          <span class="badge rounded-pill icon-badge">{{ wishlist.count }}</span>
                         </span>
                         <span>Wishlist</span>
                       </a>
@@ -86,7 +112,7 @@ watch(() => route.fullPath, closeDropdowns)
                       <a href="/cart" class="icon-link me-3 dulank-nav-static-action">
                         <span class="position-relative fs-5">
                           <i class="bi bi-cart3"></i>
-                          <span class="badge rounded-pill icon-badge">2</span>
+                          <span class="badge rounded-pill icon-badge">{{ cart.itemCount }}</span>
                         </span>
                         <span>Cart</span>
                       </a>
@@ -160,9 +186,9 @@ watch(() => route.fullPath, closeDropdowns)
                           <a href="/billing" class="d-block w-100 small dropdown-item py-2 px-3">Billing</a>
                           <a href="/address" class="d-block w-100 small dropdown-item py-2 px-3">Alamat</a>
                           <a href="/quotation-send" class="d-block w-100 small dropdown-item py-2 px-3">Quotation</a>
-                          <a href="/login" class="d-block w-100 small dropdown-item py-2 px-3">Login</a>
-                          <a href="/register" class="d-block w-100 small dropdown-item py-2 px-3">Sign In</a>
-                          <a href="#" class="d-block w-100 small dropdown-item py-2 px-3" @click.prevent>Logout</a>
+                          <a v-if="!auth.isAuthenticated" href="/login" class="d-block w-100 small dropdown-item py-2 px-3">Login</a>
+                          <a v-if="!auth.isAuthenticated" href="/register" class="d-block w-100 small dropdown-item py-2 px-3">Sign In</a>
+                          <a v-if="auth.isAuthenticated" href="#" class="d-block w-100 small dropdown-item py-2 px-3" @click.prevent="onLogout">Logout</a>
                         </div>
                       </div>
                     </div>

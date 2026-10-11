@@ -1,4 +1,6 @@
 <script setup lang="ts">
+definePageMeta({ middleware: "auth" });
+
 useLegacyPage({
   title: "Cart | Dulank",
   styles: [
@@ -15,12 +17,12 @@ useLegacyPage({
   sweetAlert: true,
 });
 
-const { cartItems } = useCartItems();
-const cartSubtotal = computed(() =>
-  cartItems.value.reduce((sum, item) => sum + item.price * item.quantity, 0),
-);
-const cartTax = computed(() => Math.round(cartSubtotal.value * 0.11));
-const cartTotal = computed(() => cartSubtotal.value + cartTax.value);
+const cart = useCartStore();
+await cart.ensure().catch(() => {});
+
+const cartSubtotal = computed(() => cart.subtotal);
+const cartTax = computed(() => cart.tax);
+const cartTotal = computed(() => cart.total);
 </script>
 
 <template>
@@ -32,17 +34,17 @@ const cartTotal = computed(() => cartSubtotal.value + cartTax.value);
       <div class="container my-5">
         <div class="row save">
           <PagesNextCheckoutSteps />
-          <PagesNextCartItems v-if="cartItems.length" :cart-items="cartItems" />
+          <PagesNextCartItems v-if="cart.items.length" :cart-items="cart.items" />
 
           <PagesNextOrderSummary
-            v-if="cartItems.length"
+            v-if="cart.items.length"
             :subtotal="cartSubtotal"
             :tax="cartTax"
             :total="cartTotal"
           />
         </div>
 
-        <PagesNextEmptyCartState v-if="!cartItems.length" />
+        <PagesNextEmptyCartState v-if="!cart.items.length" />
       </div>
     </main>
   </div>

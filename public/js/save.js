@@ -1,64 +1,73 @@
+// Halaman yang dikelola Pinia (data + API) memakai marker
+// `document.documentElement.dataset.dulankStore` yang dipasang Nuxt pages
+// (cart/wishlist). Di halaman tersebut handler legacy quantity/remove/
+// add-to-cart/add-wishlist tidak boleh ikut bekerja (double-handling dengan
+// action store) dan `updateTotal` tidak boleh menimpa total hasil getter store.
+function isStoreManaged() {
+    return document.documentElement.dataset.dulankStore === '1';
+}
+
 // Initialize variables
 const minusButtons = document.querySelectorAll('.card-product-list .quantity-minus');
 const plusButtons = document.querySelectorAll('.card-product-list .quantity-plus');
 const removeButtons = document.querySelectorAll('.btn-remove-save');
 const grandTotalPrice = document.querySelector('#grandTotal')
 
-// Add event listeners to quantity minus buttons
-minusButtons.forEach(button => {
-    button.addEventListener('click', function() {
-        const input = this.parentElement.querySelector('.quantity-input');
-        let deletedComma = input.value.replace(/,/g, "");
-        let value = parseInt(deletedComma);
-        if (value > 1) {
-            value--;
+if (!isStoreManaged()) {
+    // Add event listeners to quantity minus buttons
+    minusButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const input = this.parentElement.querySelector('.quantity-input');
+            let deletedComma = input.value.replace(/,/g, "");
+            let value = parseInt(deletedComma);
+            if (value > 1) {
+                value--;
+                input.value = value;
+                input.dispatchEvent(new Event('input'));
+                updateTotal()
+            }
+        });
+    });
+
+    // Add event listeners to quantity plus buttons
+    plusButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const input = this.parentElement.querySelector('.quantity-input');
+            let deletedComma = input.value.replace(/,/g, "");
+            let value = parseInt(deletedComma);
+            value++;
             input.value = value;
             input.dispatchEvent(new Event('input'));
             updateTotal()
-        }
+        });
     });
-});
 
-// Add event listeners to quantity plus buttons
-plusButtons.forEach(button => {
-    button.addEventListener('click', function() {
-        const input = this.parentElement.querySelector('.quantity-input');
-        let deletedComma = input.value.replace(/,/g, "");
-        let value = parseInt(deletedComma);
-        value++;
-        input.value = value;
-        input.dispatchEvent(new Event('input'));
-        updateTotal()
+    // Add event listeners to remove buttons
+    removeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const saveItem = this.closest('.card-product-list');
+
+            // Add a fade-out animation
+            saveItem.style.transition = 'opacity 0.3s ease';
+            saveItem.style.opacity = '0';
+
+            // Remove the item after animation completes
+            setTimeout(() => {
+                saveItem.remove();
+
+                // Check if save is empty after removal
+                const saveItems = document.querySelectorAll('.card-product-list');
+                if (saveItems.length === 0) {
+                    document.querySelector('.save').classList.add('d-none');
+                    document.querySelector('.empty-save-container').classList.remove('d-none');
+                    document.querySelector('.mt-4').classList.add('d-none');
+                } 
+                updateTotal()
+            }, 300);
+            sweetDelete()
+        });
     });
-});
-
-
-
-// Add event listeners to remove buttons
-removeButtons.forEach(button => {
-    button.addEventListener('click', function() {
-        const saveItem = this.closest('.card-product-list');
-
-        // Add a fade-out animation
-        saveItem.style.transition = 'opacity 0.3s ease';
-        saveItem.style.opacity = '0';
-
-        // Remove the item after animation completes
-        setTimeout(() => {
-            saveItem.remove();
-
-            // Check if save is empty after removal
-            const saveItems = document.querySelectorAll('.card-product-list');
-            if (saveItems.length === 0) {
-                document.querySelector('.save').classList.add('d-none');
-                document.querySelector('.empty-save-container').classList.remove('d-none');
-                document.querySelector('.mt-4').classList.add('d-none');
-            } 
-            updateTotal()
-        }, 300);
-        sweetDelete()
-    });
-});
+}
 
 document.querySelectorAll('input').forEach(input => {
     input.addEventListener("keypress", function(event) {
@@ -70,6 +79,10 @@ document.querySelectorAll('input').forEach(input => {
 });
 
 function updateTotal() {
+    // Halaman store-managed: subtotal/tax/total berasal dari getter Pinia
+    // (satu sumber) — jangan timpa DOM dari perhitungan legacy.
+    if (isStoreManaged()) return;
+
     // isOngkir false for quotation page
     let subtotal = 0;
     // Calculate subtotal based on items in cart
@@ -82,6 +95,21 @@ function updateTotal() {
     })
     let grand_total = subtotal;
     grandTotalPrice.textContent = "Rp"+formatRupiah(grand_total.toString());
+}
+
+if (!isStoreManaged()) {
+    // Efek navbar "turun" sementara jika tidak terlihat saat add-wishlist diklik (tanpa scroll, pakai scaleY)
+    // dan animasi icon love melayang ke navbar
+    document.querySelectorAll('.add-wishlist-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            add_to("wishlist");
+        });
+    });
+    document.querySelectorAll('.add-cart-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            add_to("cart");
+        });
+    });
 }
 
 function add_to(btn){
@@ -171,16 +199,3 @@ function add_to(btn){
 
     }
 }
-
-// Efek navbar "turun" sementara jika tidak terlihat saat add-wishlist diklik (tanpa scroll, pakai scaleY)
-// dan animasi icon love melayang ke navbar
-document.querySelectorAll('.add-wishlist-btn').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-        add_to("wishlist");
-    });
-});
-document.querySelectorAll('.add-cart-btn').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-        add_to("cart");
-    });
-});

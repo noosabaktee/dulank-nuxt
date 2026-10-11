@@ -2,7 +2,10 @@
 import type { WishlistEntry } from "#server/types/wishlist";
 import { formatRupiah } from "~/utils/currency";
 
-defineProps<{ wishlistItems: WishlistEntry[] }>();
+const props = defineProps<{ wishlistItems: WishlistEntry[] }>();
+
+const wishlist = useWishlistStore();
+const cart = useCartStore();
 
 function isExpired(item: WishlistEntry) {
   if (typeof item.expired === "boolean") return item.expired;
@@ -13,10 +16,39 @@ function isExpired(item: WishlistEntry) {
   date.setHours(0, 0, 0, 0);
   return date < today;
 }
+
+function fadeOut(el: HTMLElement | null) {
+  if (!el) return;
+  el.style.transition = "opacity 0.3s ease";
+  el.style.opacity = "0";
+  setTimeout(() => el.remove(), 300);
+}
+
+async function onRemove(item: WishlistEntry, event: Event) {
+  // Block handler legacy `save.js` (double-handling) — store yang memproses.
+  event.stopImmediatePropagation();
+  const row = (event.currentTarget as HTMLElement).closest(
+    ".card-product-list",
+  ) as HTMLElement | null;
+  fadeOut(row);
+  await wishlist.remove(item.id);
+  // Parity snackbar legacy `sweetDelete()`.
+  (window as any).sweetDelete?.();
+}
+
+async function onAddToCart(item: WishlistEntry, event: Event) {
+  event.stopImmediatePropagation();
+  await cart.add({
+    productId: item.productId,
+    quantity: 1,
+    price: item.price,
+    spec: item.spec,
+  });
+}
 </script>
 
 <template>
-  <template v-for="item in wishlistItems" :key="item.id">
+  <template v-for="item in props.wishlistItems" :key="item.id">
     <div class="card-product-list">
       <div
         v-if="isExpired(item)"
@@ -61,11 +93,19 @@ function isExpired(item: WishlistEntry) {
               </div>
             </div>
             <div class="d-flex justify-content-between mt-2 mt-md-4">
-              <h5 class="mx-2 align-items-center add-cart-btn" role="button">
+              <h5
+                class="mx-2 align-items-center add-cart-btn"
+                role="button"
+                @click="onAddToCart(item, $event)"
+              >
                 <i class="bi bi-cart3 me-2 my-text-primary"></i
                 ><span class="text-standard my-text-primary">Add to cart</span>
               </h5>
-              <h5 class="mx-2 align-items-center btn-remove-save" role="button">
+              <h5
+                class="mx-2 align-items-center btn-remove-save"
+                role="button"
+                @click="onRemove(item, $event)"
+              >
                 <i class="bi bi-trash me-2 my-text-primary"></i
                 ><span class="text-standard my-text-primary">Remove</span>
               </h5>

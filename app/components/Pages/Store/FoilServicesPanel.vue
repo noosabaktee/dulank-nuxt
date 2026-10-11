@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import type { MachineRecord } from "~/composables/useMachineCatalog";
+
+defineProps<{ machines: MachineRecord[] }>();
+</script>
+
 <template>
   <div
     aria-labelledby="poli-tab"
@@ -17,30 +23,24 @@
       </div>
 
       <div
+        v-for="machine in machines"
+        :key="machine.id"
         class="row table-product align-items-md-center py-md-2 py-3 px-3 border-bottom-md-0"
       >
-        <div class="col-12 col-md-2" data-label="Nama">Standard</div>
-        <div class="col-12 col-md-2" data-label="Ukuran Max">30x15 cm</div>
-        <div class="col-12 col-md-2" data-label="Harga per cm">Rp20</div>
-        <div class="col-12 col-md-2" data-label="Harga Minim">
-          Rp200.000 <br />
-          Hitungan: Rp50
+        <div class="col-12 col-md-2" data-label="Nama">{{ machine.name }}</div>
+        <div class="col-12 col-md-2" data-label="Ukuran Max">
+          {{ machine.size }}
         </div>
-        <div class="col-12 col-md-2" data-label="Update">20/12/12 23:12</div>
-        <div class="col-12 col-md-1"></div>
-      </div>
-
-      <div
-        class="row table-product align-items-md-center py-md-2 py-3 px-3 border-bottom-md-0"
-      >
-        <div class="col-12 col-md-2" data-label="Nama">Hologram</div>
-        <div class="col-12 col-md-2" data-label="Ukuran Max">30x15 cm</div>
-        <div class="col-12 col-md-2" data-label="Harga per cm">Rp18</div>
-        <div class="col-12 col-md-2" data-label="Harga Minim">
-          Rp180.000 <br />
-          Hitungan: Rp50
+        <div class="col-12 col-md-2" data-label="Harga per cm">
+          Rp{{ machine.unitPrice?.toLocaleString("id-ID") }}
         </div>
-        <div class="col-12 col-md-2" data-label="Update">20/12/12 23:12</div>
+        <div class="col-12 col-md-2" data-label="Harga Minim">
+          Rp{{ machine.price?.toLocaleString("id-ID") }} <br />
+          Hitungan: Rp{{ machine.unitPrice?.toLocaleString("id-ID") }}
+        </div>
+        <div class="col-12 col-md-2" data-label="Update">
+          {{ machine.updatedAt }}
+        </div>
         <div class="col-12 col-md-1"></div>
       </div>
     </div>

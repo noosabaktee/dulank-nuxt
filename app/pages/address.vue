@@ -1,4 +1,5 @@
 <script setup lang="ts">
+definePageMeta({ middleware: "auth" });
 useLegacyPage({
   title: "Addresses",
   styles: ["/css/style.css", "/css/pages/address-inline.css"],

@@ -2,7 +2,7 @@ export interface UserProfile {
   id: number;
   name: string;
   email: string;
-  phone: string;
+  phone?: string;
   avatar?: string;
   joinDate?: string;
   lastLogin?: string;
@@ -13,20 +13,11 @@ export interface UserProfile {
   transactionCode?: string;
   taxAddress?: string;
   attachTaxInvoice?: boolean;
+  twoFactorEnabled?: boolean;
 }
 
-interface UserProfileResponse {
-  success: boolean;
-  data: UserProfile;
-}
-
-export function useUserProfile(userId = 1) {
-  const { data, pending, error } = useFetch<UserProfileResponse>(
-    `/api/users/${userId}`,
-    { key: `user-profile-${userId}` },
-  );
-
-  const user = computed(() => data.value?.data ?? null);
-
+export function useUserProfile() {
+  const { data, pending, error } = useApi<UserProfile>("/auth/me");
+  const user = computed<UserProfile | null>(() => data.value ?? null);
   return { user, pending, error };
 }

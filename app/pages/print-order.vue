@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { Order } from "~/composables/useOrders";
 
+definePageMeta({ middleware: "auth" });
+
 useLegacyPage({
   title: "Print Order #60404168",
   styles: [
@@ -23,20 +25,14 @@ interface Billing {
 }
 
 const route = useRoute();
-const invoiceId = computed(() => String(route.query.id || "600449168"));
-const { data: billingData } = useFetch<{ success: boolean; data: Billing[] }>(
-  "/api/billings?userId=1",
-);
-const bill = computed(
-  () => billingData.value?.data.find((item) => item.id === invoiceId.value) ?? null,
-);
+const invoiceId = computed(() => String(route.query.id || ""));
+const { data: invoiceData } = useApi<Billing>(`/invoices/${invoiceId.value}`);
+const bill = computed(() => invoiceData.value ?? null);
 const orderId = computed(() =>
-  String(route.query.orderId || bill.value?.orderId || "2504027H2DQ68B"),
+  String(route.query.orderId || bill.value?.orderId || ""),
 );
-const { data: orderData } = useFetch<{ success: boolean; data: Order }>(
-  () => `/api/orders/${orderId.value}`,
-);
-const order = computed(() => orderData.value?.data ?? null);
+const { data: orderData } = useApi<Order>(`/orders/${orderId.value}`);
+const order = computed(() => orderData.value ?? null);
 </script>
 
 <template>

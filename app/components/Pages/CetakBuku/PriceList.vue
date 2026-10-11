@@ -1,8 +1,16 @@
+<script setup lang="ts">
+import type { ProductPagePriceList } from "#server/types/product-page";
+
+defineProps<{ priceList: ProductPagePriceList }>();
+
+const { hasInWishlist } = usePageWishlist(["cetak-buku"]);
+</script>
+
 <template>
   <div class="row mt-md-3" id="scrollTo">
     <div class="col-md-12">
       <div class="mb-2 mt-4">
-        <h1 class="fs-4 bg-light p-3 title">List Harga Cetak Buku</h1>
+        <h1 class="fs-4 bg-light p-3 title">{{ priceList.title || "List Harga" }}</h1>
       </div>
       <div class="d-md-flex justify-content-between mt-4">
         <p>Silahkan Pilih Harga Yang Terbaik</p>
@@ -62,132 +70,32 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="table-list">
-              <td><span class="qty-value">10</span> Rim</td>
+            <tr v-for="row in priceList.rows" :key="`${row.qty}-${row.unit}`" class="table-list">
+              <td><span class="qty-value">{{ row.qty }}</span> {{ row.unit }}</td>
               <td class="my-text-primary">
-                Rp<span class="price-value">65.000</span>
+                Rp<span class="price-value">{{ row.price }}</span>
               </td>
-              <td>Rp<span class="sub-total">650.000</span></td>
-              <td>30 Kg</td>
-              <td>3 Hari</td>
+              <td>
+                Rp<span class="sub-total">{{ row.subTotal }}</span
+                ><template v-if="row.discount"><br /><span class="table-disc"
+                  >{{ row.discount }}</span
+                ></template>
+              </td>
+              <td>{{ row.weight }}</td>
+              <td>{{ row.leadTime }}</td>
               <td>
                 <button
                   class="align-items-center me-5 add-wishlist-btn btn"
                   type="button"
                 >
-                  <i class="bi bi-heart me-2 my-text-primary"></i
-                  ><span class="text-standard my-text-primary"
-                    >Add to Wishist</span
-                  >
-                </button>
-                <a class="btn my-btn-primary px-5 buy-btn" href="/checkout"
-                  >Beli</a
-                >
-              </td>
-            </tr>
-            <tr class="table-list">
-              <td><span class="qty-value">13</span> Rim</td>
-              <td class="my-text-primary">
-                Rp<span class="price-value">64.000</span>
-              </td>
-              <td>
-                Rp<span class="sub-total">832.000</span><br /><span
-                  class="table-disc"
-                  >Hemat Rp130.000</span
-                >
-              </td>
-              <td>38 Kg</td>
-              <td>3 Hari</td>
-              <td>
-                <button
-                  class="align-items-center me-5 add-wishlist-btn btn"
-                  type="button"
-                >
-                  <i class="bi bi-heart me-2 my-text-primary"></i
-                  ><span class="text-standard my-text-primary"
-                    >Add to Wishist</span
-                  >
-                </button>
-                <a class="btn my-btn-primary px-5 buy-btn" href="/checkout"
-                  >Beli</a
-                >
-              </td>
-            </tr>
-            <tr class="table-list">
-              <td><span class="qty-value">17</span> Rim</td>
-              <td class="my-text-primary">
-                Rp<span class="price-value">64.000</span>
-              </td>
-              <td>
-                Rp<span class="sub-total">1.088.000</span><br /><span
-                  class="table-disc"
-                  >Hemat Rp170.000</span
-                >
-              </td>
-              <td>42 Kg</td>
-              <td>3 Hari</td>
-              <td>
-                <button
-                  class="align-items-center me-5 add-wishlist-btn btn"
-                  type="button"
-                >
-                  <i class="bi bi-heart me-2 my-text-primary"></i
-                  ><span class="text-standard my-text-primary"
-                    >Add to Wishist</span
-                  >
-                </button>
-                <a class="btn my-btn-primary px-5 buy-btn" href="/checkout"
-                  >Beli</a
-                >
-              </td>
-            </tr>
-            <tr class="table-list">
-              <td><span class="qty-value">20</span> Rim</td>
-              <td class="my-text-primary">
-                Rp<span class="price-value">62.000</span>
-              </td>
-              <td>
-                Rp<span class="sub-total">1.240.000</span><br /><span
-                  class="table-disc"
-                  >Hemat Rp600.000</span
-                >
-              </td>
-              <td>49 Kg</td>
-              <td>3 Hari</td>
-              <td>
-                <button
-                  class="align-items-center me-5 add-wishlist-btn btn"
-                  type="button"
-                >
-                  <i class="bi bi-heart me-2 my-text-primary"></i
-                  ><span class="text-standard my-text-primary"
-                    >Add to Wishist</span
-                  >
-                </button>
-                <a class="btn my-btn-primary px-5 buy-btn" href="/checkout"
-                  >Beli</a
-                >
-              </td>
-            </tr>
-            <tr class="table-list">
-              <td><span class="qty-value">25</span> Rim</td>
-              <td class="my-text-primary">
-                Rp<span class="price-value">60.000</span>
-              </td>
-              <td>
-                Rp<span class="sub-total">1.500.000</span><br /><span
-                  class="table-disc"
-                  >Hemat Rp1.250.000</span
-                >
-              </td>
-              <td>55 Kg</td>
-              <td>4 Hari</td>
-              <td>
-                <button
-                  class="align-items-center me-5 add-wishlist-btn btn"
-                  type="button"
-                >
-                  <i class="bi bi-heart me-2 my-text-primary"></i
+                  <i
+                    :class="[
+                      'bi',
+                      hasInWishlist(`${row.qty} ${row.unit}`) ? 'bi-heart-fill' : 'bi-heart',
+                      'me-2',
+                      'my-text-primary',
+                    ]"
+                  ></i
                   ><span class="text-standard my-text-primary"
                     >Add to Wishist</span
                   >

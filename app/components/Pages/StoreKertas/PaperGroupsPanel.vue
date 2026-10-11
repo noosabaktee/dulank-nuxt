@@ -1,3 +1,13 @@
+<script setup lang="ts">
+export interface PaperGroupRow {
+  name: string;
+  brand: string;
+  updatedAt?: string;
+}
+
+defineProps<{ groups: PaperGroupRow[] }>();
+</script>
+
 <template>
   <div
     aria-labelledby="group-tab"
@@ -15,11 +25,17 @@
       </div>
 
       <div
+        v-for="group in groups"
+        :key="group.name"
         class="row table-product align-items-md-center py-md-2 py-3 px-3 border-bottom-md-0"
       >
-        <div class="col-12 col-md-3" data-label="Group Kertas">Art Paper</div>
-        <div class="col-12 col-md-3" data-label="Merk">Ika Paper</div>
-        <div class="col-12 col-md-2" data-label="Updated">20 Januari 2024</div>
+        <div class="col-12 col-md-3" data-label="Group Kertas">
+          {{ group.name }}
+        </div>
+        <div class="col-12 col-md-3" data-label="Merk">{{ group.brand }}</div>
+        <div class="col-12 col-md-2" data-label="Updated">
+          {{ group.updatedAt }}
+        </div>
         <div class="col-12 col-md-2 text-center"></div>
       </div>
     </div>

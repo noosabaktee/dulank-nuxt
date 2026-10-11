@@ -3,7 +3,7 @@ export interface QuotationItem {
   name: string;
   category?: string;
   quantity: number;
-  spec: string;
+  spec?: string;
   artwork?: string;
   printResult?: string;
   note?: string;
@@ -18,41 +18,25 @@ export interface Quotation {
   validUntil?: string;
   status: string;
   items: QuotationItem[];
-  customerInfo: {
-    name: string;
-    email: string;
-    phone: string;
-  };
+  customerInfo: { name: string; email: string; phone: string };
   subtotal?: number;
   tax?: number;
   shippingCost?: number;
-  total: number;
+  total?: number;
 }
 
-interface QuotationResponse<T> {
-  success: boolean;
-  data: T;
+export function getQuotationTotals(quotation: Quotation | null) {
+  if (!quotation) return { subtotal: 0, tax: 0, shippingCost: 0, total: 0 };
+  return {
+    subtotal: quotation.subtotal ?? 0,
+    tax: quotation.tax ?? 0,
+    shippingCost: quotation.shippingCost ?? 0,
+    total: quotation.total ?? 0,
+  };
 }
 
-export function useQuotations(userId = 1) {
-  const { data, pending, error } = useFetch<QuotationResponse<Quotation[]>>(
-    `/api/quotations?userId=${userId}`,
-    { key: `quotations-${userId}` },
-  );
-
-  const quotations = computed(() => data.value?.data ?? []);
-
+export function useQuotations() {
+  const { data, pending, error } = useApi<Quotation[]>("/quotations");
+  const quotations = computed(() => data.value ?? []);
   return { quotations, pending, error };
-}
-
-export function getQuotationTotals(quotation?: Quotation | null) {
-  const subtotal =
-    quotation?.subtotal ??
-    quotation?.items.reduce((sum, item) => sum + item.total, 0) ??
-    0;
-  const tax = quotation?.tax ?? Math.round(subtotal * 0.11);
-  const shippingCost = quotation?.shippingCost ?? 0;
-  const total = quotation?.total ?? subtotal + tax + shippingCost;
-
-  return { subtotal, tax, shippingCost, total };
 }

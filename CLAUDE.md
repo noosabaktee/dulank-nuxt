@@ -81,7 +81,7 @@ Komponen di `app/components/` dikelompokkan:
 - `auth/`, `cart/`, `category/`, `product/`, `profile/`, `quotation/`, `support/` — shared sub-components
 - `common/` — Breadcrumb, EmptyState, QuantityControl (elemen generic)
 
-Route file (`app/pages/*.vue`) mengambil data melalui composable dan menyusun beberapa komponen page-specific. Data aplikasi disimpan di `server/data` dan disajikan melalui `server/api`.
+Route file (`app/pages/*.vue`) mengambil data melalui composable dan menyusun beberapa komponen page-specific. Data aplikasi disajikan oleh Laravel backend di `/home/bacink/DULANK/2026/dulank-backend` (port 8000): composable memakai `useApi()`/`apiRequest()` (`app/composables/useApi.ts`) yang memanggil `/api/v1/**` (di-proxy oleh `routeRules` di `nuxt.config.ts`). Respons memakai envelope `{ success, data, meta? }`; `useApi` membuka lapisan `.data`. Endpoint store ditambahkan di `dulank-backend/routes/api/store.php` (bukan `admin.php` karena dulank-admin memakai prefix `/api/v1/admin/*`).
 
 ### Static Assets
 
@@ -96,7 +96,7 @@ Route file (`app/pages/*.vue`) mengambil data melalui composable dan menyusun be
 - **Pisahkan berdasarkan tanggung jawab UI** — hindari komponen monolitik, tetapi jangan membuat komponen hanya untuk sebuah nilai data
 - **Halaman calculator** beda layout (sidebar + header) dari halaman utama
 - **Link navigasi** yang指向 `.html` harus diubah ke Nuxt route (tanpa extension)
-- **Tambah halaman baru**: buat route di `app/pages/`, folder komponen di `app/components/Pages/<Route>/`, data di `server/data`, dan salin JS/CSS terkait ke `public/`
+- **Tambah halaman baru**: buat route di `app/pages/`, folder komponen di `app/components/Pages/<Route>/`, endpoint/data di backend (`routes/api/store.php` + seeder bila perlu), dan salin JS/CSS terkait ke `public/`
 
 ## Documentation
 

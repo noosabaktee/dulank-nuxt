@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { Order } from "~/composables/useOrders";
 
+definePageMeta({ middleware: "auth" });
+
 useLegacyPage({
   title: "Pesan #600268557",
   styles: ["/css/style.css", "/css/pages/order-view-inline.css"],
@@ -9,11 +11,9 @@ useLegacyPage({
 });
 
 const route = useRoute();
-const orderId = computed(() => String(route.query.id || "2504027H2DQ68B"));
-const { data, error } = useFetch<{ success: boolean; data: Order }>(
-  () => `/api/orders/${orderId.value}`,
-);
-const order = computed(() => data.value?.data ?? null);
+const orderId = computed(() => String(route.query.id || ""));
+const { data, error } = useApi<Order>(`/orders/${orderId.value}`);
+const order = computed(() => data.value ?? null);
 </script>
 
 <template>

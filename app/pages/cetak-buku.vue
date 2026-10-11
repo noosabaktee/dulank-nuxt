@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import type { Product } from "#server/types/product";
+import type { ProductPage } from "#server/types/product-page";
+
 useLegacyPage({
   title: "Cetak Buku | Dulank",
   styles: [
@@ -16,6 +19,21 @@ useLegacyPage({
   ],
   sweetAlert: false,
 });
+
+const { data: page } = useApi<ProductPage>("/product-pages/cetak-buku");
+const { data: products } = useApi<Product[]>("/products?page=1&limit=20");
+
+const specs = computed(() => page.value?.specs ?? []);
+const priceList = computed(
+  () =>
+    page.value?.priceList ?? { title: null, rows: [] },
+);
+const gallery = computed(
+  () =>
+    page.value?.gallery ?? { categories: [], items: [] },
+);
+const guide = computed(() => page.value?.guide ?? { files: [], faqs: [] });
+const relatedProducts = computed(() => products.value?.slice(0, 4) ?? []);
 </script>
 
 <template>
@@ -29,19 +47,19 @@ useLegacyPage({
           <div class="row flex-lg-row">
             <PagesCetakBukuProductOverview />
 
-            <PagesCetakBukuSpecificationForm />
+            <PagesCetakBukuSpecificationForm :specs="specs" />
           </div>
 
-          <PagesCetakBukuPriceList />
+          <PagesCetakBukuPriceList :price-list="priceList" />
         </div>
 
         <p class="fs-5 mb-4">Design Cetak Buku</p>
-        <PagesCetakBukuDesignGallery />
+        <PagesCetakBukuDesignGallery :gallery="gallery" />
 
-        <PagesCetakBukuPrintingGuide />
+        <PagesCetakBukuPrintingGuide :guide="guide" />
 
         <p class="text-center my-3 fs-5">Buy Together</p>
-        <PagesCetakBukuRelatedProducts />
+        <PagesCetakBukuRelatedProducts :products="relatedProducts" />
       </div>
     </main>
 

@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import { isProtectedRoute, loginRedirectQuery } from "~/utils/auth-routes";
+
 const route = useRoute();
+const auth = useAuthStore();
 
 // Route groups are derived from the placeholders used by the original static site.
 // Pages with their own dedicated header (login, register, checkout, etc.) keep that header.
@@ -63,6 +66,21 @@ const navbarType = computed(() => {
   return "page";
 });
 const showFooter = computed(() => normalizedPath.value !== "/print-order");
+
+// Sesi hilang di tengah halaman (401 → auth.reset() dari plugin $api):
+// guest yang berada di halaman protected diarahkan ke /login.
+watch(
+  () => auth.isAuthenticated,
+  (isAuthenticated) => {
+    if (
+      !isAuthenticated &&
+      import.meta.client &&
+      isProtectedRoute(normalizedPath.value)
+    ) {
+      navigateTo(`/login${loginRedirectQuery(route.fullPath)}`);
+    }
+  },
+);
 </script>
 
 <template>

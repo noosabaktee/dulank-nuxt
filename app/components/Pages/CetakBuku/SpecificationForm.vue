@@ -1,3 +1,20 @@
+<script setup lang="ts">
+import type { ProductPageSpecGroup } from "#server/types/product-page";
+
+const props = defineProps<{ specs: ProductPageSpecGroup[] }>();
+
+interface SpecGroupWithCustom extends ProductPageSpecGroup {
+  hasCustom?: boolean;
+}
+
+const visibleSpecs = computed<SpecGroupWithCustom[]>(() =>
+  props.specs.map((spec) => ({
+    ...spec,
+    hasCustom: spec.id === "size" || spec.id === "content",
+  })),
+);
+</script>
+
 <template>
   <div class="col-lg-7 mb-4 mb-md-0 ps-md-4 mt-5 mt-md-0">
     <h1 class="fs-4 mb-md-4 bg-light p-3 title">Tentukan Spesifikasi</h1>
@@ -13,78 +30,31 @@
       consectetur!
     </p>
     <form id="specForm">
-      <div class="mb-3">
+      <div v-for="spec in visibleSpecs" :key="spec.id" class="mb-3">
         <div class="row spec">
           <div class="col-3">
-            <label class="custom-label text-standard">Orientasi</label>
+            <label class="custom-label text-standard">{{ spec.label }}</label>
           </div>
-          <div class="col-9 list-spec" id="orientation">
-            <label class="btn text-standard btn-spec me-2 mb-2 selected"
-              ><input
-                checked=""
-                class="visually-hidden spec-input"
-                name="cetak-buku-orientation"
-                type="radio"
-                value="Portrait (Berdiri)" />Portrait (Berdiri)<span
-                class="ribbon"
-              ></span
-            ></label>
-            <label class="btn text-standard btn-spec me-2 mb-2"
-              ><input
-                class="visually-hidden spec-input"
-                name="cetak-buku-orientation"
-                type="radio"
-                value="Landscape (Tidur)" />Landscape (Tidur)<span
-                class="ribbon d-none"
-              ></span
-            ></label>
-          </div>
-        </div>
-      </div>
-      <div class="mb-3">
-        <div class="row spec">
-          <div class="col-3">
-            <label class="custom-label text-standard">Ukuran</label>
-          </div>
-          <div class="col-9">
-            <div class="d-inline list-spec" id="size">
-              <label class="btn btn-spec me-2 mb-2 selected" data-price="50000"
-                ><input
-                  checked=""
+          <div v-if="spec.hasCustom" class="col-9">
+            <div class="d-inline list-spec" :id="spec.id">
+              <label
+                v-for="option in spec.options"
+                :key="option.value"
+                class="btn text-standard btn-spec me-2 mb-2"
+                :class="{ selected: option.selected, 'd-none': option.hidden }"
+                :data-price="option.price ?? undefined"
+              >
+                <input
+                  :checked="option.selected"
                   class="visually-hidden spec-input"
-                  name="cetak-buku-size"
+                  :name="spec.name ?? undefined"
                   type="radio"
-                  value="A4 (210x297mm)" />A4 (210x297mm)<span
+                  :value="option.value"
+                />{{ option.label }}<span
                   class="ribbon"
-                ></span
-              ></label>
-              <label class="btn btn-spec me-2 mb-2" data-price="35000"
-                ><input
-                  class="visually-hidden spec-input"
-                  name="cetak-buku-size"
-                  type="radio"
-                  value="A5 (148x210mm)" />A5 (148x210mm)<span
-                  class="ribbon d-none"
-                ></span
-              ></label>
-              <label class="btn btn-spec me-2 mb-2" data-price="90000"
-                ><input
-                  class="visually-hidden spec-input"
-                  name="cetak-buku-size"
-                  type="radio"
-                  value="B4 (250x353mm)" />B4 (250x353mm)<span
-                  class="ribbon d-none"
-                ></span
-              ></label>
-              <label class="btn btn-spec me-2 mb-2" data-price="90000"
-                ><input
-                  class="visually-hidden spec-input"
-                  name="cetak-buku-size"
-                  type="radio"
-                  value="B5 (250x176mm)" />B5 (250x176mm)<span
-                  class="ribbon d-none"
-                ></span
-              ></label>
+                  :class="{ 'd-none': !option.selected }"
+                ></span>
+              </label>
             </div>
             <div class="d-flex d-none mb-2" id="custom-size">
               <div class="flex-fill me-2">
@@ -98,7 +68,11 @@
                   placeholder="Width"
                   type="text"
                 />
-                <input class="result-input" id="widthSizeValue" type="hidden" />
+                <input
+                  class="result-input"
+                  id="widthSizeValue"
+                  type="hidden"
+                />
               </div>
               <div class="flex-fill me-2">
                 <input
@@ -137,259 +111,29 @@
               Custom</button
             ><br />
           </div>
-        </div>
-      </div>
-      <div class="mb-3">
-        <div class="row spec">
-          <div class="col-3">
-            <label class="custom-label text-standard">Binding/Jilid</label>
-          </div>
-          <div class="col-9 list-spec" id="binding">
-            <label class="btn text-standard btn-spec me-2 mb-2 selected"
-              ><input
-                checked=""
-                class="visually-hidden spec-input"
-                name="cetak-buku-binding"
-                type="radio"
-                value="Lem Panas" />Lem Panas<span class="ribbon"></span
-            ></label>
-            <label class="btn text-standard btn-spec me-2 mb-2"
-              ><input
-                class="visually-hidden spec-input"
-                name="cetak-buku-binding"
-                type="radio"
-                value="Spiral" />Spiral<span class="ribbon d-none"></span
-            ></label>
-            <label class="btn text-standard btn-spec me-2 mb-2"
-              ><input
-                class="visually-hidden spec-input"
-                name="cetak-buku-binding"
-                type="radio"
-                value="Steples" />Steples<span class="ribbon d-none"></span
-            ></label>
-            <label class="btn text-standard btn-spec me-2 mb-2"
-              ><input
-                class="visually-hidden spec-input"
-                name="cetak-buku-binding"
-                type="radio"
-                value="Perfect Binding" />Perfect Binding<span
-                class="ribbon d-none"
-              ></span
-            ></label>
-          </div>
-        </div>
-      </div>
-      <div class="mb-3">
-        <div class="row spec">
-          <div class="col-3">
-            <label class="custom-label text-standard"
-              >Jenis Kertas Isi Buku</label
+          <div v-else class="col-9 list-spec" :id="spec.id">
+            <label
+              v-for="option in spec.options"
+              :key="option.value"
+              class="btn text-standard btn-spec me-2 mb-2"
+              :class="{ selected: option.selected, 'd-none': option.hidden }"
+              :data-price="option.price ?? undefined"
             >
-          </div>
-          <div class="col-9 list-spec" id="type">
-            <label
-              class="btn text-standard btn-spec me-2 mb-2 selected"
-              data-price="12000"
-              ><input
-                checked=""
+              <input
+                :checked="option.selected"
                 class="visually-hidden spec-input"
-                name="cetak-buku-type"
+                :name="spec.name ?? undefined"
                 type="radio"
-                value="HVS 70gr" />HVS 70gr<span class="ribbon"></span
-            ></label>
-            <label
-              class="btn text-standard btn-spec me-2 mb-2"
-              data-price="8000"
-              ><input
-                class="visually-hidden spec-input"
-                name="cetak-buku-type"
-                type="radio"
-                value="Bookpaper 70gr" />Bookpaper 70gr<span
-                class="ribbon d-none"
-              ></span
-            ></label>
-            <label
-              class="btn text-standard btn-spec me-2 mb-2"
-              data-price="5000"
-              ><input
-                class="visually-hidden spec-input"
-                name="cetak-buku-type"
-                type="radio"
-                value="Art Paper 100gr" />Art Paper 100gr<span
-                class="ribbon d-none"
-              ></span
-            ></label>
-            <label
-              class="btn text-standard btn-spec me-2 mb-2 d-none"
-              data-price="5000"
-              ><input
-                class="visually-hidden spec-input"
-                name="cetak-buku-type"
-                type="radio"
-                value="HVS 80gr" />HVS 80gr<span class="ribbon d-none"></span
-            ></label>
-          </div>
-        </div>
-      </div>
-      <div class="mb-3">
-        <div class="row spec">
-          <div class="col-3">
-            <label class="custom-label text-standard">Laminasi Cover</label>
-          </div>
-          <div class="col-9 list-spec" id="lamination">
-            <label
-              class="btn text-standard btn-spec me-2 mb-2 selected"
-              data-price="0"
-              ><input
-                checked=""
-                class="visually-hidden spec-input"
-                name="cetak-buku-lamination"
-                type="radio"
-                value="Tanpa Laminasi" />Tanpa Laminasi<span
+                :value="option.value"
+              />{{ option.label }}<span
                 class="ribbon"
-              ></span
-            ></label>
-            <label
-              class="btn text-standard btn-spec me-2 mb-2"
-              data-price="8000"
-              ><input
-                class="visually-hidden spec-input"
-                name="cetak-buku-lamination"
-                type="radio"
-                value="Glossy" />Glossy<span class="ribbon d-none"></span
-            ></label>
-            <label
-              class="btn text-standard btn-spec me-2 mb-2"
-              data-price="8000"
-              ><input
-                class="visually-hidden spec-input"
-                name="cetak-buku-lamination"
-                type="radio"
-                value="Doff" />Doff<span class="ribbon d-none"></span
-            ></label>
-            <label
-              class="btn text-standard btn-spec me-2 mb-2"
-              data-price="8000"
-              ><input
-                class="visually-hidden spec-input"
-                name="cetak-buku-lamination"
-                type="radio"
-                value="UV Vernish" />UV Vernish<span
-                class="ribbon d-none"
-              ></span
-            ></label>
-            <label
-              class="btn text-standard btn-spec me-2 mb-2"
-              data-price="8000"
-              ><input
-                class="visually-hidden spec-input"
-                name="cetak-buku-lamination"
-                type="radio"
-                value="Spot UV" />Spot UV<span class="ribbon d-none"></span
-            ></label>
+                :class="{ 'd-none': !option.selected }"
+              ></span>
+            </label>
           </div>
         </div>
       </div>
-      <div class="mb-3">
-        <div class="row spec">
-          <div class="col-3">
-            <label class="custom-label text-standard">Tipe Cetak</label>
-          </div>
-          <div class="col-9 list-spec" id="side">
-            <label class="btn text-standard btn-spec me-2 mb-2 selected"
-              ><input
-                checked=""
-                class="visually-hidden spec-input"
-                name="cetak-buku-side"
-                type="radio"
-                value="1 Warna" />1 Warna<span class="ribbon"></span
-            ></label>
-            <label class="btn text-standard btn-spec me-2 mb-2"
-              ><input
-                class="visually-hidden spec-input"
-                name="cetak-buku-side"
-                type="radio"
-                value="Full Color" />Full Color<span
-                class="ribbon d-none"
-              ></span
-            ></label>
-            <label class="btn text-standard btn-spec me-2 mb-2"
-              ><input
-                class="visually-hidden spec-input"
-                name="cetak-buku-side"
-                type="radio"
-                value="1 Warna & Full Color" />1 Warna & Full Color<span
-                class="ribbon d-none"
-              ></span
-            ></label>
-          </div>
-        </div>
-      </div>
-      <div class="mb-3">
-        <div class="row spec">
-          <div class="col-3">
-            <label class="custom-label text-standard">Jenis Cover</label>
-          </div>
-          <div class="col-9 list-spec" id="cover">
-            <label
-              class="btn text-standard btn-spec me-2 mb-2 selected"
-              data-price="3000"
-              ><input
-                checked=""
-                class="visually-hidden spec-input"
-                name="cetak-buku-cover"
-                type="radio"
-                value="Softcover" />Softcover<span class="ribbon"></span
-            ></label>
-            <label
-              class="btn text-standard btn-spec me-2 mb-2"
-              data-price="5000"
-              ><input
-                class="visually-hidden spec-input"
-                name="cetak-buku-cover"
-                type="radio"
-                value="HardCover" />HardCover<span class="ribbon d-none"></span
-            ></label>
-          </div>
-        </div>
-      </div>
-      <div class="mb-3">
-        <div class="row spec">
-          <div class="col-3">
-            <label class="custom-label text-standard">Finishing Cover</label>
-          </div>
-          <div class="col-9 list-spec" id="position">
-            <label
-              class="btn text-standard btn-spec me-2 mb-2 selected"
-              data-price="3000"
-              ><input
-                checked=""
-                class="visually-hidden spec-input"
-                name="cetak-buku-position"
-                type="radio"
-                value="Glossy" />Glossy<span class="ribbon"></span
-            ></label>
-            <label
-              class="btn text-standard btn-spec me-2 mb-2"
-              data-price="5000"
-              ><input
-                class="visually-hidden spec-input"
-                name="cetak-buku-position"
-                type="radio"
-                value="Doff" />Doff<span class="ribbon d-none"></span
-            ></label>
-            <label
-              class="btn text-standard btn-spec me-2 mb-2"
-              data-price="5000"
-              ><input
-                class="visually-hidden spec-input"
-                name="cetak-buku-position"
-                type="radio"
-                value="Spot UV" />Spot UV<span class="ribbon d-none"></span
-            ></label>
-          </div>
-        </div>
-      </div>
+
       <div class="mb-3 page-row page-bw-row">
         <div class="row">
           <div class="col-3">

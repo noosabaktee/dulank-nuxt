@@ -1,4 +1,5 @@
 <script setup lang="ts">
+definePageMeta({ middleware: "auth" });
 useLegacyPage({
   title: "Billing",
   styles: ["/css/style.css"],
@@ -15,10 +16,8 @@ interface Billing {
   total: number;
   status: string;
 }
-const { data } = useFetch<{ success: boolean; data: Billing[] }>(
-  "/api/billings?userId=1",
-);
-const billings = computed(() => data.value?.data ?? []);
+const { data } = useApi<Billing[]>("/invoices");
+const billings = computed(() => data.value ?? []);
 </script>
 
 <template>

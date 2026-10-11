@@ -1,5 +1,19 @@
+<script setup lang="ts">
+interface OfferBanner {
+  id: number;
+  title: string;
+  discount: string;
+  image: string;
+}
+
+const props = defineProps<{ banner: OfferBanner | null }>();
+
+const banner = computed(() => props.banner);
+</script>
+
 <template>
   <div
+    v-if="banner"
     aria-hidden="true"
     aria-labelledby="offerModalLabel"
     class="modal fade"
@@ -21,7 +35,7 @@
                 <img
                   alt="offer"
                   class="img-fluid w-100 object-fit-cover"
-                  src="/images/brosur.jpg"
+                  :src="banner.image"
                 />
               </div>
             </div>
@@ -29,21 +43,17 @@
               <div class="offer-modal-content p-4 p-md-5">
                 <div class="text-center">
                   <h5 class="offer-modal-subtitle mb-2">
-                    Special Ramadhan!
+                    Promo Spesial!
                   </h5>
                   <h3 class="offer-modal-title mb-2">
-                    Brosur Flyer ukuran A4
+                    {{ banner.title }}
                   </h3>
                   <p class="offer-modal-desc mb-4">
-                    <span class="mb-2 d-block"
-                      ><del>Rp90.000 - Rp400.000</del></span
-                    >
                     <span class="font-weight-bold h4 font-italic">
-                      Rp50.000 - Rp300.000
+                      {{ banner.discount }}
                     </span>
                   </p>
                   <form class="offer-modal-form mb-4">
-                    <p>Promotion will ends on 1 April 2025!</p>
                     <button class="btn btn-primary w-100" type="submit">
                       View Product
                     </button>

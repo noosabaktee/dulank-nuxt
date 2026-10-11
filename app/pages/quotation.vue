@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { Quotation } from "~/composables/useQuotations";
 
+definePageMeta({ middleware: "auth" });
+
 interface ApiResponse<T> {
   success: boolean;
   data: T;
@@ -18,14 +20,12 @@ useLegacyPage({
   sweetAlert: false,
 });
 
-const quotationResponse = await $fetch<ApiResponse<Quotation[]>>(
-  "/api/quotations?userId=1",
-);
+const { data: quotationData } = useApi<Quotation[]>("/quotations");
 
 const quotation = computed(
   () =>
-    quotationResponse.data.find((item) => item.status === "draft") ??
-    quotationResponse.data[0] ??
+    quotationData.value?.find((item) => item.status === "draft") ??
+    quotationData.value?.[0] ??
     null,
 );
 </script>

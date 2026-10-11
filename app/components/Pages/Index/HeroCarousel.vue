@@ -1,23 +1,34 @@
+<script setup lang="ts">
+interface HeroSlide {
+  badge: string;
+  title: string;
+  description: string;
+  image: string;
+  imageId: string;
+}
+
+const props = defineProps<{ banners: Array<{ id: number; title: string; discount: string; image: string }> }>();
+
+const slides = computed<HeroSlide[]>(() =>
+  props.banners.map((banner, index) => ({
+    badge: "Best Sale 2025",
+    title: banner.title,
+    description: banner.discount,
+    image: banner.image,
+    imageId: `inline-style-index-${String(index + 1).padStart(3, "0")}`,
+  })),
+);
+</script>
+
 <template>
   <div class="carousel slide bg-light" id="myCarousel">
     <div class="carousel-indicators">
       <button
-        aria-current="true"
-        aria-label="Slide 1"
-        class="active"
-        data-bs-slide-to="0"
-        data-bs-target="#myCarousel"
-        type="button"
-      ></button>
-      <button
-        aria-label="Slide 2"
-        data-bs-slide-to="1"
-        data-bs-target="#myCarousel"
-        type="button"
-      ></button>
-      <button
-        aria-label="Slide 3"
-        data-bs-slide-to="2"
+        v-for="(slide, index) in slides"
+        :key="`indicator-${slide.imageId}`"
+        :aria-label="`Slide ${index + 1}`"
+        :class="{ active: index === 0 }"
+        :data-bs-slide-to="index"
         data-bs-target="#myCarousel"
         type="button"
       ></button>
@@ -75,29 +86,3 @@
     </button>
   </div>
 </template>
-
-<script setup lang="ts">
-const slides = [
-  {
-    badge: "Best Sale 2025",
-    title: "Full Color Collection",
-    description: "Limited time offer -15%",
-    image: "/images/brosur.jpg",
-    imageId: "inline-style-index-001",
-  },
-  {
-    badge: "Best Sale 2025",
-    title: "Full Color Collection",
-    description: "Limited time offer -15%",
-    image: "/images/yasin.jpg",
-    imageId: "inline-style-index-002",
-  },
-  {
-    badge: "Best Sale 2025",
-    title: "Full Color Collection",
-    description: "Limited time offer -15%",
-    image: "/images/kaos.jpg",
-    imageId: "inline-style-index-003",
-  },
-];
-</script>

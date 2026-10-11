@@ -1,4 +1,5 @@
 <script setup lang="ts">
+definePageMeta({ middleware: "auth" });
 useLegacyPage({
   title: "Quotation Success",
   styles: ["/css/style.css", "/css/pages/quotation-success-inline.css"],

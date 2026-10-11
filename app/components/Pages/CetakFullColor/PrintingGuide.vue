@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import type { ProductPageGuide } from "#server/types/product-page";
+
+defineProps<{ guide: ProductPageGuide }>();
+</script>
+
 <template>
   <div class="section-card pt-2 pb-1">
     <ul class="nav nav-tabs mb-4" id="panduanTab" role="tablist">
@@ -45,28 +51,9 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr v-for="file in guide.files" :key="file">
                 <td class="text-standard">
-                  <i class="fa-solid fa-file-pdf download-icon"></i>Brosur
-                  Ukuran A4 (210x297mm)
-                </td>
-              </tr>
-              <tr>
-                <td class="text-standard">
-                  <i class="fa-solid fa-file-pdf download-icon"></i>Brosur
-                  Ukuran A4 (210x297mm)
-                </td>
-              </tr>
-              <tr>
-                <td class="text-standard">
-                  <i class="fa-solid fa-file-pdf download-icon"></i>Brosur
-                  Ukuran A4 (210x297mm)
-                </td>
-              </tr>
-              <tr>
-                <td class="text-standard">
-                  <i class="fa-solid fa-file-pdf download-icon"></i>Brosur
-                  Ukuran A4 (210x297mm)
+                  <i class="fa-solid fa-file-pdf download-icon"></i>{{ file }}
                 </td>
               </tr>
             </tbody>
@@ -81,11 +68,16 @@
       >
         <div class="faq-section">
           <span class="text-standard">
-            <strong>Q: Apakah bisa request ukuran khusus?</strong><br />
-            A: Bisa, silakan konsultasikan dengan tim kami.
-            <br /><br />
-            <strong>Q: Berapa lama proses pengerjaan?</strong><br />
-            A: Estimasi sesuai tabel dan variasi pesanan.
+            <template
+              v-for="(faq, index) in guide.faqs"
+              :key="faq.question"
+            >
+              <strong>Q: {{ faq.question }}</strong><br />
+              A: {{ faq.answer }}<template
+                v-if="index < guide.faqs.length - 1"
+                ><br /><br
+              /></template>
+            </template>
           </span>
         </div>
       </div>

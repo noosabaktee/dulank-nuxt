@@ -35,18 +35,8 @@ export interface Order {
   }>;
 }
 
-interface OrderResponse {
-  success: boolean;
-  data: Order[];
-}
-
-export function useOrders(userId = 1) {
-  const { data, pending, error } = useFetch<OrderResponse>(
-    `/api/orders?userId=${userId}`,
-    { key: `orders-${userId}` },
-  );
-
-  const orders = computed(() => data.value?.data ?? []);
-
+export function useOrders() {
+  const { data, pending, error } = useApi<Order[]>("/orders");
+  const orders = computed(() => data.value ?? []);
   return { orders, pending, error };
 }

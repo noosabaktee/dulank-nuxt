@@ -13,7 +13,7 @@ async function submit() {
   submitting.value = true;
   error.value = "";
   try {
-    await $fetch(`/api/tickets/${props.ticket.id}/replies`, {
+    await apiRequest(`/tickets/${props.ticket.id}/replies`, {
       method: "POST",
       body: { message: message.value.trim(), close: close.value },
     });

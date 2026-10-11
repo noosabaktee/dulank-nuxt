@@ -132,3 +132,15 @@ export default defineNuxtPlugin(() => {
 3. Akun uji store: register lewat API/form vs seeder dev baru (di repo backend, butuh persetujuan terpisah).
 4. Cakupan Fase 1: login saja, atau login + register + logout + guard sekaligus.
 5. Nasib mock Nitro: pensiun per modul atau sekali besar di Fase 4.
+
+## Status implementasi (2026-10-11, Fase 0–3 selesai)
+
+| Fase | Isi | Catatan implementasi |
+|---|---|---|
+| 0 | Infra | `@pinia/nuxt@1.0.2` + `pinia@4.0.3` terpasang; `app/stores` auto-import; `runtimeConfig.public.apiBase` default `/api/v1` (proxy Nitro — keputusan: proxy); plugin `app/plugins/api.ts` (universal, SSR-safe) menarik token dari store; `typescript` + `vue-tsc` + `@types/node` terpasang (typecheck jalan lagi, 64 error lama di luar cakupan tetap ada) |
+| 1 | Auth | `useAuthStore` (`app/stores/auth.ts`, token cookie `dulank_store_token`); `LoginForm`/`RegistrationForm` ter-wire (field name/password/confirm dikembalikan di register, kontrak `password_confirmation`); logout di MainNavbar + ProfileSidebar; middleware `auth` + `app/utils/auth-routes.ts` (21 halaman protected); init plugin `app/plugins/auth.client.ts`; watcher 401 di `app/layouts/default.vue` |
+| 2 | Cart | `useCartStore` (`app/stores/cart.ts`): `fetch/ensure/add/updateQuantity/remove/clear/reset` + getter `itemCount/subtotal/tax/total`; `/cart`, `/next`, badge navbar, OrderSummary memakai getter; `save.js` diberi guard `isStoreManaged()` untuk cegah double-handling (marker `data-dulank-store` dipasang cart/wishlist, dibersihkan saat unmount); interaksi kuantitas lewat `input` (debounce), remove dengan fade + `sweetDelete` |
+| 3 | Wishlist | `useWishlistStore` (`app/stores/wishlist.ts`): `fetch/ensure/add/remove/toggle/has` + getter `count`; tombol hati di CartItems + PriceList CetakBuku/CetakFullColor/Kalender via `usePageWishlist` (produk halaman di-resolve dari `GET /products`; selama produk `cetak-buku`/`cetak-full-color`/`kalender` belum ada di katalog backend, tombol tetap inert seperti aslinya) |
+| 4 | (sebagian, dari pekerjaan sebelumnya) | Mock Nitro (`server/api`, `server/data`) sudah dipensiunkan; seluruh composable data memakai `useApi`/`$api` → Laravel `/api/v1`; `getQuotationTotals` dipertahankan (versi resource-driven); profil sendiri (`/auth/me`) lewat auth store di `profile.vue` |
+
+Catatan tersisa: badge navbar ter-render SSR dengan nilai 0 lalu terisi saat hydration (state ada di payload Pinia); `required=""` di komponen lama menghasilkan 64 error typecheck pra-eksisting (di luar Fase 0–3).

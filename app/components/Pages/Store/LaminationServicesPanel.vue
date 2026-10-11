@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import type { MachineRecord } from "~/composables/useMachineCatalog";
+
+defineProps<{ machines: MachineRecord[] }>();
+</script>
+
 <template>
   <div
     aria-labelledby="laminasi-tab"
@@ -17,41 +23,23 @@
       </div>
 
       <div
+        v-for="machine in machines"
+        :key="machine.id"
         class="row table-product align-items-md-center py-md-2 py-3 px-3 border-bottom-md-0"
       >
-        <div class="col-12 col-md-2" data-label="Nama">Laminasi Doff</div>
+        <div class="col-12 col-md-2" data-label="Nama">{{ machine.name }}</div>
         <div class="col-12 col-md-2" data-label="Ukuran Max">
-          12x30 Centimeter
+          {{ machine.size }}
         </div>
-        <div class="col-12 col-md-2" data-label="Harga per cm">Rp20</div>
-        <div class="col-12 col-md-2" data-label="Harga Minim">Rp200.000</div>
-        <div class="col-12 col-md-2" data-label="Update">20/12/12 23:12</div>
-        <div class="col-12 col-md-1"></div>
-      </div>
-
-      <div
-        class="row table-product align-items-md-center py-md-2 py-3 px-3 border-bottom-md-0"
-      >
-        <div class="col-12 col-md-2" data-label="Nama">Laminasi Glossy</div>
-        <div class="col-12 col-md-2" data-label="Ukuran Max">
-          12x30 Centimeter
+        <div class="col-12 col-md-2" data-label="Harga per cm">
+          Rp{{ machine.unitPrice?.toLocaleString("id-ID") }}
         </div>
-        <div class="col-12 col-md-2" data-label="Harga per cm">Rp18</div>
-        <div class="col-12 col-md-2" data-label="Harga Minim">Rp180.000</div>
-        <div class="col-12 col-md-2" data-label="Update">20/12/12 23:12</div>
-        <div class="col-12 col-md-1"></div>
-      </div>
-
-      <div
-        class="row table-product align-items-md-center py-md-2 py-3 px-3 border-bottom-md-0"
-      >
-        <div class="col-12 col-md-2" data-label="Nama">UV Vernish</div>
-        <div class="col-12 col-md-2" data-label="Ukuran Max">
-          12x30 Centimeter
+        <div class="col-12 col-md-2" data-label="Harga Minim">
+          Rp{{ machine.price?.toLocaleString("id-ID") }}
         </div>
-        <div class="col-12 col-md-2" data-label="Harga per cm">Rp10</div>
-        <div class="col-12 col-md-2" data-label="Harga Minim">Rp100.000</div>
-        <div class="col-12 col-md-2" data-label="Update">20/12/12 23:12</div>
+        <div class="col-12 col-md-2" data-label="Update">
+          {{ machine.updatedAt }}
+        </div>
         <div class="col-12 col-md-1"></div>
       </div>
     </div>

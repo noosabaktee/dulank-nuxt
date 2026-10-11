@@ -1,14 +1,7 @@
 import type { UserAddress } from "#server/types/user";
 
-interface AddressResponse {
-  success: boolean;
-  data: UserAddress[];
-}
-
-export function useUserAddresses(userId = 1) {
-  const { data } = useFetch<AddressResponse>(`/api/users/${userId}/addresses`, {
-    key: `user-${userId}-addresses`,
-  });
-  const addresses = computed<UserAddress[]>(() => data.value?.data ?? []);
+export function useUserAddresses() {
+  const { data } = useApi<UserAddress[]>("/addresses");
+  const addresses = computed<UserAddress[]>(() => data.value ?? []);
   return { addresses };
 }

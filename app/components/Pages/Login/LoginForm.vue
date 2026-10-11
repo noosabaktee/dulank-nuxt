@@ -1,26 +1,64 @@
+<script setup lang="ts">
+const route = useRoute();
+const auth = useAuthStore();
+
+const email = ref("");
+const password = ref("");
+const errorMessage = ref("");
+const submitting = ref(false);
+
+function firstFieldError(error: any): string | undefined {
+  const errors: Record<string, string[]> | undefined = error?.data?.errors;
+  const field = Object.keys(errors ?? {}).shift();
+  return field && errors?.[field]?.length ? errors[field][0] : undefined;
+}
+
+async function onSubmit() {
+  errorMessage.value = "";
+  if (!email.value || !password.value) {
+    errorMessage.value = "Email dan password wajib diisi.";
+    return;
+  }
+  submitting.value = true;
+  try {
+    await auth.login(email.value.trim(), password.value);
+    await navigateTo(String(route.query.redirect || "/"));
+  } catch (error: any) {
+    errorMessage.value =
+      firstFieldError(error) ??
+      error?.data?.message ??
+      "Login gagal. Periksa kembali email dan password Anda.";
+  } finally {
+    submitting.value = false;
+  }
+}
+</script>
+
 <template>
   <div class="col-md-7 col-lg-6 bg-light">
     <div class="card border-0 bg-light">
       <div class="card-body p-lg-5 p-md-4">
         <h3 class="text-center mb-4 fw-normal">Login to your account</h3>
 
-        <form action="/profile">
+        <form action="/profile" @submit.prevent="onSubmit">
           <div class="mb-3">
             <input
+              v-model="email"
               class="form-control"
               id="email"
               placeholder="Email address"
-              required=""
+              required
               type="email"
             />
           </div>
 
           <div class="mb-3">
             <input
+              v-model="password"
               class="form-control"
               id="password"
               placeholder="Password"
-              required=""
+              required
               type="password"
             />
           </div>
@@ -37,11 +75,20 @@
             >
           </div>
 
+          <div
+            v-if="errorMessage"
+            class="alert alert-danger text-standard mb-3"
+            role="alert"
+          >
+            {{ errorMessage }}
+          </div>
+
           <button
             class="btn btn-primary my-bg-primary w-100 py-2 mb-3"
             type="submit"
+            :disabled="submitting"
           >
-            Login →
+            {{ submitting ? "Login..." : "Login →" }}
           </button>
           <p class="text-muted text-standard mb-4">
             Don't have an account?

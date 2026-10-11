@@ -6,10 +6,7 @@ import type { UserAddress } from "#server/types/user";
 import type { WishlistEntry } from "#server/types/wishlist";
 import type { CartItem } from "#server/types/cart";
 
-interface ApiResponse<T> {
-  success: boolean;
-  data: T;
-}
+definePageMeta({ middleware: "auth" });
 
 useLegacyPage({
   title: "Profile",
@@ -22,8 +19,10 @@ useLegacyPage({
   sweetAlert: false,
 });
 
+const auth = useAuthStore();
+await auth.initialize();
+
 const [
-  userResponse,
   ordersResponse,
   quotationResponse,
   addressResponse,
@@ -31,22 +30,21 @@ const [
   cartResponse,
   billingResponse,
 ] = await Promise.all([
-  $fetch<ApiResponse<UserProfile>>("/api/users/1"),
-  $fetch<ApiResponse<Order[]>>("/api/orders?userId=1"),
-  $fetch<ApiResponse<Quotation[]>>("/api/quotations?userId=1"),
-  $fetch<ApiResponse<UserAddress[]>>("/api/users/1/addresses"),
-  $fetch<ApiResponse<WishlistEntry[]>>("/api/wishlist"),
-  $fetch<ApiResponse<CartItem[]>>("/api/cart"),
-  $fetch<ApiResponse<Array<{ id: string }>>>("/api/billings?userId=1"),
+  apiRequest<Order[]>("/orders"),
+  apiRequest<Quotation[]>("/quotations"),
+  apiRequest<UserAddress[]>("/addresses"),
+  apiRequest<WishlistEntry[]>("/wishlist"),
+  apiRequest<CartItem[]>("/cart"),
+  apiRequest<Array<{ id: string }>>("/invoices"),
 ]);
 
-const user = userResponse.data;
-const orders = ordersResponse.data;
-const quotations = quotationResponse.data;
-const addresses = addressResponse.data;
-const wishlistItems = wishlistResponse.data;
-const cartItems = cartResponse.data;
-const billings = billingResponse.data;
+const user = computed<UserProfile | null>(() => auth.user);
+const orders = ordersResponse;
+const quotations = quotationResponse;
+const addresses = addressResponse;
+const wishlistItems = wishlistResponse;
+const cartItems = cartResponse;
+const billings = billingResponse;
 
 const profileStats = computed(() => ({
   orders: orders.length,
@@ -67,8 +65,8 @@ const profileStats = computed(() => ({
           <div class="col-lg-3 mb-4"><ProfileSidebar /></div>
 
           <div class="col-lg-9">
-            <PagesProfileHeader :user="user" />
-            <div class="profile-content bg-white p-4 rounded-3 shadow-sm">
+            <PagesProfileHeader v-if="user" :user="user" />
+            <div v-if="user" class="profile-content bg-white p-4 rounded-3 shadow-sm">
               <PagesProfileTabs />
 
               <PagesProfileDetailsForm

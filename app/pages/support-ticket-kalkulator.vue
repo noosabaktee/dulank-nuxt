@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { SupportTicket } from "#server/types/ticket";
+definePageMeta({ middleware: "auth" });
 useLegacyPage({
   title: "Support Ticket",
   styles: ["/css/style.css", "/css/pages/support-ticket-kalkulator-inline.css"],
@@ -7,10 +8,8 @@ useLegacyPage({
   sweetAlert: false,
 });
 
-const { data, refresh } = useFetch<{ success: boolean; data: SupportTicket[] }>(
-  "/api/tickets?userId=1",
-);
-const tickets = computed(() => data.value?.data ?? []);
+const { data, refresh } = useApi<SupportTicket[]>("/tickets");
+const tickets = computed(() => data.value ?? []);
 </script>
 
 <template>

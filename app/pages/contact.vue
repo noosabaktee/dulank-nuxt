@@ -5,6 +5,21 @@ useLegacyPage({
   scripts: ["/js/component.js", "/js/pages/contact.js"],
   sweetAlert: false,
 });
+
+interface CompanySettings {
+  name?: string;
+  profile?: {
+    name?: string;
+    address?: string;
+    mapEmbedUrl?: string;
+  };
+}
+
+const { data } = useApi<CompanySettings>("/settings/company");
+const companyAddress = computed(
+  () => data.value?.profile?.address ?? "Alamat belum diatur.",
+);
+const mapEmbedUrl = computed(() => data.value?.profile?.mapEmbedUrl ?? "");
 </script>
 
 <template>
@@ -13,7 +28,10 @@ useLegacyPage({
       <div class="container my-5">
         <div class="row text-standard">
           <PagesContactForm />
-          <PagesContactStoreLocation />
+          <PagesContactStoreLocation
+            :address="companyAddress"
+            :map-embed-url="mapEmbedUrl"
+          />
         </div>
       </div>
     </main>

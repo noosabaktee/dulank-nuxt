@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import type { MachineRecord } from "~/composables/useMachineCatalog";
+
+defineProps<{ machines: MachineRecord[] }>();
+</script>
+
 <template>
   <div
     aria-labelledby="pond-tab"
@@ -17,53 +23,25 @@
       </div>
 
       <div
+        v-for="machine in machines"
+        :key="machine.id"
         class="row table-product align-items-md-center py-md-2 py-3 px-3 border-bottom-md-0"
       >
-        <div class="col-12 col-md-3" data-label="Nama">Mesin Pond Kecil</div>
-        <div class="col-12 col-md-2" data-label="Ukuran">79x109 Centimeter</div>
+        <div class="col-12 col-md-3" data-label="Nama">{{ machine.name }}</div>
+        <div class="col-12 col-md-2" data-label="Ukuran">
+          {{ machine.size }}
+        </div>
         <div class="col-12 col-md-2" data-label="Pond Standard">
-          Harga: Rp50 <br />
-          Minim: Rp50.000
+          Harga: Rp{{ machine.unitPrice?.toLocaleString("id-ID") }} <br />
+          Minim: Rp{{ machine.price?.toLocaleString("id-ID") }}
         </div>
         <div class="col-12 col-md-2" data-label="Setengah Putus">
-          Harga: Rp100 <br />
-          Minim: Rp100.000
+          Harga: Rp{{ machine.unitPrice?.toLocaleString("id-ID") }} <br />
+          Minim: Rp{{ machine.price?.toLocaleString("id-ID") }}
         </div>
-        <div class="col-12 col-md-2" data-label="Update">20/12/12 23:12</div>
-        <div class="col-12 col-md-1 text-center"></div>
-      </div>
-
-      <div
-        class="row table-product align-items-md-center py-md-2 py-3 px-3 border-bottom-md-0"
-      >
-        <div class="col-12 col-md-3" data-label="Nama">Mesin Pond Sedang</div>
-        <div class="col-12 col-md-2" data-label="Ukuran">79x109 Centimeter</div>
-        <div class="col-12 col-md-2" data-label="Pond Standard">
-          Harga: Rp50 <br />
-          Minim: Rp50.000
+        <div class="col-12 col-md-2" data-label="Update">
+          {{ machine.updatedAt }}
         </div>
-        <div class="col-12 col-md-2" data-label="Setengah Putus">
-          Harga: Rp100 <br />
-          Minim: Rp100.000
-        </div>
-        <div class="col-12 col-md-2" data-label="Update">20/12/12 23:12</div>
-        <div class="col-12 col-md-1 text-center"></div>
-      </div>
-
-      <div
-        class="row table-product align-items-md-center py-md-2 py-3 px-3 border-bottom-md-0"
-      >
-        <div class="col-12 col-md-3" data-label="Nama">Mesin Pond Besar</div>
-        <div class="col-12 col-md-2" data-label="Ukuran">79x109 Centimeter</div>
-        <div class="col-12 col-md-2" data-label="Pond Standard">
-          Harga: Rp50 <br />
-          Minim: Rp50.000
-        </div>
-        <div class="col-12 col-md-2" data-label="Setengah Putus">
-          Harga: Rp100 <br />
-          Minim: Rp100.000
-        </div>
-        <div class="col-12 col-md-2" data-label="Update">20/12/12 23:12</div>
         <div class="col-12 col-md-1 text-center"></div>
       </div>
     </div>

@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { Order } from "~/composables/useOrders";
 
+definePageMeta({ middleware: "auth" });
+
 useLegacyPage({
   title: "Orders",
   styles: ["/css/style.css", "/css/pages/orders-inline.css"],

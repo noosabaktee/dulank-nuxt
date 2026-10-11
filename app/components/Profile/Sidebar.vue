@@ -2,6 +2,13 @@
 const route = useRoute()
 const path = computed(() => route.path.replace(/\.html$/, '').replace(/\/$/, '') || '/')
 const isActive = (target: string) => path.value === target
+
+const auth = useAuthStore()
+
+async function onLogout() {
+  await auth.logout()
+  await navigateTo('/login')
+}
 </script>
 
 <template>
@@ -37,7 +44,7 @@ const isActive = (target: string) => path.value === target
           <NuxtLink to="/support-ticket" class="profile-nav-link"><i class="fa-solid fa-ticket me-2"></i> Support Ticket</NuxtLink>
         </li>
         <li class="profile-nav-item">
-          <a href="#" class="profile-nav-link"><i class="fas fa-sign-out-alt me-2"></i> Logout</a>
+          <a href="#" class="profile-nav-link" @click.prevent="onLogout"><i class="fas fa-sign-out-alt me-2"></i> Logout</a>
         </li>
       </ul>
     </div>

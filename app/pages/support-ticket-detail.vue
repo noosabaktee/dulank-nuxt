@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { SupportTicket } from "#server/types/ticket";
+definePageMeta({ middleware: "auth" });
 useLegacyPage({
   title: "Support Ticket",
   styles: ["/css/style.css", "/css/pages/support-ticket-detail-inline.css"],
@@ -9,10 +10,8 @@ useLegacyPage({
 
 const route = useRoute();
 const id = computed(() => String(route.query.id || "TK-001"));
-const { data, refresh } = useFetch<{ success: boolean; data: SupportTicket }>(
-  () => `/api/tickets/${id.value}`,
-);
-const ticket = computed(() => data.value?.data ?? null);
+const { data, refresh } = useApi<SupportTicket>(`/tickets/${id.value}`);
+const ticket = computed(() => data.value ?? null);
 </script>
 
 <template>

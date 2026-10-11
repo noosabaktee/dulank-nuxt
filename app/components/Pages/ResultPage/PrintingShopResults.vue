@@ -1,14 +1,20 @@
+<script setup lang="ts">
+import type { BlogPost } from "#server/types/blog";
+
+defineProps<{ posts: BlogPost[] }>();
+</script>
+
 <template>
   <div class="row">
-    <div class="col-12">
+    <div v-for="post in posts" :key="post.id" class="col-12">
       <div class="mb-5 shadow row g-0 d-flex align-items-stretch">
         <div class="col-md-5 p-0">
           <a href="/post">
             <img
-              alt="Blog 1"
+              :alt="post.title"
               class="img-fluid rounded-start object-fit-cover w-100 h-100"
               id="inline-style-result-page-001"
-              src="/images/brosur.jpg"
+              :src="post.image"
             />
           </a>
         </div>
@@ -18,19 +24,16 @@
         >
           <div>
             <div class="mb-2">
-              <span class="badge bg-light text-dark">Marketing</span>
+              <span class="badge bg-light text-dark">Blog</span>
               <span class="text-muted text-standard ms-2"
-                ><i class="bi bi-calendar"></i> 09 Mei 2025</span
+                ><i class="bi bi-calendar"></i> {{ post.date }}</span
               >
             </div>
             <h5 class="card-title mb-2">
-              <a class="text-decoration-none" href="/post">Brosur Full Color</a>
+              <a class="text-decoration-none" href="/post">{{ post.title }}</a>
             </h5>
             <p class="card-text text-standard mb-3">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex
-              officiis earum voluptatem doloremque, praesentium quisquam
-              provident odio aspernatur recusandae, dolore error magni pariatur!
-              Ducimus iusto labore, vero nulla deleniti molestias!
+              {{ post.excerpt }}
             </p>
           </div>
           <a class="btn my-btn-outline-primary btn-sm mt-auto" href="/post"

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+definePageMeta({ middleware: "auth" });
 useLegacyPage({
   title: "Beli Lagi",
   styles: ["/css/style.css", "/css/pages/history-inline.css"],

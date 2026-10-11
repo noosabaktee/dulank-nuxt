@@ -1,4 +1,6 @@
 export interface UserAddress {
+  id?: number;
+  userId?: number;
   recipientName: string;
   phone: string;
   type: string;
@@ -9,6 +11,7 @@ export interface UserAddress {
   province: string;
   postalCode: string;
   country: string;
+  isDefault?: boolean;
 }
 
 export interface User {

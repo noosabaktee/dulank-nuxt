@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import type { MachineRecord } from "~/composables/useMachineCatalog";
+
+defineProps<{ machines: MachineRecord[] }>();
+</script>
+
 <template>
   <div
     aria-labelledby="cetak-tab"
@@ -16,94 +22,22 @@
       </div>
 
       <div
+        v-for="machine in machines"
+        :key="machine.id"
         class="row table-product align-items-md-center py-md-2 py-3 px-3 border-bottom-md-0"
       >
         <div class="col-12 col-md-3" data-label="Nama">
-          Heidelberg GTO52 4 Warna
+          {{ machine.name }}
         </div>
-        <div class="col-12 col-md-2" data-label="Harga Minim">Rp240.000</div>
-        <div class="col-12 col-md-2" data-label="Harga Druck">Rp60</div>
-        <div class="col-12 col-md-2" data-label="Update">20/12/12 23:12</div>
-        <div class="col-12 col-md-2">
-          <a
-            class="text-standard dropdown-item"
-            data-bs-target="#detailModal"
-            data-bs-toggle="modal"
-            role="button"
-            >Detail</a
-          >
+        <div class="col-12 col-md-2" data-label="Harga Minim">
+          Rp{{ machine.price?.toLocaleString("id-ID") }}
         </div>
-      </div>
-
-      <div
-        class="row table-product align-items-md-center py-md-2 py-3 px-3 border-bottom-md-0"
-      >
-        <div class="col-12 col-md-3" data-label="Nama">
-          Heidelberg GTO52 4 Warna
+        <div class="col-12 col-md-2" data-label="Harga Druck">
+          Rp{{ machine.unitPrice?.toLocaleString("id-ID") }}
         </div>
-        <div class="col-12 col-md-2" data-label="Harga Minim">Rp240.000</div>
-        <div class="col-12 col-md-2" data-label="Harga Druck">Rp60</div>
-        <div class="col-12 col-md-2" data-label="Update">20/12/12 23:12</div>
-        <div class="col-12 col-md-2">
-          <a
-            class="text-standard dropdown-item"
-            data-bs-target="#detailModal"
-            data-bs-toggle="modal"
-            role="button"
-            >Detail</a
-          >
+        <div class="col-12 col-md-2" data-label="Update">
+          {{ machine.updatedAt }}
         </div>
-      </div>
-
-      <div
-        class="row table-product align-items-md-center py-md-2 py-3 px-3 border-bottom-md-0"
-      >
-        <div class="col-12 col-md-3" data-label="Nama">
-          Heidelberg GTO52 4 Warna
-        </div>
-        <div class="col-12 col-md-2" data-label="Harga Minim">Rp240.000</div>
-        <div class="col-12 col-md-2" data-label="Harga Druck">Rp60</div>
-        <div class="col-12 col-md-2" data-label="Update">20/12/12 23:12</div>
-        <div class="col-12 col-md-2">
-          <a
-            class="text-standard dropdown-item"
-            data-bs-target="#detailModal"
-            data-bs-toggle="modal"
-            role="button"
-            >Detail</a
-          >
-        </div>
-      </div>
-
-      <div
-        class="row table-product align-items-md-center py-md-2 py-3 px-3 border-bottom-md-0"
-      >
-        <div class="col-12 col-md-3" data-label="Nama">
-          Heidelberg GTO52 4 Warna
-        </div>
-        <div class="col-12 col-md-2" data-label="Harga Minim">Rp240.000</div>
-        <div class="col-12 col-md-2" data-label="Harga Druck">Rp60</div>
-        <div class="col-12 col-md-2" data-label="Update">20/12/12 23:12</div>
-        <div class="col-12 col-md-2">
-          <a
-            class="text-standard dropdown-item"
-            data-bs-target="#detailModal"
-            data-bs-toggle="modal"
-            role="button"
-            >Detail</a
-          >
-        </div>
-      </div>
-
-      <div
-        class="row table-product align-items-md-center py-md-2 py-3 px-3 border-bottom-md-0"
-      >
-        <div class="col-12 col-md-3" data-label="Nama">
-          Heidelberg GTO52 4 Warna
-        </div>
-        <div class="col-12 col-md-2" data-label="Harga Minim">Rp240.000</div>
-        <div class="col-12 col-md-2" data-label="Harga Druck">Rp60</div>
-        <div class="col-12 col-md-2" data-label="Update">20/12/12 23:12</div>
         <div class="col-12 col-md-2">
           <a
             class="text-standard dropdown-item"

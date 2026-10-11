@@ -1,42 +1,28 @@
+<script setup lang="ts">
+import type { Product } from "#server/types/product";
+
+defineProps<{ products: Product[] }>();
+</script>
+
 <template>
   <div class="row">
-    <a class="col-md-2 me-3" href="" role="button">
+    <a
+      v-for="product in products"
+      :key="product.id"
+      class="col-md-2 me-3"
+      href=""
+      role="button"
+    >
       <div>
         <img
-          alt="Brosur"
+          :alt="product.name"
           class="w-100 object-fit-cover"
-          src="/images/brosur.jpg"
+          :src="product.image"
         />
       </div>
       <div>
-        <span class="small fw-bold d-block mt-1">Brosur Full Color</span>
-        <span class="text-standard">Rp150.000</span>
-      </div>
-    </a>
-    <a class="col-md-2 me-3" href="" role="button">
-      <div>
-        <img
-          alt="Brosur"
-          class="w-100 object-fit-cover"
-          src="/images/kaos.jpg"
-        />
-      </div>
-      <div>
-        <span class="small fw-bold d-block mt-1">Kaos Anime</span>
-        <span class="text-standard">Rp50.000</span>
-      </div>
-    </a>
-    <a class="col-md-2 me-3" href="" role="button">
-      <div>
-        <img
-          alt="Brosur"
-          class="w-100 object-fit-cover"
-          src="/images/yasin.jpg"
-        />
-      </div>
-      <div>
-        <span class="small fw-bold d-block mt-1">Yasin Tahlil</span>
-        <span class="text-standard">Rp150.000</span>
+        <span class="small fw-bold d-block mt-1">{{ product.name }}</span>
+        <span class="text-standard">Rp{{ product.priceFrom?.toLocaleString("id-ID") }}</span>
       </div>
     </a>
   </div>

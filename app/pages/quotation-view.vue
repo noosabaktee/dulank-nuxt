@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { Quotation } from "~/composables/useQuotations";
 
+definePageMeta({ middleware: "auth" });
+
 useLegacyPage({
   title: "Quotation View",
   styles: [
@@ -14,11 +16,8 @@ useLegacyPage({
 
 const route = useRoute();
 const quotationId = computed(() => String(route.query.id || "QT-001"));
-const { data, error } = useFetch<{ success: boolean; data: Quotation }>(
-  () => `/api/quotations/${quotationId.value}`,
-  { key: `quotation-view-${quotationId.value}` },
-);
-const quotation = computed(() => data.value?.data ?? null);
+const { data, error } = useApi<Quotation>(`/quotations/${quotationId.value}`);
+const quotation = computed(() => data.value ?? null);
 const totals = computed(() => getQuotationTotals(quotation.value));
 const date = (value?: string) =>
   value ? new Date(`${value}T00:00:00`).toLocaleDateString("id-ID") : "-";

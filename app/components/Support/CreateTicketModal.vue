@@ -11,10 +11,9 @@ async function submit() {
   submitting.value = true;
   error.value = "";
   try {
-    await $fetch("/api/tickets", {
+    await apiRequest("/tickets", {
       method: "POST",
       body: {
-        userId: 1,
         subject: subject.value,
         type: type.value,
         priority: priority.value,
