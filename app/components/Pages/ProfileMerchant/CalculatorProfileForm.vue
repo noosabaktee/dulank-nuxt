@@ -1,3 +1,13 @@
+<script setup lang="ts">
+import type { MerchantProfile } from '~/composables/useMerchantProfile';
+const props = defineProps<{ merchant: MerchantProfile | null; busy?: boolean }>();
+const emit = defineEmits<{ save: [form: Partial<MerchantProfile>] }>();
+const form = reactive<Partial<MerchantProfile>>({ type: 'printing_shop', name: '', province: '', city: '', district: '', address: '', whatsapp: '', calculatorTitle: 'Kalkulator Cetak', displayOn: ['paper_cutting', 'paper_weight'] });
+watch(() => props.merchant, value => { if (value) Object.assign(form, value); }, { immediate: true });
+const displays = [{ key: 'paper_weight', label: 'Header Hitung Berat Kertas' }, { key: 'paper_cutting', label: 'Header Potong Kertas' }, { key: 'printing', label: 'Header Kalkulator Percetakan' }];
+function toggleDisplay(key: string) { form.displayOn = form.displayOn?.includes(key) ? form.displayOn.filter(value => value !== key) : [...(form.displayOn ?? []), key]; }
+</script>
+
 <template>
   <div class="text-standard mt-5">
     <div class="row mb-4">
@@ -10,7 +20,7 @@
           id="title"
           placeholder="your title"
           type="text"
-          value="Kalkulator Cetak"
+          v-model="form.calculatorTitle" :disabled="busy"
         />
       </div>
     </div>
@@ -24,96 +34,17 @@
           id="name"
           placeholder="your name"
           type="text"
-          value="Perctekan Grafika-Ku"
+          v-model="form.name" :disabled="busy"
         />
       </div>
     </div>
     <div class="row mb-4">
       <div class="col-4">
-        <label class="form-label" for="lots-print">Alamat</label>
+        <label class="form-label" for="alamat-lengkap">Alamat</label>
       </div>
       <div class="col-8">
         <div>
-          <div class="form-group position-relative">
-            <div
-              class="input-group position-relative d-inline-flex align-items-center"
-            >
-              <input
-                class="form-control text-standard"
-                id="alamat-lengkap"
-                placeholder="Provinsi, Kota, Kecamatan"
-              />
-              <span
-                class="d-none position-absolute bg-secondary text-white rounded-circle d-flex align-items-center"
-                id="clear-address"
-              >
-                <i class="bi bi-x-lg m-auto"></i>
-              </span>
-              <span class="position-absolute" id="search-icon">
-                <i class="bi bi-search"></i>
-              </span>
-            </div>
-            <div id="alamat-dropdown-wrapper">
-              <ul class="nav nav-tabs" id="alamatTab" role="tablist">
-                <li class="nav-item" role="presentation">
-                  <button
-                    class="btn rounded-0 border-top-0 border-start-0 border-end-0 text-standard active"
-                    id="provinsi-tab"
-                    role="tab"
-                    type="button"
-                  >
-                    Provinsi
-                  </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <button
-                    class="btn rounded-0 border-top-0 border-start-0 border-end-0 text-standard"
-                    id="kota-tab"
-                    role="tab"
-                    type="button"
-                  >
-                    Kota
-                  </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <button
-                    class="btn rounded-0 border-top-0 border-start-0 border-end-0 text-standard"
-                    id="kecamatan-tab"
-                    role="tab"
-                    type="button"
-                  >
-                    Kecamatan
-                  </button>
-                </li>
-              </ul>
-              <div class="tab-content p-2 shadow-sm" id="alamatTabContent">
-                <div class="tab-pane show active" id="provinsi-pane">
-                  <ul
-                    class="list-unstyled mb-0 text-standard"
-                    id="provinsi-list"
-                  ></ul>
-                </div>
-                <div class="tab-pane" id="kota-pane">
-                  <ul
-                    class="list-unstyled mb-0 text-standard"
-                    id="kota-list"
-                  ></ul>
-                </div>
-                <div class="tab-pane" id="kecamatan-pane">
-                  <ul
-                    class="list-unstyled mb-0 text-standard"
-                    id="kecamatan-list"
-                  ></ul>
-                </div>
-              </div>
-              <div class="p-2" id="alamat-search-result">
-                <ul
-                  class="list-unstyled mb-0 text-standard fw-light"
-                  id="alamat-search-list"
-                ></ul>
-              </div>
-            </div>
-          </div>
+          <CommonRegionAddressInput :form="form" :disabled="busy" />
         </div>
       </div>
     </div>
@@ -127,7 +58,7 @@
           id="wa"
           placeholder="your whatsapp number"
           type="text"
-          value="0851762762"
+          v-model="form.whatsapp" :disabled="busy"
         />
       </div>
     </div>
@@ -136,14 +67,8 @@
         <label class="form-label" for="jumlah">Tampilkan Profile pada</label>
       </div>
       <div class="col-8 multiple-select" id="display">
-        <button class="btn btn-spec me-2 selected" type="button">
-          Header Hitung Berat Kertas<span class="ribbon"></span>
-        </button>
-        <button class="btn btn-spec me-2" type="button">
-          Header Potong Kertas<span class="ribbon d-none"></span>
-        </button>
-        <button class="btn btn-spec me-2" type="button">
-          Header Kalkulator Percetakan<span class="ribbon d-none"></span>
+        <button v-for="display in displays" :key="display.key" class="btn btn-spec me-2" :class="{ selected: form.displayOn?.includes(display.key) }" type="button" :disabled="busy" @click="toggleDisplay(display.key)">
+          {{ display.label }}<span class="ribbon" :class="{ 'd-none': !form.displayOn?.includes(display.key) }"></span>
         </button>
         <br />
         <div class="mt-5">
@@ -153,7 +78,7 @@
           /></small>
           <button
             class="btn my-btn-primary w-100 mt-2"
-            id="update-btn"
+            id="update-btn" :disabled="busy" @click="emit('save', { ...form })"
             type="button"
           >
             Update Profile

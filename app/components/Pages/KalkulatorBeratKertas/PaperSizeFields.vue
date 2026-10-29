@@ -1,3 +1,7 @@
+<script setup lang="ts">
+const calculator = inject<ReturnType<typeof usePaperWeight>>('paper-weight')!;
+</script>
+
 <template>
   <div class="row mb-3">
     <div class="col-5">
@@ -10,12 +14,12 @@
             <span class="input-group-text">P</span>
             <input
               class="form-control number-separator"
-              id="width"
-              inputmode="numeric"
-              pattern="[0-9]*"
+              id="width" v-model.number="calculator.form.width" @input="calculator.form.sizeId = ''"
+              inputmode="decimal"
+
               type="text"
             />
-            <input class="result-input" id="panjang" type="hidden" />
+            <input class="result-input" id="panjang" :value="calculator.form.width" type="hidden" />
           </div>
         </div>
         <div class="col-6">
@@ -23,12 +27,12 @@
             <span class="input-group-text">L</span>
             <input
               class="form-control number-separator"
-              id="height"
-              inputmode="numeric"
-              pattern="[0-9]*"
+              id="height" v-model.number="calculator.form.height" @input="calculator.form.sizeId = ''"
+              inputmode="decimal"
+
               type="text"
             />
-            <input class="result-input" id="lebar" type="hidden" />
+            <input class="result-input" id="lebar" :value="calculator.form.height" type="hidden" />
           </div>
         </div>
       </div>

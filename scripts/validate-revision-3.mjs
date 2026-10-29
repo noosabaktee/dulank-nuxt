@@ -91,16 +91,16 @@ const productJs = read("public/js/product.js");
 check(
   "custom size swaps preset/custom",
   productJs.includes(
-    "document.querySelector('#size').classList.toggle('d-none')",
+    "setCustomControlVisibility(document.querySelector('#size'), !active)",
   ) &&
     productJs.includes(
-      "document.querySelector('#custom-size').classList.toggle('d-none')",
+      "setCustomControlVisibility(document.querySelector('#custom-size'), active)",
     ),
 );
 check(
   "custom content swaps preset/custom",
-  productJs.includes("content.classList.toggle('d-none', active)") &&
-    productJs.includes("customContent.classList.toggle('d-none', !active)"),
+  productJs.includes("setCustomControlVisibility(content, !active)") &&
+    productJs.includes("setCustomControlVisibility(customContent, active)"),
 );
 
 const potongJs = read("public/js/pages/kalkulator-potong-kertas.js");

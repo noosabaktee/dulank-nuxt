@@ -67,8 +67,8 @@ function setCustomContentMode(active){
     if(!btn_custom_content || !content || !customContent) return
 
     btn_custom_content.innerHTML = active ? 'Cancel' : 'Custom'
-    content.classList.toggle('d-none', active)
-    customContent.classList.toggle('d-none', !active)
+    setCustomControlVisibility(content, !active)
+    setCustomControlVisibility(customContent, active)
 
     if(active){
         updateCustomContentResult()
@@ -403,18 +403,32 @@ btn_hitung.addEventListener('click',()=>{
     }
 })
 
-btn_custom_size.addEventListener('click',(e) => {
-    e.stopImmediatePropagation()
-    tableSpec("hide")
-    let value_btn = btn_custom_size.textContent.trim() == "Custom" ? "Cancel" : "Custom"
-    btn_custom_size.innerHTML = value_btn
-    if(value_btn == "Custom"){
-        document.querySelector('#info-custom').classList.add('d-none')
-        btn_hitung.classList.remove('disabled')
+function setCustomControlVisibility(element, visible) {
+    if (!element) return
+    element.classList.toggle('d-none', !visible)
+    if (visible) element.style.removeProperty('display')
+    else element.style.setProperty('display', 'none', 'important')
+}
+
+function setCustomSizeMode(active) {
+    if (!btn_custom_size) return
+    btn_custom_size.textContent = active ? 'Cancel' : 'Custom'
+    setCustomControlVisibility(document.querySelector('#size'), !active)
+    setCustomControlVisibility(document.querySelector('#custom-size'), active)
+}
+
+btn_custom_size?.addEventListener('click', (event) => {
+    event.stopImmediatePropagation()
+    tableSpec('hide')
+    const active = !isCustomSizeActive()
+    setCustomSizeMode(active)
+    if (!active) {
+        document.querySelector('#info-custom')?.classList.add('d-none')
+        btn_hitung?.classList.remove('disabled')
     }
-    document.querySelector('#size').classList.toggle('d-none')
-    document.querySelector('#custom-size').classList.toggle('d-none')
 })
+setCustomSizeMode(false)
+if (btn_custom_content) setCustomContentMode(false)
 
 img_variant.forEach(img => {
     img.addEventListener('click',()=>{

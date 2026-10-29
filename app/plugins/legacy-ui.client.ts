@@ -43,7 +43,7 @@ export default defineNuxtPlugin(() => {
     el: HTMLElement; timer?: number
     constructor(el: Element, options: any={}) { this.el=el as HTMLElement; const interval=options.interval ?? 5000; if (interval) this.timer=window.setInterval(()=>this.next(), interval) }
     items() { return [...this.el.querySelectorAll('.carousel-item')] as HTMLElement[] }
-    go(i:number) { const items=this.items(); if(!items.length)return; items.forEach(x=>{x.classList.remove('active'); x.style.display='none'}); const item=items[(i+items.length)%items.length]; item.classList.add('active'); item.style.display='block' }
+    go(i:number) { const items=this.items(); if(!items.length)return; items.forEach(x=>{x.classList.remove('active'); x.style.display='none'}); const item=items[(i+items.length)%items.length]; if (!item) return; item.classList.add('active'); item.style.display='block' }
     next() { const items=this.items(); const i=Math.max(0,items.findIndex(x=>x.classList.contains('active'))); this.go(i+1) }
     prev() { const items=this.items(); const i=Math.max(0,items.findIndex(x=>x.classList.contains('active'))); this.go(i-1) }
   }

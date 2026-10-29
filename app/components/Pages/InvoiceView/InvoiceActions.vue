@@ -12,7 +12,7 @@
             class="form-select text-standard"
             id="inline-style-invoice-view-002"
           >
-            <option selected="">Transfer Bank (BCA)</option>
+            <option selected>Transfer Bank (BCA)</option>
           </select>
         </div>
         <button

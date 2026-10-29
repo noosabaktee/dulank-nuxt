@@ -1,5 +1,7 @@
+import { requiresMerchant, normalizeMerchantPath } from './merchant-routes';
 /** Halaman yang butuh sesi user store (sinonim "protected"). */
 export const protectedRoutes = new Set([
+  "/daftar-percetakan", "/profile-merchant", "/kalkulator-potong-kertas", "/kalkulator-berat-kertas",
   "/cart",
   "/next",
   "/checkout",
@@ -24,8 +26,8 @@ export const protectedRoutes = new Set([
 ]);
 
 export function isProtectedRoute(path: string): boolean {
-  const normalized = path.replace(/\.html$/, "").replace(/\/$/, "") || "/";
-  return protectedRoutes.has(normalized);
+  const normalized = normalizeMerchantPath(path);
+  return protectedRoutes.has(normalized) || requiresMerchant(normalized);
 }
 
 export function loginRedirectQuery(path: string): string {

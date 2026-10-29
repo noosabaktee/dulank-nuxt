@@ -27,7 +27,7 @@
                   class="form-control"
                   id="name"
                   placeholder="Name"
-                  required=""
+                  required
                   type="text"
                 />
               </div>
@@ -36,7 +36,7 @@
                   class="form-control"
                   id="phone"
                   placeholder="Phone"
-                  required=""
+                  required
                   type="text"
                 />
               </div>
@@ -128,7 +128,7 @@
                 class="form-control text-standard"
                 id="detail"
                 placeholder="Detail"
-                required=""
+                required
                 rows="3"
               ></textarea>
             </div>
@@ -137,7 +137,7 @@
                 class="form-control"
                 id="other"
                 placeholder="Other Detail (e.g block, st)"
-                required=""
+                required
                 type="text"
               />
             </div>

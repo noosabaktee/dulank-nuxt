@@ -15,6 +15,8 @@ useLegacyPage({
 interface PaperStore {
   id: number;
   name: string;
+  address?: string;
+  whatsapp?: string;
   province: string;
   city: string;
   district: string;
@@ -28,14 +30,17 @@ interface PaperStore {
 interface PaperGroupRecord {
   id: number;
   source: string;
+  merchantId?: number | null;
   name: string;
   brand?: string;
   updatedAt: string;
 }
 
 interface PaperTypeRecord {
+  dimension?: string;
   id: number;
   source: string;
+  merchantId?: number | null;
   name: string;
   group?: string;
   gsm: number;
@@ -45,6 +50,7 @@ interface PaperTypeRecord {
 interface PaperSizeRecord {
   id: number;
   source: string;
+  merchantId?: number | null;
   name: string;
   width: number;
   height: number;
@@ -53,8 +59,8 @@ interface PaperSizeRecord {
 }
 
 const route = useRoute();
-const merchantId = computed(() => String(route.query.id || 3));
-const { data: shop } = useApi<PaperStore>(`/merchants/${merchantId.value}`);
+const merchantId = computed(() => String(route.query.id || ''));
+const { data: shop, pending: shopPending, error: shopError, refresh: refreshShop } = useApi<PaperStore>(() => `/merchants/${encodeURIComponent(merchantId.value || 'missing')}`);
 
 const { items: paperGroups } = useCatalog<PaperGroupRecord>("paper-groups");
 const { items: paperTypes } = useCatalog<PaperTypeRecord>("paper-types");
@@ -63,7 +69,7 @@ const { items: paperSizes } = useCatalog<PaperSizeRecord>("paper-sizes");
 const shopName = computed(() => String(shop.value?.name ?? ""));
 const groupRows = computed(() =>
   paperGroups.value
-    .filter((item) => item.source === shopName.value)
+    .filter((item) => (item.merchantId != null ? item.merchantId === Number(merchantId.value) : item.source === shopName.value))
     .map((item) => ({
       name: item.name,
       brand: item.brand ?? "",
@@ -71,18 +77,18 @@ const groupRows = computed(() =>
     })),
 );
 const typeRows = computed(() => {
-  const size = paperSizes.value.find((item) => item.source === shopName.value);
+  const size = paperSizes.value.find((item) => (item.merchantId != null ? item.merchantId === Number(merchantId.value) : item.source === shopName.value));
   const sizeLabel = size
     ? `${size.width}x${size.height} ${size.unit}`
     : "";
   return paperTypes.value
-    .filter((item) => item.source === shopName.value)
+    .filter((item) => (item.merchantId != null ? item.merchantId === Number(merchantId.value) : item.source === shopName.value))
     .map((item) => ({
       name:
         item.group && item.group !== item.name
           ? `${item.name} - ${item.group}`
           : item.name,
-      size: sizeLabel,
+      size: item.dimension || sizeLabel,
       gsm: `${item.gsm} GSM`,
       updatedAt: item.updatedAt,
     }));
@@ -97,6 +103,9 @@ const typeRows = computed(() => {
           <div class="col-lg-3 mb-4"><CalculatorSidebar /></div>
 
           <div class="col-lg-9">
+            <p v-if="shopPending">Memuat profil usaha...</p>
+            <div v-else-if="shopError || !shop" role="alert" class="alert alert-warning">Profil usaha tidak tersedia atau belum dipublikasikan. <button class="btn" type="button" @click="refreshShop()">Coba lagi</button></div>
+            <template v-else>
             <PagesStoreKertasStoreHeader
               :name="shop?.name"
               :city="shop?.city"
@@ -107,18 +116,14 @@ const typeRows = computed(() => {
               :type-count="shop?.typeCount"
               :avatar="shop?.image"
             />
-            <div class="text-standard my-2">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui
-              voluptate soluta excepturi, aperiam velit laudantium hic fugit
-              aliquid molestias sit a commodi consequatur natus repudiandae,
-              blanditiis expedita iusto. Quaerat, inventore!
-            </div>
+            <div class="text-standard my-2">{{ shop?.address || "" }}<template v-if="shop?.whatsapp"> {{ shop.whatsapp }}</template></div>
             <PagesStoreKertasInventoryTabs />
             <div class="tab-content" id="myTabContent">
               <PagesStoreKertasPaperGroupsPanel :groups="groupRows" />
 
               <PagesStoreKertasPaperTypesPanel :rows="typeRows" />
             </div>
+            </template>
           </div>
         </div>
       </div>

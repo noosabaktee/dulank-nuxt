@@ -1,5 +1,7 @@
 # State Management — Pinia + Composables + useFetch
 
+> **Implementasi tambahan 28 Oktober 2026:** auth menggunakan Pinia; profil memakai useMerchantProfile/useAsyncData dengan token watch dan viewerId, kalkulator memakai usePaperCutting/usePaperWeight. Detail di [MERCHANT_B2B.md](MERCHANT_B2B.md). Rancangan 11 Oktober di bawah bukan status seluruh composable saat ini.
+
 Status: **rancangan, belum diimplementasikan** (disusun 2026-10-11).
 Kontrak API diverifikasi langsung dari `dulank-backend` (routes, controller, resource) pada tanggal yang sama.
 

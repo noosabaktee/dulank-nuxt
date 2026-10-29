@@ -1,4 +1,5 @@
 export interface MachineRecord {
+  merchantId?: number | null
   id: number;
   kind: "printing" | "lamination" | "die-cutting" | "foil";
   source: string;

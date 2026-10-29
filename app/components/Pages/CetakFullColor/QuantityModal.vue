@@ -39,7 +39,7 @@
                 inputmode="numeric"
                 pattern="[0-9]*"
                 placeholder="0"
-                required=""
+                required
                 type="text"
               />
               <input class="result-input" type="hidden" value="0" />

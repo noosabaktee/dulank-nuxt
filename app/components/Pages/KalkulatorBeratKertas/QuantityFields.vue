@@ -1,3 +1,7 @@
+<script setup lang="ts">
+const calculator = inject<ReturnType<typeof usePaperWeight>>('paper-weight')!;
+</script>
+
 <template>
   <div class="row mb-3">
     <div class="col-5">
@@ -8,19 +12,19 @@
         <div class="col-md-5">
           <input
             class="form-control number-separator"
-            id="amount"
-            inputmode="numeric"
-            pattern="[0-9]*"
+            id="amount" v-model.number="calculator.form.quantity" @input="calculator.form.sizeId = ''"
+            inputmode="decimal"
+
             type="text"
           />
-          <input class="result-input" id="jumlah" type="hidden" />
+          <input class="result-input" id="jumlah" :value="calculator.form.quantity" type="hidden" />
         </div>
         <div class="col-md-7" id="qty">
-          <button class="btn btn-spec me-2 selected" data-value="Lembar" type="button">
-            Lembar<span class="ribbon"></span>
+          <button class="btn btn-spec me-2" :class="{ selected: calculator.form.quantityUnit === 'lembar' }" @click="calculator.form.quantityUnit = 'lembar'" data-value="Lembar" type="button">
+            Lembar<span class="ribbon" :class="{ 'd-none': calculator.form.quantityUnit !== 'lembar' }"></span>
           </button>
-          <button class="btn btn-spec me-2" data-value="Rim" type="button">
-            Rim<span class="ribbon d-none"></span>
+          <button class="btn btn-spec me-2" :class="{ selected: calculator.form.quantityUnit === 'rim' }" @click="calculator.form.quantityUnit = 'rim'" data-value="Rim" type="button">
+            Rim<span class="ribbon" :class="{ 'd-none': calculator.form.quantityUnit !== 'rim' }"></span>
           </button>
         </div>
         <div class="mt-2">
@@ -32,7 +36,7 @@
         <div>
           <button
             class="btn my-btn-primary w-100 mt-3"
-            id="calculate"
+            id="calculate" :disabled="calculator.busy.value" @click="calculator.calculate"
             type="button"
           >
             Hitung

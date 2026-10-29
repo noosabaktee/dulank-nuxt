@@ -1,12 +1,12 @@
 import type { ApiResponse } from '#server/types/api';
 
-export function useApi<T>(url: string, options?: Record<string, unknown>) {
+export function useApi<T>(url: string | Ref<string> | (() => string), options?: Record<string, unknown>) {
   const { $api } = useNuxtApp();
 
   const { data, pending, error, refresh } = useAsyncData(
-    `api-${url}`,
+    computed(() => `api-${toValue(url)}`),
     async () => {
-      const res = await $api<ApiResponse<T>>(url, options);
+      const res = await $api<ApiResponse<T>>(toValue(url), options);
       return res.data;
     },
   );

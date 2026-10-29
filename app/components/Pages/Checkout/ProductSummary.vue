@@ -40,7 +40,7 @@
           <div class="col-md-8 mb-2 mb-md-0 d-flex">
             <div class="form-check align-items-center">
               <input
-                checked=""
+                checked
                 class="form-check-input"
                 id="lengkap"
                 name="radioPengiriman"

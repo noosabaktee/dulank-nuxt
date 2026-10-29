@@ -6,6 +6,16 @@ const email = ref("");
 const password = ref("");
 const errorMessage = ref("");
 const submitting = ref(false);
+const isLocalDev = import.meta.dev &&
+  ["localhost", "127.0.0.1", "::1", "[::1]"].includes(useRequestURL().hostname);
+
+function fillLocalAccount(account: 1 | 2 | 3) {
+  if (import.meta.dev && isLocalDev) {
+    email.value = { 1: "raka@grafikakarawang.test", 2: "dimas@ruangcetak.test", 3: "sinta@belanjacetak.test" }[account];
+    password.value = "DulankB2B!2026";
+    errorMessage.value = "";
+  }
+}
 
 function firstFieldError(error: any): string | undefined {
   const errors: Record<string, string[]> | undefined = error?.data?.errors;
@@ -39,6 +49,20 @@ async function onSubmit() {
     <div class="card border-0 bg-light">
       <div class="card-body p-lg-5 p-md-4">
         <h3 class="text-center mb-4 fw-normal">Login to your account</h3>
+
+        <div v-if="isLocalDev" class="mb-3">
+          <button
+            type="button"
+            class="btn btn-outline-primary w-100"
+            :disabled="submitting"
+            @click="fillLocalAccount(1)"
+          >
+            Akun 1
+          </button>
+          <button type="button" class="btn btn-outline-primary w-100 mt-2" :disabled="submitting" @click="fillLocalAccount(2)">Akun 2</button>
+          <button type="button" class="btn btn-outline-primary w-100 mt-2" :disabled="submitting" @click="fillLocalAccount(3)">Akun 3</button>
+          <p class="text-muted text-standard mt-2 mb-0">Akun 1: sudah punya percetakan. Akun 2: berlangganan, belum punya percetakan. Akun 3: pembeli biasa. Khusus development lokal.</p>
+        </div>
 
         <form action="/profile" @submit.prevent="onSubmit">
           <div class="mb-3">

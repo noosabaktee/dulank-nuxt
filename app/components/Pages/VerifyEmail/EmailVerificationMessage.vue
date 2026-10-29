@@ -9,7 +9,7 @@
             class="form-control"
             id="code"
             placeholder="your code"
-            required=""
+            required
             type="text"
           /><br />
           <p class="text-standard">

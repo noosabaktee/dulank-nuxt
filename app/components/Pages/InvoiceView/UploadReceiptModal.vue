@@ -25,7 +25,7 @@
               <label class="form-label text-standard">Invoice:</label>
               <input
                 class="form-control"
-                disabled=""
+                disabled
                 type="text"
                 value="#2337775"
               />
@@ -42,7 +42,7 @@
               <label class="form-label text-standard">Metode Pembayaran:</label>
               <input
                 class="form-control"
-                disabled=""
+                disabled
                 type="text"
                 value="Transfer Bank (BCA)"
               />

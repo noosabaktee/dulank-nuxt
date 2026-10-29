@@ -1,8 +1,12 @@
+<script setup lang="ts">
+const calculator = inject<ReturnType<typeof usePaperWeight>>('paper-weight')!;
+</script>
+
 <template>
   <div
-    aria-hidden="true"
+    :aria-hidden="!calculator.showModal.value"
     aria-labelledby="addNewPaperModalLabel"
-    class="modal fade text-standard"
+    class="modal fade text-standard" :class="{ 'show d-block': calculator.showModal.value }" @click.self="calculator.showModal.value = false"
     id="addNewPaperModal"
     tabindex="-1"
   >
@@ -16,14 +20,14 @@
             <button
               aria-label="Close"
               class="btn-close"
-              data-bs-dismiss="modal"
+              @click="calculator.showModal.value = false"
               type="button"
             ></button>
           </div>
         </div>
         <div class="modal-body">
           <div>
-            <form>
+            <form @submit.prevent="calculator.applyCustom">
               <div class="row mb-3">
                 <div class="col-5">
                   <label class="form-label" for="pilihSatuan"
@@ -31,11 +35,11 @@
                   >
                 </div>
                 <div class="col-7">
-                  <button class="btn btn-spec me-2 selected" type="button">
-                    Centimeter<span class="ribbon"></span>
+                  <button class="btn btn-spec me-2" :class="{ selected: calculator.draft.unit === 'cm' }" @click="calculator.draft.unit = 'cm'" type="button">
+                    Centimeter<span class="ribbon" :class="{ 'd-none': calculator.draft.unit !== 'cm' }"></span>
                   </button>
-                  <button class="btn btn-spec me-2" type="button">
-                    Milimeter<span class="ribbon d-none"></span>
+                  <button class="btn btn-spec me-2" :class="{ selected: calculator.draft.unit === 'mm' }" @click="calculator.draft.unit = 'mm'" type="button">
+                    Milimeter<span class="ribbon" :class="{ 'd-none': calculator.draft.unit !== 'mm' }"></span>
                   </button>
                 </div>
               </div>
@@ -46,7 +50,7 @@
                   >
                 </div>
                 <div class="col-7">
-                  <input class="form-control" id="name-machine" type="text" />
+                  <input class="form-control" id="name-machine" v-model="calculator.draft.name" type="text" />
                 </div>
               </div>
               <div class="row mb-3">
@@ -59,7 +63,7 @@
                       <div class="input-group input-group-sm">
                         <span class="input-group-text">P</span>
                         <input
-                          class="form-control number-separator"
+                          v-model.number="calculator.draft.width" class="form-control number-separator"
                           inputmode="numeric"
                           pattern="[0-9]*"
                           type="text"
@@ -75,7 +79,7 @@
                       <div class="input-group input-group-sm">
                         <span class="input-group-text">L</span>
                         <input
-                          class="form-control number-separator"
+                          v-model.number="calculator.draft.height" class="form-control number-separator"
                           inputmode="numeric"
                           pattern="[0-9]*"
                           type="text"
@@ -98,7 +102,7 @@
               /></small>
               <div class="row mb-3">
                 <div class="col-5">
-                  <button class="btn w-100" id="cancel-btn-1" type="button">
+                  <button class="btn w-100" id="cancel-btn-1" @click="calculator.showModal.value = false" type="button">
                     Batal
                   </button>
                 </div>
@@ -114,4 +118,5 @@
       </div>
     </div>
   </div>
+  <div v-if="calculator.showModal.value" class="modal-backdrop fade show"></div>
 </template>

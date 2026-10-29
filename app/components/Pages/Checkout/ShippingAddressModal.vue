@@ -25,7 +25,7 @@
           <div class="address-shipping-list">
             <div class="d-flex align-items-start py-3 border-bottom">
               <input
-                checked=""
+                checked
                 class="form-check-input mt-1 me-2 p-2"
                 id="addressShipping1"
                 name="addressShipping"

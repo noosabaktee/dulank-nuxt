@@ -12,33 +12,33 @@ let capturedCallbacks: EventListener[] = [];
 
 export function useLegacyPage(options: LegacyPageOptions) {
   const links = [
-    { rel: "preconnect", href: "https://fonts.googleapis.com" },
+    { rel: "preconnect" as const, href: "https://fonts.googleapis.com" },
     {
-      rel: "preconnect",
+      rel: "preconnect" as const,
       href: "https://fonts.gstatic.com",
-      crossorigin: "anonymous",
+      crossorigin: "anonymous" as const,
     },
     {
-      rel: "stylesheet",
+      rel: "stylesheet" as const,
       href: "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap",
     },
     {
-      rel: "stylesheet",
+      rel: "stylesheet" as const,
       href: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css",
     },
     {
-      rel: "stylesheet",
+      rel: "stylesheet" as const,
       href: "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css",
     },
     ...(options.sweetAlert
       ? [
           {
-            rel: "stylesheet",
+            rel: "stylesheet" as const,
             href: "https://cdn.jsdelivr.net/npm/sweetalert2@11.22.2/dist/sweetalert2.min.css",
           },
         ]
       : []),
-    ...(options.styles || []).map((href) => ({ rel: "stylesheet", href })),
+    ...(options.styles || []).map((href) => ({ rel: "stylesheet" as const, href })),
   ];
 
   useHead({ title: options.title, link: links });

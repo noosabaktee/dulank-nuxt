@@ -129,7 +129,7 @@ defineProps<{
           <div class="col-md-8">
             <input
               class="form-control my-1 w-100"
-              disabled=""
+              disabled
               id="email"
               type="text"
               :value="user.email"
@@ -154,7 +154,7 @@ defineProps<{
                   class="form-select text-standard my-1"
                   :value="user.companyType"
                 >
-                  <option disabled="" selected="">
+                  <option disabled selected>
                     Pilih Jenis Badan Usaha
                   </option>
                   <option value="PT">PT</option>
@@ -268,7 +268,7 @@ defineProps<{
                   class="form-select text-standard"
                   :value="user.transactionCode"
                 >
-                  <option disabled="" selected="">
+                  <option disabled selected>
                     Pilih Jenis Kode Transaksi
                   </option>
                   <option value="01 - Kepada selain pemungut PPN">
@@ -326,7 +326,7 @@ defineProps<{
                   <div class="col-md-4">
                     <input
                       class="form-control my-1 w-100"
-                      disabled=""
+                      disabled
                       type="text"
                       :value="`${user.companyType || ''} `"
                     />
@@ -334,7 +334,7 @@ defineProps<{
                   <div class="col-md-8">
                     <input
                       class="form-control my-1 w-100"
-                      disabled=""
+                      disabled
                       type="text"
                       :value="user.companyName"
                     />

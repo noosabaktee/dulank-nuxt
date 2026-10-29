@@ -49,8 +49,8 @@ assert(
   `Expected 55 static source pages, got ${sourcePages.length}`,
 );
 assert(
-  pageComponentFolders.length === 55,
-  `Expected 55 page component folders, got ${pageComponentFolders.length}`,
+  pageComponentFolders.length === 56,
+  `Expected 56 page component folders (55 legacy + merchant registration), got ${pageComponentFolders.length}`,
 );
 assert(
   pageComponents.length > 55,

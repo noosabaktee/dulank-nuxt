@@ -1,6 +1,7 @@
 <template>
   <div class="mt-5">
     <h5 class="mb-4">Spesifikasi Cetak</h5>
+    <CommonCalculatorIntroduction page="printing" fallback="Siapkan spesifikasi cetak, ukuran kertas, dan kebutuhan produksi percetakan Anda." />
 
     <div>
       <div class="mb-4 row">

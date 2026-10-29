@@ -23,7 +23,7 @@
         <div class="text-center mt-4">
           <button
             class="btn my-btn-primary btn-lg"
-            disabled=""
+            disabled
             id="nextStep1"
             type="button"
           >

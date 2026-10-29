@@ -1,5 +1,7 @@
 # Implementasi: Store → Backend API + Merchant + Kalkulator
 
+> **Status terbaru 28 Oktober 2026:** integrasi merchant/langganan/kalkulator dijelaskan di [MERCHANT_B2B.md](MERCHANT_B2B.md). Status branch/push dan kepemilikan pada catatan 11 Oktober di bawah adalah historis. Backend/admin Rama, storefront main; perubahan sesi ini NOT COMMITTED / NOT PUSHED.
+
 > Dokumentasi baru (opsional, bukan pengganti AGENTS.md/CLAUDE.md).
 > Status: cabang `dev` semua repo, di-push.
 

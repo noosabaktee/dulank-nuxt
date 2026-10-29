@@ -1,16 +1,6 @@
 <script setup lang="ts">
-useLegacyPage({
-  title: "Berat Kertas",
-  styles: ["/css/style.css", "/css/pages/kalkulator-berat-kertas.css"],
-  scripts: [
-    "/js/component.js",
-    "/js/kalkulator.js",
-    "/js/easy-number-separator.js",
-    "/js/pages/kalkulator-berat-kertas.js",
-    "/js/pages/kalkulator-berat-kertas-events.js",
-  ],
-  sweetAlert: false,
-});
+definePageMeta({ middleware: 'auth' });
+useLegacyPage({ title: 'Berat Kertas', styles: ['/css/style.css', '/css/pages/kalkulator-berat-kertas.css'], scripts: [], sweetAlert: false });
 </script>
 
 <template>
@@ -19,17 +9,9 @@ useLegacyPage({
       <div class="container text-standard">
         <div class="calculator-container" id="calculator">
           <div><LayoutCalculatorHeader /></div>
-          <PagesKalkulatorBeratKertasCalculatorIntroduction />
-          <PagesKalkulatorBeratKertasCalculatorTitle />
-          <PagesKalkulatorBeratKertasUnitSelector />
-          <PagesKalkulatorBeratKertasPaperSizeFields />
-          <PagesKalkulatorBeratKertasPaperWeightField />
-          <PagesKalkulatorBeratKertasQuantityFields />
-          <PagesKalkulatorBeratKertasCalculationResults />
+          <PagesKalkulatorBeratKertasPaperWeightCalculator />
         </div>
       </div>
     </main>
-
-    <PagesKalkulatorBeratKertasAddPaperModal />
   </div>
 </template>

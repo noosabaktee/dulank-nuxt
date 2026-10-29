@@ -28,6 +28,7 @@ const mainNavbarRoutes = new Set([
   "/post",
   "/product-list",
   "/profile",
+  "/daftar-percetakan",
   "/quotation-send",
   "/quotation-success",
   "/quotation-view",

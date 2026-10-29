@@ -140,7 +140,7 @@
           <label class="text-standard me-2">Ke</label>
           <input
             class="form-control number-separator"
-            readonly=""
+            readonly
             type="text"
             value="Dan seterusnya"
           />

@@ -36,7 +36,7 @@
               <h4 class="fs-6 text-dark mt-2">Shiping Method:</h4>
               <div class="form-check ms-3 align-items-center">
                 <input
-                  checked=""
+                  checked
                   class="form-check-input"
                   data-js-click="quotation-add-001"
                   id="radioShipping1"

@@ -50,7 +50,7 @@
                         <div class="col-md-7">
                           <div class="input-group">
                             <select class="form-select" id="satuanUkuran1-2">
-                              <option selected="">Centimeter</option>
+                              <option selected>Centimeter</option>
                               <option>Inch</option>
                               <option>Millimeter</option>
                             </select>

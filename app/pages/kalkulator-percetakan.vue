@@ -1,4 +1,5 @@
 <script setup lang="ts">
+definePageMeta({ middleware: 'auth' });
 useLegacyPage({
   title: "Kalkulator Percetakan",
   styles: ["/css/style.css"],

@@ -50,7 +50,7 @@
                         <div class="col-md-7">
                           <div class="input-group">
                             <select class="form-select" id="satuanUkuran4">
-                              <option selected="">Centimeter</option>
+                              <option selected>Centimeter</option>
                               <option>Inch</option>
                               <option>Millimeter</option>
                             </select>
@@ -68,7 +68,7 @@
                         <div class="col-md-7">
                           <div class="input-group">
                             <select class="form-select" id="pilihGroup4">
-                              <option selected="">Art Carton</option>
+                              <option selected>Art Carton</option>
                               <option>Art Paper</option>
                               <option>HVS</option>
                             </select>
@@ -267,7 +267,7 @@
                         <div class="col-md-7">
                           <div class="input-group">
                             <select class="form-select" id="pilihGroup4-2">
-                              <option selected="">Art Carton</option>
+                              <option selected>Art Carton</option>
                               <option>Art Paper</option>
                               <option>HVS</option>
                             </select>
@@ -300,7 +300,7 @@
                         <div class="col-md-7">
                           <div class="form-check mb-2">
                             <input
-                              checked=""
+                              checked
                               class="form-check-input"
                               id="size1"
                               type="checkbox"

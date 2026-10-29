@@ -35,12 +35,14 @@ The storefront now consumes the Laravel backend at `/home/bacink/DULANK/2026/dul
 
 ## Verification gotchas
 
-- `scripts/validate-migration.mjs` hard-codes counts: 55 source HTML pages, 55 page component folders, 56 `public/js` files, 63 `public/css` files, 3 `public/json` files (regions). It also rejects `.html` links inside Vue page components and any Bootstrap JS/CSS reference in runtime code. If you add, move, or rename files in those trees, update the expectations deliberately.
+- `scripts/validate-migration.mjs` hard-codes counts: 55 source HTML pages, 56 page component folders (55 legacy + merchant registration), 56 `public/js` files, 63 `public/css` files, 3 `public/json` files (regions). It also rejects `.html` links inside Vue page components and any Bootstrap JS/CSS reference in runtime code. If you add, move, or rename files in those trees, update the expectations deliberately.
 - `scripts/validate-revision-3.mjs` asserts exact selectors/strings in `bootstrap-compat.css`, `fidelity-fixes.css`, `app/components/Layout/MainNavbar.vue`, product spec forms (`id="custom-size"` / `id="custom-content"` default `d-none`), `public/js/product.js`, and `public/js/pages/kalkulator-potong-kertas.js`. Run it after touching those areas.
 - Root `MIGRATION_*.json`, `REVISION_*.json`, and `VALIDATION_REPORT.*` are historical audit output; do not hand-edit.
 - Doc drift: `docs/MIGRATION.md` mentions `@nuxt/ui` and `public/legacy-js`, neither of which exists. `docs/ROUTES.md` lists `/kontak` and `/kalkulator` aliases that are not implemented (`/catalog` is a real page).
 
 ## Conventions
+
+- **User instruction (2026-10-28): integration-only work must preserve the existing storefront design exactly. Keep original wrappers, grid widths, labels, input/button/ribbon treatments, camera badge, modal sections and CSS hooks. Bind real API data/events to that UI; do not replace it with a new form or layout. The explicitly requested localhost login helper remains permitted.**
 
 - Keep every original class, ID, and DOM hierarchy intact; visual fixes go into `fidelity-fixes.css` or `bootstrap-compat.css`, not into markup.
 - No generic `Content.vue`/`SomethingPage.vue` components; one folder per route with responsibility-named components.
@@ -58,5 +60,16 @@ The storefront now consumes the Laravel backend at `/home/bacink/DULANK/2026/dul
 ## Data ownership
 
 - **Store consumes backend data driven by dulank-admin CRUD.** All storefront pages read the same Eloquent tables that dulank-admin manages (products, categories, banners, paper prices/sizes, machines, partners, clients, blog, faqs, orders, etc.). A change made in admin (create/update/delete) is immediately reflected in the store — no duplicated data lives in the storefront.
-- **Exception: calculator pages are where storefront-side CRUD lives** (partners manage their own machines/paper/calculator listings from the store client). Store calculator CRUD endpoints exist under `/api/v1/calculator/*` (`abilities:store`, `partner_id`-scoped): `machines`, `paper-groups`, `paper-prices` (GET/POST/PUT/DELETE each). Ownership is `partner_id`-explicit because the user→partner relation does not exist yet — revisit with a real link (e.g. `partners.user_id`) before hardening.
+- **Calculator/merchant ownership (2026-10-28):** storefront CRUD uses the authenticated owner through `partners.owner_user_id` (unique), never an arbitrary partner ID. `MerchantAccess` requires a current Paid B2B subscription linked through `subscriptions.user_id`, account Active and appropriate feature. `subscriptions.customer_id` alone is not entitlement. Frozen merchants are blocked. New profile publication is a separate admin decision. CRUD `/api/v1/calculator/*` requires `catalog_manage`; cutting/weight APIs check their own features. See [docs/MERCHANT_B2B.md](docs/MERCHANT_B2B.md) for schema, routes, seeder, validation and remaining UAT.
 - `product-pages` settings (spec prices, price lists, galleries, guides) are backend settings, not admin CRUD — treat as content config; point admin tooling at them when admin editing is needed.
+
+## Alur awal kalkulator (29 Oktober 2026)
+
+- Seluruh workspace pribadi kalkulator pada `app/utils/merchant-routes.ts` membutuhkan sesi, usaha milik akun, serta langganan/fitur aktif. Guard global memeriksa API sebelum halaman ditampilkan, termasuk akses URL langsung. Akun tanpa usaha diarahkan ke `/daftar-percetakan`; jangan memakai `/profile-merchant` sebagai form pembuatan awal.
+- Form baru: foto opsional, nama, alamat lengkap dan WhatsApp wajib. POST `/api/v1/merchant-profile/onboarding` memeriksa subscription/ownership, menolak pendaftaran ganda, membuat usaha belum dipublikasikan dan menyimpan foto opsional bersama transaksi. Selesai -> `/profile-merchant`. Profil existing dapat dilihat ketika expired untuk perpanjangan, fitur operasional tetap terkunci.
+- Akun pembeli biasa tidak dibuatkan percetakan/subscription otomatis. Produk, keranjang dan profil toko publik tetap terpisah dari workspace kalkulator. Backend kalkulasi/CRUD calculator juga mengharuskan usaha; guard frontend bukan pengganti otorisasi API.
+
+
+## Standar input alamat (arahan pengguna 29 Oktober 2026)
+
+Gunakan pola pemilih alamat seperti profile-merchant untuk semua form alamat yang dikerjakan berikutnya: pencarian dan tab Provinsi -> Kota -> Kecamatan, tombol hapus dan reset pilihan turunan. Front store memakai `CommonRegionAddressInput` dan `useMerchantRegionPicker` (model alamat generik). Pendaftaran percetakan dan profil merchant sekarang memakai komponen yang sama. Gunakan inputId/idPrefix berbeda untuk beberapa instance, pertahankan ID legacy profil, dan kirim province/city/district bersama address ke backend. Jangan membuat textarea alamat bebas sebagai pengganti pola tersebut pada form baru.

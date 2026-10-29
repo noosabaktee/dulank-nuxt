@@ -1,3 +1,4 @@
+import { showActionToast } from '~/utils/actionToast';
 /**
  * Satu klien `$fetch` untuk seluruh aksi store & data komponen.
  *
@@ -19,7 +20,14 @@ export default defineNuxtPlugin(() => {
         options.headers = headers;
       }
     },
-    onResponseError({ response, request }) {
+    onResponse({ request, response, options }) {
+      const method = String(options.method || 'GET').toUpperCase();
+      if (['GET', 'HEAD', 'OPTIONS'].includes(method) || /\/auth\//.test(String(request)) || /\/calculator\/paper-(cutting|weight)/.test(String(request))) return;
+      if (response.ok && response._data?.success !== false) showActionToast(response._data?.message || (method === 'DELETE' ? 'Data berhasil dihapus.' : 'Perubahan berhasil disimpan.'), 'success', 'request');
+    },
+    onResponseError({ response, request, options }) {
+      const method = String(options.method || 'GET').toUpperCase();
+      if (!['GET', 'HEAD', 'OPTIONS'].includes(method) && !/\/auth\//.test(String(request))) showActionToast(response._data?.message || 'Aksi belum berhasil. Periksa kembali data Anda.', 'error', 'request');
       if (response.status === 401) {
         const auth = useAuthStore();
         auth.reset();

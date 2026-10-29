@@ -32,7 +32,7 @@ const visible = computed(() => {
 
   return rows.sort((a, b) =>
     sort.value === "highest"
-      ? b.total - a.total
+      ? (b.total ?? 0) - (a.total ?? 0)
       : sort.value === "oldest"
         ? a.date.localeCompare(b.date)
         : b.date.localeCompare(a.date),
@@ -87,7 +87,7 @@ const visible = computed(() => {
           class="col-12 col-md-2 text-start text-md-end"
           data-label="Total Price"
         >
-          {{ money(quotation.total) }}
+          {{ money(quotation.total ?? 0) }}
         </div>
         <div
           class="col-12 col-md-2 text-start text-md-end actions-mobile-separator"

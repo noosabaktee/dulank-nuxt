@@ -1,5 +1,7 @@
 # Route Migration
 
+> **28 Oktober 2026:** route integrasi profil merchant, kalkulator potong/berat dan profil toko publik beserta kontrak admin/backend terdapat di [MERCHANT_B2B.md](MERCHANT_B2B.md). Route tabel di bawah tetap dipertahankan.
+
 | Static source | Nuxt route | Page component |
 |---|---|---|
 | `404.html` | `/404` | `404Page` |
@@ -59,3 +61,12 @@
 | `wishlist.html` | `/wishlist` | `WishlistPage` |
 
 Compatibility aliases: `/catalog` → product list, `/kontak` → contact, `/kalkulator` → kalkulator percetakan.
+
+
+## Pendaftaran percetakan - 29 Oktober 2026
+
+| Sumber | Route | Komponen |
+|---|---|---|
+| Form baru, bukan halaman profil legacy | `/daftar-percetakan` | `Pages/DaftarPercetakan/BusinessRegistrationForm.vue` |
+
+Workspace kalkulator diproteksi oleh `app/middleware/merchant.global.ts` dan daftar di `app/utils/merchant-routes.ts`. Tanpa usaha: redirect ke form pendaftaran; setelah submit berhasil: `/profile-merchant`. Tanpa sesi: login. Form tanpa langganan aktif menampilkan penjelasan dan menonaktifkan submit; pembeli tetap dapat membuka produk/keranjang dan profil toko publik. Detail endpoint dan akun pada [MERCHANT_B2B.md](MERCHANT_B2B.md), bagian 20.
