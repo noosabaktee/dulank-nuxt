@@ -2,10 +2,11 @@
 import { showActionToast } from '~/utils/actionToast';
 import type { CuttingResult } from '~/composables/usePaperCutting';
 import { buildManualPaperLayout, type ManualPaperLayout } from '~/utils/manualPaperLayout';
-const props = defineProps<{ result: CuttingResult; form: ManualPaperLayout; dimensions: Pick<ManualPaperLayout, 'canvasX' | 'canvasY' | 'cutX' | 'cutY'>; unit: 'cm' | 'mm'; count: number }>();
-const emit = defineEmits<{ layout: [result: CuttingResult] }>();
+const props = defineProps<{ result: CuttingResult | null; form: ManualPaperLayout; dimensions: Pick<ManualPaperLayout, 'canvasX' | 'canvasY' | 'cutX' | 'cutY'>; unit: 'cm' | 'mm'; count: number }>();
+const emit = defineEmits<{ layout: [result: CuttingResult]; calculate: [] }>();
 const error = ref('');
 function generate() {
+  if (!props.result) { emit('calculate'); return; }
   try {
     error.value = '';
     const layout = buildManualPaperLayout(props.form, props.result);
@@ -98,6 +99,22 @@ defineExpose({ generate });
                     ><b>kotak sisa Y</b>
                     <input class="form-control" id="sisa_y" v-model.number="form.remainderRows" type="text"
                   /></span>
+                  <span class="text-standard my-2 d-block"><b>Penempatan Arah Sisa 2</b>
+                    <select class="form-select text-standard" id="arah_sisa_2" v-model="form.secondDirection">
+                      <option value="-">-</option><option value="Kanan">Kanan</option><option value="Bawah">Bawah</option>
+                    </select>
+                  </span>
+                  <span class="text-standard my-2 d-block"><b>Posisi Kotak Sisa 2</b>
+                    <select class="form-select text-standard" id="posisi_sisa_2" v-model="form.secondPosition">
+                      <option value="-">-</option><option value="Portrait">Portrait</option><option value="Landscape">Landscape</option>
+                    </select>
+                  </span>
+                  <span class="text-standard my-2 d-block"><b>Kotak sisa X2</b>
+                    <input class="form-control" id="sisa_x_2" v-model.number="form.secondColumns" type="text" />
+                  </span>
+                  <span class="text-standard my-2 d-block"><b>Kotak sisa Y2</b>
+                    <input class="form-control" id="sisa_y_2" v-model.number="form.secondRows" type="text" />
+                  </span>
                 </div>
                 <div class="mt-md-0 mt-3">
                   <button

@@ -180,3 +180,10 @@
   align-items: center;
   color: inherit;
 }
+
+/* Physical SVG dimensions belong to the download; the preview fits its column. */
+.svg-wrap > #planoSVG {
+  display: block;
+  width: 100%;
+  height: auto;
+}

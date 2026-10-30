@@ -1,6 +1,7 @@
 import { showActionToast } from '~/utils/actionToast'
+import { calculatePlano, type PaperGroup, type PaperPlacement } from '~/utils/planoCalculator'
 export interface PaperSizeOption { id: number; name: string; length: number; width: number; unit: string }
-export interface CuttingResult { displayUnit?: 'mm' | 'cm'; cutWidth?: number; cutHeight?: number; gap?: number; sizeId: number | null; name: string; width: number; height: number; count: number; utilization: number; placements: { isRemainder?: boolean; x: number; y: number; width: number; height: number }[] }
+export interface CuttingResult { displayUnit?: 'mm' | 'cm'; cutWidth?: number; cutHeight?: number; gap?: number; groups?: PaperGroup[]; pattern?: number; sizeId: number | null; name: string; width: number; height: number; count: number; utilization: number; placements: PaperPlacement[] }
 export interface CuttingForm { unit: 'mm' | 'cm'; cutWidth: number; cutHeight: number; gap: number; selected: number[]; custom: boolean; width: number; height: number }
 export function usePaperCutting() {
   const { $api } = useNuxtApp()
@@ -18,7 +19,12 @@ export function usePaperCutting() {
       const scale = displayUnit === 'cm' ? 10 : 1
       const body = { sizeIds: form.custom ? [] : form.selected, cutWidth: form.cutWidth * scale, cutHeight: form.cutHeight * scale, gap: form.gap * scale, ...(form.custom ? { custom: { width: form.width * scale, height: form.height * scale } } : {}) }
       const response = await $api<{ data: CuttingResult[] }>('/calculator/paper-cutting', { method: 'POST', body })
-      results.value = response.data.map(row => ({ ...row, displayUnit, cutWidth: body.cutWidth, cutHeight: body.cutHeight, gap: body.gap }))
+      // The API still enforces merchant entitlement and resolves canonical paper sizes.
+      // Storefront layouts use the final Excel model for both the result table and SVG.
+      results.value = response.data.map(row => {
+        const { candidates, ...layout } = calculatePlano({ width: row.width, height: row.height, cutWidth: body.cutWidth, cutHeight: body.cutHeight, gap: body.gap, displayUnit })
+        return { ...row, ...layout, displayUnit }
+      })
     } catch (cause: any) { error.value = cause?.data?.message || cause?.message || 'Perhitungan belum berhasil. Periksa ukuran dan akses langganan.'; showActionToast(error.value, 'error') }
     finally { busy.value = false }
   }
