@@ -187,3 +187,7 @@
   width: 100%;
   height: auto;
 }
+
+#generatePatternModal #planoSVG {
+  max-height: 65vh;
+}

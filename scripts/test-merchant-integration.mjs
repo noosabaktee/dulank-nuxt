@@ -107,7 +107,20 @@ test('Generate rows and SVG preview display actual result quantities and positio
  const rows = await render('app/components/Pages/KalkulatorPotongKertas/CuttingResults.vue', { results: [result] })
  assert.match(rows, /Plano Database/); assert.match(rows, /2 Lembar/); assert.match(rows, /25%/)
  const modal = await render('app/components/Pages/KalkulatorPotongKertas/PatternGeneratorModal.vue', { result })
- assert.match(modal, /viewBox="0 0 120 115.2"/); assert.match(modal, /x='60'/); assert.match(modal, /Download SVG/); assert.match(modal, /Manual controls/)
+ assert.match(modal, /viewBox="0 0 120 115.2"/); assert.match(modal, /x='60'/); assert.match(modal, /Download SVG/)
+ assert.match(modal, /id="plano_x"/); assert.match(modal, /id="ukuran_cetak_x"/)
+ assert.doesNotMatch(modal, /Manual controls|id="mainForm"|id="generateBtn"/)
+ const scope = Vue.effectScope()
+ const component = compileComponent('app/components/Pages/KalkulatorPotongKertas/PatternGeneratorModal.vue', { onMounted() {}, onBeforeUnmount() {} })
+ const state = scope.run(() => component.setup(Vue.reactive({ result }), { expose() {}, emit() {} }))
+ assert.equal(state.displayed.value.count, 2)
+ state.dimensions.cutX = 25
+ assert.equal(state.displayed.value.count, 16)
+ assert.match(state.documentSvg.value.svg, />16<\/text>/)
+ state.dimensions.cutX = 0
+ assert.equal(state.documentSvg.value, null)
+ assert.match(state.preview.value.error, /Ukuran/)
+ scope.stop()
 })
 
 
