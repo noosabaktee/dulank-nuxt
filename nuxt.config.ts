@@ -1,5 +1,7 @@
 import tailwindcss from '@tailwindcss/vite'
 
+const backendUrl = (process.env.NUXT_BACKEND_URL || 'http://127.0.0.1:8000').trim().replace(/\/+$/, '')
+
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
@@ -19,10 +21,10 @@ export default defineNuxtConfig({
   },
   routeRules: {
     '/api/v1/**': {
-      proxy: `${process.env.NUXT_BACKEND_URL || 'http://127.0.0.1:8000'}/api/v1/**`,
+      proxy: `${backendUrl}/api/v1/**`,
     },
     '/storage/**': {
-      proxy: `${process.env.NUXT_BACKEND_URL || 'http://127.0.0.1:8000'}/storage/**`,
+      proxy: `${backendUrl}/storage/**`,
     },
   },
 })
