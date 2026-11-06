@@ -45,6 +45,7 @@ The storefront now consumes the Laravel backend at `/home/bacink/DULANK/2026/dul
 - **User instruction (2026-10-28): integration-only work must preserve the existing storefront design exactly. Keep original wrappers, grid widths, labels, input/button/ribbon treatments, camera badge, modal sections and CSS hooks. Bind real API data/events to that UI; do not replace it with a new form or layout. The explicitly requested localhost login helper remains permitted.**
 
 - Keep every original class, ID, and DOM hierarchy intact; visual fixes go into `fidelity-fixes.css` or `bootstrap-compat.css`, not into markup.
+- **Demo login (2026-11-06):** User requested the existing Akun 1/2/3 shortcuts in both local and production builds. Keep them visible without a localhost or development-only gate. They fill credentials and submit through normal backend authentication; the frontend does not create accounts or grant merchant access.
 - No generic `Content.vue`/`SomethingPage.vue` components; one folder per route with responsibility-named components.
 - Component folders and files under `app/components/` use PascalCase (e.g. `Pages/CetakBuku/ProductOverview.vue`).
 - Convert legacy `*.html` links to extension-less Nuxt routes.

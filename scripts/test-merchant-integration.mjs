@@ -272,20 +272,36 @@ test('inline calculator introduction saves the chosen page and preserves a faile
  scope.stop()
 })
 
-test('the three account shortcuts are local development only and select different fixture users', async () => {
+test('demo account shortcuts work in local and production builds and submit through normal authentication', async () => {
  const file='app/components/Pages/Login/LoginForm.vue'
- const extra={testDev:true,useRoute:()=>({query:{}}),useAuthStore:()=>({}),useRequestURL:()=>({hostname:'localhost'})}
- const local=await render(file,{},extra)
- assert.match(local,/Akun 1/); assert.match(local,/Akun 2/); assert.match(local,/Akun 3/)
- for (const context of [{...extra,testDev:false},{...extra,useRequestURL:()=>({hostname:'dulank.id'})}]) {
-  const html=await render(file,{},context); assert.doesNotMatch(html,/Akun 1|Akun 2|Akun 3/)
+ const calls=[]; const navigations=[]
+ const auth={login:async(email,password)=>{calls.push({email,password})}}
+ const extra={testDev:true,useRoute:()=>({query:{redirect:'/kalkulator-potong-kertas'}}),useAuthStore:()=>auth,useRequestURL:()=>({hostname:'localhost'}),navigateTo:path=>navigations.push(path)}
+ for (const context of [extra,{...extra,testDev:false},{...extra,testDev:false,useRequestURL:()=>({hostname:'dulank.id'})}]) {
+  const html=await render(file,{},context)
+  assert.match(html,/Akun 1/); assert.match(html,/Akun 2/); assert.match(html,/Akun 3/)
+  assert.doesNotMatch(html,/Khusus development lokal/)
+  const {descriptor}=parse(source(file)); const script=compileScript(descriptor,{id:'login-helper'})
+  const component=evaluate(script.content,context).default
+  const form=component.setup({}, {expose(){}})
+  const before=calls.length
+  for (const [account,email] of [[1,'raka@grafikakarawang.test'],[2,'dimas@ruangcetak.test'],[3,'sinta@belanjacetak.test']]) {
+   form.fillDemoAccount(account)
+   assert.equal(form.email.value,email); assert.equal(form.password.value,'DulankB2B!2026')
+   assert.equal(calls.length,before)
+  }
+  await form.onSubmit()
+  assert.deepEqual(calls.at(-1),{email:'sinta@belanjacetak.test',password:'DulankB2B!2026'})
+  assert.equal(navigations.at(-1),'/kalkulator-potong-kertas')
  }
- const {descriptor}=parse(source(file)); const script=compileScript(descriptor,{id:'login-helper'})
- const component=evaluate(script.content,extra).default
+ auth.login=async()=>{throw {data:{message:'Kredensial tidak valid.'}}}
+ const {descriptor}=parse(source(file)); const script=compileScript(descriptor,{id:'login-error'})
+ const component=evaluate(script.content,{...extra,testDev:false}).default
  const form=component.setup({}, {expose(){}})
- form.fillLocalAccount(1); assert.equal(form.email.value,'raka@grafikakarawang.test')
- form.fillLocalAccount(2); assert.equal(form.email.value,'dimas@ruangcetak.test')
- form.fillLocalAccount(3); assert.equal(form.email.value,'sinta@belanjacetak.test')
+ const before=navigations.length
+ form.fillDemoAccount(1); await form.onSubmit()
+ assert.equal(form.errorMessage.value,'Kredensial tidak valid.')
+ assert.equal(form.submitting.value,false); assert.equal(navigations.length,before)
 })
 
 
