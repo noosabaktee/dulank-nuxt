@@ -130,12 +130,14 @@ test('custom paper dimensions replace all preset choices and Cancel restores the
  for (const custom of [false, true, false]) {
   form.custom = custom
   const html = await render('app/components/Pages/KalkulatorPotongKertas/CuttingSpecificationForm.vue', props)
+  assert.match(html, /data-dulank-spec-owner="vue"/)
   assert.equal(html.includes('id="ukuran-plano-custom"'), custom)
   assert.equal(html.includes('id="ukuran-plano"'), !custom)
   assert.equal(html.includes('Lihat ukuran yang tersedia'), !custom)
   assert.equal(html.includes('Plano Database'), !custom)
   assert.match(html, custom ? /Cancel/ : /Custom/)
  }
+ assert.match(source('app/pages/kalkulator-berat-kertas.vue'), /data-dulank-spec-owner="vue"/)
 })
 
 test('merchant address cascades by canonical IDs rather than ambiguous city labels', () => {

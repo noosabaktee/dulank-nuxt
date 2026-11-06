@@ -168,8 +168,14 @@ function setSpecControlState(control, selected) {
 }
 
 function initSpecificationControls() {
+    // This script can be evaluated again after Nuxt navigation. Keep one
+    // listener per element, including when separate evaluations initialize it.
+    const initialized = window.__dulankSpecControls ||= new WeakSet();
     document.querySelectorAll('.btn-spec').forEach(control => {
+        if (control.closest('[data-dulank-spec-owner="vue"]') || initialized.has(control)) return;
+        initialized.add(control);
         control.addEventListener('click', event => {
+            if (control.closest('[data-dulank-spec-owner="vue"]')) return;
             const group = control.parentElement;
             if (!group) return;
 

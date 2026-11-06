@@ -11,7 +11,7 @@ function toggle(id: number) {
 </script>
 
 <template>
-  <div>
+  <div data-dulank-spec-owner="vue">
     <div>
       <h1 class="fs-4">{{ title }}</h1>
       <CommonCalculatorIntroduction page="paper_cutting" :fallback="introduction" />

@@ -4,7 +4,7 @@ useLegacyPage({ title: 'Berat Kertas', styles: ['/css/style.css', '/css/pages/ka
 </script>
 
 <template>
-  <div class="dulank-page dulank-page-kalkulator-berat-kertas">
+  <div class="dulank-page dulank-page-kalkulator-berat-kertas" data-dulank-spec-owner="vue">
     <main>
       <div class="container text-standard">
         <div class="calculator-container" id="calculator">

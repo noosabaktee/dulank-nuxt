@@ -7,8 +7,6 @@ interface LegacyPageOptions {
 }
 
 const scriptCache = new Map<string, string>();
-let patchRefCount = 0;
-let capturedCallbacks: EventListener[] = [];
 
 export function useLegacyPage(options: LegacyPageOptions) {
   const links = [
@@ -43,6 +41,9 @@ export function useLegacyPage(options: LegacyPageOptions) {
 
   useHead({ title: options.title, link: links });
 
+  let disposed = false;
+  onBeforeUnmount(() => { disposed = true; });
+
   onMounted(async () => {
     if (options.sweetAlert && !(window as any).Swal) {
       try {
@@ -54,8 +55,9 @@ export function useLegacyPage(options: LegacyPageOptions) {
       }
     }
 
-    patchRefCount++;
-    const originalAdd = document.addEventListener.bind(document);
+    if (disposed) return;
+    const capturedCallbacks: EventListener[] = [];
+    const originalAdd = document.addEventListener;
     const patchedAdd: typeof document.addEventListener = ((
       type: string,
       listener: EventListenerOrEventListenerObject,
@@ -70,13 +72,12 @@ export function useLegacyPage(options: LegacyPageOptions) {
         return;
       }
 
-      return originalAdd(type, listener, opts as any);
+      return originalAdd.call(document, type, listener, opts as any);
     }) as typeof document.addEventListener;
-
-    (document as any).addEventListener = patchedAdd;
 
     try {
       for (const src of options.scripts || []) {
+        if (disposed) return;
         let code = scriptCache.get(src);
 
         if (code === undefined) {
@@ -87,6 +88,7 @@ export function useLegacyPage(options: LegacyPageOptions) {
           code = await response.text();
           scriptCache.set(src, code);
         }
+        if (disposed) return;
 
         // Legacy files were originally separate classic scripts. Keep their
         // declarations available to later files while avoiding top-level
@@ -108,7 +110,15 @@ export function useLegacyPage(options: LegacyPageOptions) {
             `  checkValue: typeof checkValue === 'function' ? checkValue : undefined\n` +
             `};\n//# sourceURL=${src}`,
         );
-        const exported = fn.call(window) as Record<string, unknown>;
+        // Capture only this script's synchronous registrations. Never leave
+        // the document patched while downloads or another page are pending.
+        let exported: Record<string, unknown>;
+        document.addEventListener = patchedAdd;
+        try {
+          exported = fn.call(window) as Record<string, unknown>;
+        } finally {
+          document.addEventListener = originalAdd;
+        }
 
         for (const [name, value] of Object.entries(exported)) {
           if (typeof value === "function") {
@@ -117,24 +127,21 @@ export function useLegacyPage(options: LegacyPageOptions) {
         }
       }
     } catch (error) {
-      console.error("[Dulank legacy runtime]", error);
+      if (!disposed) console.error("[Dulank legacy runtime]", error);
     } finally {
-      patchRefCount--;
-
-      if (patchRefCount === 0) {
-        (document as any).addEventListener = originalAdd;
+      if (!disposed) {
         const event = new Event("DOMContentLoaded");
 
-        capturedCallbacks.forEach((callback) => {
+        for (const callback of capturedCallbacks) {
+          if (disposed) break;
           try {
             callback.call(document, event);
           } catch (error) {
             console.error("[Dulank page init]", error);
           }
-        });
+        }
 
-        capturedCallbacks = [];
-        options.onScriptsLoaded?.();
+        if (!disposed) options.onScriptsLoaded?.();
       }
     }
   });
