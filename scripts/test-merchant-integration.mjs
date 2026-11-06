@@ -8,23 +8,25 @@ import * as SSR from 'vue/server-renderer'
 import { parse, compileScript, compileTemplate } from '@vue/compiler-sfc'
 function evaluate(source, extra = {}) {
  const js = ts.transpileModule(source.replaceAll('import.meta.dev', String(extra.testDev ?? false)), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } }).outputText
- const context = { exports: {}, ...Vue, ...extra, require: name => { if (name === 'vue') return Vue; if (name === 'vue/server-renderer') return SSR; if (name === '~/utils/merchant-routes' || name === './merchant-routes') return merchantRouteHelpers; if (name === '~/utils/auth-routes') return authRouteHelpers; if (name === '~/utils/manualPaperLayout') return manualHelpers; if (name === '~/utils/actionToast') return { showActionToast() {} }; throw new Error(`Unexpected import ${name}`) } }
+ const context = { exports: {}, ...Vue, ...extra, require: name => { if (name === 'vue') return Vue; if (name === 'vue/server-renderer') return SSR; if (name === '~/utils/merchant-routes' || name === './merchant-routes') return merchantRouteHelpers; if (name === '~/utils/auth-routes') return authRouteHelpers; if (name === '~/utils/manualPaperLayout') return manualHelpers; if (name === '~/utils/planoCalculator' || name === './planoCalculator') return planoHelpers; if (name === '~/utils/planoSvg') return svgHelpers; if (name === '~/utils/actionToast') return { showActionToast() {} }; throw new Error(`Unexpected import ${name}`) } }
  vm.runInNewContext(js, context); return context.exports
 }
 function source(file) { return fs.readFileSync(file, 'utf8') }
 const merchantRouteHelpers = evaluate(source('app/utils/merchant-routes.ts'))
 const authRouteHelpers = evaluate(source('app/utils/auth-routes.ts'))
+const planoHelpers = evaluate(source('app/utils/planoCalculator.ts'))
+const svgHelpers = evaluate(source('app/utils/planoSvg.ts'))
 const manualHelpers = evaluate(source('app/utils/manualPaperLayout.ts'))
 const { buildManualPaperLayout, manualFormFromResult, paperDimensionFields } = manualHelpers
 test('manual preview preserves original grid count and rotated remainder controls', () => {
- const form = { canvasX: 100, canvasY: 80, cutX: 20, cutY: 10, position: 'Portrait', columns: 4, rows: 8, remainderDirection: 'Kanan', remainderPosition: 'Landscape', remainderColumns: 1, remainderRows: 4 }
+ const form = { canvasX: 100, canvasY: 80, cutX: 20, cutY: 10, position: 'Landscape', columns: 4, rows: 8, remainderDirection: 'Kanan', remainderPosition: 'Portrait', remainderColumns: 1, remainderRows: 4 }
  const result = buildManualPaperLayout(form, { name: 'Plano', sizeId: 1 })
  assert.equal(result.count, 36); assert.equal(result.placements.length, 36)
  assert.ok(result.placements.every(piece => piece.x >= 0 && piece.y >= 0 && piece.x + piece.width <= 100 && piece.y + piece.height <= 80))
  assert.throws(() => buildManualPaperLayout({ ...form, rows: 10000 }, result), /5.000/)
  assert.throws(() => buildManualPaperLayout({ ...form, canvasX: 0 }, result), /Ukuran/)
 })
-test('cutting request normalizes cm to mm and keeps selected result layouts from the API', async () => {
+test('cutting request enforces API access and uses the final Excel model for its result table', async () => {
  const calls = []; const response = [{ sizeId: 7, width: 650, height: 900, count: 54, placements: [] }]
  const exports = evaluate(source('app/composables/usePaperCutting.ts'), {
   useApi: url => ({ data: Vue.ref(url.includes('paper-sizes') ? [{ id: 7 }] : {}), pending: Vue.ref(false), error: Vue.ref(null) }),
@@ -35,7 +37,7 @@ test('cutting request normalizes cm to mm and keeps selected result layouts from
  await Vue.nextTick(); await calculator.calculate()
  assert.equal(calculator.results.value[0].displayUnit, 'cm'); assert.equal(calculator.results.value[0].cutWidth, 100); assert.equal(calculator.results.value[0].gap, 1)
  assert.equal(calls[0].body.cutWidth, 100); assert.equal(calls[0].body.gap, 1)
- assert.deepEqual([...calls[0].body.sizeIds], [7]); assert.equal(calculator.results.value[0].count, 54)
+ assert.deepEqual([...calls[0].body.sizeIds], [7]); assert.equal(calculator.results.value[0].count, 48)
  calculator.form.cutWidth = 20; await Vue.nextTick(); assert.equal(calculator.results.value.length, 0)
  effect.stop()
 })
@@ -105,7 +107,20 @@ test('Generate rows and SVG preview display actual result quantities and positio
  const rows = await render('app/components/Pages/KalkulatorPotongKertas/CuttingResults.vue', { results: [result] })
  assert.match(rows, /Plano Database/); assert.match(rows, /2 Lembar/); assert.match(rows, /25%/)
  const modal = await render('app/components/Pages/KalkulatorPotongKertas/PatternGeneratorModal.vue', { result })
- assert.match(modal, /viewBox="0 0 600 492"/); assert.match(modal, /x="50"/); assert.match(modal, /Download SVG/); assert.match(modal, /Manual controls/)
+ assert.match(modal, /viewBox="0 0 120 115.2"/); assert.match(modal, /x='60'/); assert.match(modal, /Download SVG/)
+ assert.match(modal, /id="plano_x"/); assert.match(modal, /id="ukuran_cetak_x"/)
+ assert.doesNotMatch(modal, /Manual controls|id="mainForm"|id="generateBtn"/)
+ const scope = Vue.effectScope()
+ const component = compileComponent('app/components/Pages/KalkulatorPotongKertas/PatternGeneratorModal.vue', { onMounted() {}, onBeforeUnmount() {} })
+ const state = scope.run(() => component.setup(Vue.reactive({ result }), { expose() {}, emit() {} }))
+ assert.equal(state.displayed.value.count, 2)
+ state.dimensions.cutX = 25
+ assert.equal(state.displayed.value.count, 16)
+ assert.match(state.documentSvg.value.svg, />16<\/text>/)
+ state.dimensions.cutX = 0
+ assert.equal(state.documentSvg.value, null)
+ assert.match(state.preview.value.error, /Ukuran/)
+ scope.stop()
 })
 
 
@@ -186,50 +201,36 @@ test('preview keeps entered orientation and converts mm geometry back to cm in b
  const mm = paperDimensionFields(form, () => 'mm'); assert.equal(mm.cutX, 495)
 })
 
-test('manual Generate matches the original generate-plano.js formula and coordinates', () => {
- for (const position of ['Portrait','Landscape']) for (const direction of ['Kanan','Bawah','-']) {
-  const form={canvasX:100,canvasY:80,cutX:20,cutY:10,position,columns:4,rows:3,remainderDirection:direction,remainderPosition:'Landscape',remainderColumns:1,remainderRows:2}
-  const inputs={canvas_x:100,canvas_y:80,cetak_x:20,cetak_y:10,posisi_awal:position,dup_x:4,dup_y:3,arah_sisa:direction,posisi_sisa:'Landscape',sisa_x:1,sisa_y:2,qty:999}
-  const nodes=Object.fromEntries(Object.entries(inputs).map(([k,value])=>[k,{value}]))
-  const rects=[]
-  const svg={setAttribute(){},set innerHTML(value){rects.length=0},appendChild(rect){rects.push(rect)}}
-  nodes.planoSVG=svg
-  nodes.generateBtn={addEventListener(){}}; nodes.downloadSVG={addEventListener(){}}
-  const document={getElementById:id=>nodes[id],createElementNS:()=>({setAttribute(key,value){this[key]=value}})}
-  const context={document}; vm.createContext(context)
-  vm.runInContext(source('public/js/generate-plano.js'),context); context.drawPlanoManual()
-  const result=buildManualPaperLayout(form,{name:'Plano',sizeId:1,gap:10})
-  assert.equal(result.count,14); assert.equal(nodes.qty.value,14); assert.equal(result.count,rects.length-1)
-  const scale=Math.min(540/form.canvasX,540/form.canvasY)
-  result.placements.forEach((piece,index)=>{
-   const rect=rects[index+1]
-   assert.ok(Math.abs(rect.x-(30+piece.x*scale))<1e-8)
-   assert.ok(Math.abs(rect.y-(30+piece.y*scale))<1e-8)
-   assert.ok(Math.abs(rect.width-piece.width*scale)<1e-8)
-   assert.ok(Math.abs(rect.height-piece.height*scale)<1e-8)
-  })
- }
+test('manual Generate uses Excel orientation, row-major numbering and preserves the requested gap', () => {
+ const form={canvasX:100,canvasY:100,cutX:10,cutY:20,position:'Portrait',columns:4,rows:3,remainderDirection:'Kanan',remainderPosition:'Landscape',remainderColumns:1,remainderRows:2}
+ const result=buildManualPaperLayout(form,{name:'Plano',sizeId:1,gap:2})
+ assert.equal(result.count,14)
+ assert.equal(result.placements[1].x,12); assert.equal(result.placements[1].y,0)
+ assert.equal(result.placements[4].x,0); assert.equal(result.placements[4].y,22)
+ assert.equal(result.placements[12].x,48); assert.equal(result.placements[12].width,20)
+ assert.equal(result.placements[13].y,12)
+ assert.throws(()=>buildManualPaperLayout({...form,remainderDirection:'-'},result),/arah/)
 })
 
 test('Qty PCS is an output of the original grid formula and does not clip the preview', async () => {
  const result={name:'Plano',sizeId:1,width:100,height:80,cutWidth:50,cutHeight:20,displayUnit:'cm',count:2,placements:[{x:0,y:0,width:50,height:20},{x:50,y:0,width:50,height:20}]}
  const modal=await render('app/components/Pages/KalkulatorPotongKertas/PatternGeneratorModal.vue',{result})
- assert.match(modal, /x="50"/); assert.doesNotMatch(modal, /kapasitas susunan/)
+ assert.match(modal, /x='60'/); assert.doesNotMatch(modal, /kapasitas susunan/)
  const form=manualFormFromResult(result)
  const controls=await render('app/components/Pages/KalkulatorPotongKertas/PatternManualControls.vue',{result,form,dimensions:paperDimensionFields(form,()=> 'cm'),count:2,unit:'cm'})
  assert.match(controls,/id="qty"[^>]*value="2"/); assert.match(controls,/id="qty"[^>]*readonly/)
 })
 
 
-test('remainder boxes stay orange when their orientation matches the primary boxes', async () => {
+test('all groups use the Excel orientation colors and retain separate manual controls', async () => {
  for (const position of ['Portrait','Landscape']) {
-  const form={canvasX:790,canvasY:1090,cutX:500,cutY:250,position,columns:2,rows:2,remainderDirection:'Bawah',remainderPosition:position,remainderColumns:2,remainderRows:2}
+  const form={canvasX:1000,canvasY:2000,cutX:250,cutY:500,position,columns:2,rows:2,remainderDirection:'Bawah',remainderPosition:position,remainderColumns:2,remainderRows:2}
   const result=buildManualPaperLayout(form,{name:'Plano',sizeId:1,displayUnit:'cm'})
   assert.equal(result.count,8)
   assert.equal(result.placements.filter(p=>p.isRemainder).length,4)
   const modal=await render('app/components/Pages/KalkulatorPotongKertas/PatternGeneratorModal.vue',{result})
-  assert.equal((modal.match(/fill="#fff7e6"/g)||[]).length,4)
-  assert.equal((modal.match(/stroke="#e67e22"/g)||[]).length,4)
+  const fill = position === 'Landscape' ? '#EFF6FF' : '#F0FDF4'
+  assert.equal((modal.match(new RegExp(`fill='${fill}'`, 'g'))||[]).length,8)
   const inferred=manualFormFromResult(result)
   assert.equal(inferred.remainderRows,2); assert.equal(inferred.remainderColumns,2)
  }
@@ -271,20 +272,36 @@ test('inline calculator introduction saves the chosen page and preserves a faile
  scope.stop()
 })
 
-test('the three account shortcuts are local development only and select different fixture users', async () => {
+test('demo account shortcuts work in local and production builds and submit through normal authentication', async () => {
  const file='app/components/Pages/Login/LoginForm.vue'
- const extra={testDev:true,useRoute:()=>({query:{}}),useAuthStore:()=>({}),useRequestURL:()=>({hostname:'localhost'})}
- const local=await render(file,{},extra)
- assert.match(local,/Akun 1/); assert.match(local,/Akun 2/); assert.match(local,/Akun 3/)
- for (const context of [{...extra,testDev:false},{...extra,useRequestURL:()=>({hostname:'dulank.id'})}]) {
-  const html=await render(file,{},context); assert.doesNotMatch(html,/Akun 1|Akun 2|Akun 3/)
+ const calls=[]; const navigations=[]
+ const auth={login:async(email,password)=>{calls.push({email,password})}}
+ const extra={testDev:true,useRoute:()=>({query:{redirect:'/kalkulator-potong-kertas'}}),useAuthStore:()=>auth,useRequestURL:()=>({hostname:'localhost'}),navigateTo:path=>navigations.push(path)}
+ for (const context of [extra,{...extra,testDev:false},{...extra,testDev:false,useRequestURL:()=>({hostname:'dulank.id'})}]) {
+  const html=await render(file,{},context)
+  assert.match(html,/Akun 1/); assert.match(html,/Akun 2/); assert.match(html,/Akun 3/)
+  assert.doesNotMatch(html,/Khusus development lokal/)
+  const {descriptor}=parse(source(file)); const script=compileScript(descriptor,{id:'login-helper'})
+  const component=evaluate(script.content,context).default
+  const form=component.setup({}, {expose(){}})
+  const before=calls.length
+  for (const [account,email] of [[1,'raka@grafikakarawang.test'],[2,'dimas@ruangcetak.test'],[3,'sinta@belanjacetak.test']]) {
+   form.fillDemoAccount(account)
+   assert.equal(form.email.value,email); assert.equal(form.password.value,'DulankB2B!2026')
+   assert.equal(calls.length,before)
+  }
+  await form.onSubmit()
+  assert.deepEqual(calls.at(-1),{email:'sinta@belanjacetak.test',password:'DulankB2B!2026'})
+  assert.equal(navigations.at(-1),'/kalkulator-potong-kertas')
  }
- const {descriptor}=parse(source(file)); const script=compileScript(descriptor,{id:'login-helper'})
- const component=evaluate(script.content,extra).default
+ auth.login=async()=>{throw {data:{message:'Kredensial tidak valid.'}}}
+ const {descriptor}=parse(source(file)); const script=compileScript(descriptor,{id:'login-error'})
+ const component=evaluate(script.content,{...extra,testDev:false}).default
  const form=component.setup({}, {expose(){}})
- form.fillLocalAccount(1); assert.equal(form.email.value,'raka@grafikakarawang.test')
- form.fillLocalAccount(2); assert.equal(form.email.value,'dimas@ruangcetak.test')
- form.fillLocalAccount(3); assert.equal(form.email.value,'sinta@belanjacetak.test')
+ const before=navigations.length
+ form.fillDemoAccount(1); await form.onSubmit()
+ assert.equal(form.errorMessage.value,'Kredensial tidak valid.')
+ assert.equal(form.submitting.value,false); assert.equal(navigations.length,before)
 })
 
 

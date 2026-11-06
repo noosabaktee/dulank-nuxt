@@ -202,3 +202,12 @@ Route `/daftar-percetakan` sekarang memakai pemilih alamat yang sama dengan `/pr
 Pendaftaran mengirim dan backend menyimpan province/city/district terpilih bersama address. Field wilayah ditambahkan sebagai nullable untuk kompatibilitas record/request alamat lama; tidak membuat migration, seeder atau mengubah data existing. Alamat lama tetap aman dan dapat diubah melalui pemilih yang sama. Hapus field mengosongkan pilihan wilayah; kontrol tidak mengubah data ketika disabled, dan Enter memilih wilayah tanpa mengirim form pendaftaran.
 
 Validasi: 21 tes frontend Node PASS; backend target 23 tes / 1.993 assertions PASS termasuk roundtrip wilayah pendaftaran; typecheck/build, migration/revision3 18/18, Pint dan diff check PASS. Smoke HTTP profil lokal menunjukkan field dan tab pemilih shared ter-render. Saat memeriksa Akun 2, akun tersebut sudah memiliki usaha dan diarahkan ke profil oleh guard; usaha pengguna dipertahankan, tidak dikosongkan untuk tes. UAT klik/search/save pada browser/mobile masih pending; tes Node/SSR bukan klaim pixel parity. Backend Rama, storefront main; NOT COMMITTED / NOT PUSHED.
+
+
+## 22. Akun demo di production - 6 November 2026
+
+Sesuai permintaan pengguna, tombol Akun 1/2/3 di `/login` sekarang tampil pada build development maupun production. Aturan ini menggantikan pembatas localhost/development di bagian 19-20. Tidak diperlukan variabel `.env` tambahan untuk menampilkan tombol.
+
+Ketiga tombol mengisi kredensial akun yang sama seperti sebelumnya. Pengguna tetap menekan Login, dan permintaan tetap melalui `/auth/login` beserta pemeriksaan sesi, usaha, dan langganan backend. Akun dan kredensial tersebut harus sudah tersedia di database backend yang dituju; perubahan frontstore ini tidak melakukan seed atau mengubah backend.
+
+Deploy ulang build frontstore dari `main` untuk menampilkan tombol di hosting. Tes integrasi mencakup tampilan production, pengisian ketiga akun, pengiriman melalui autentikasi biasa, dan penolakan kredensial oleh backend.

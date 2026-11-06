@@ -1,27 +1,32 @@
 import type { CuttingResult } from '~/composables/usePaperCutting'
-export interface ManualPaperLayout { canvasX: number; canvasY: number; cutX: number; cutY: number; position: string; columns: number; rows: number; remainderDirection: string; remainderPosition: string; remainderColumns: number; remainderRows: number }
+import { placementsFromGroups, validatePaperDimensions, type PaperGroup, type PaperOrientation, type RemainderDirection } from './planoCalculator'
+export interface ManualPaperLayout { canvasX: number; canvasY: number; cutX: number; cutY: number; position: string; columns: number; rows: number; remainderDirection: string; remainderPosition: string; remainderColumns: number; remainderRows: number; secondDirection?: string; secondPosition?: string; secondColumns?: number; secondRows?: number }
 export function buildManualPaperLayout(form: ManualPaperLayout, original: CuttingResult): CuttingResult {
- const dimensions = [form.canvasX, form.canvasY, form.cutX, form.cutY]
- if (dimensions.some(value => !Number.isFinite(value) || value <= 0 || value > 10000)) throw new Error('Ukuran harus lebih dari nol dan maksimal 10.000 mm.')
- const counts = [form.columns, form.rows, form.remainderColumns, form.remainderRows]
- if (counts.some(value => !Number.isInteger(value) || value < 0) || form.columns * form.rows + form.remainderColumns * form.remainderRows > 5000) throw new Error('Jumlah baris/kolom harus bulat; maksimal 5.000 potongan.')
- const a = form.position === 'Landscape' ? form.cutY : form.cutX
- const b = form.position === 'Landscape' ? form.cutX : form.cutY
- const rw = form.remainderPosition === 'Landscape' ? form.cutY : form.cutX
- const rh = form.remainderPosition === 'Landscape' ? form.cutX : form.cutY
- // Original generate-plano.js: adjacent boxes, no added gap or Qty clipping.
- const gap = 0
- const placements: CuttingResult['placements'] = []
- function grid(x: number, y: number, columns: number, rows: number, width: number, height: number, isRemainder = false) {
-   for (let i = 0; i < columns; i++) for (let j = 0; j < rows; j++) placements.push({ x: x + i * (width + gap), y: y + j * (height + gap), width, height, isRemainder })
+ const gap = original.gap ?? 0
+ validatePaperDimensions({ width: form.canvasX, height: form.canvasY, cutWidth: form.cutX, cutHeight: form.cutY, gap })
+ const short = Math.min(form.cutX, form.cutY), long = Math.max(form.cutX, form.cutY)
+ const a = form.position === 'Landscape' ? long : short, b = form.position === 'Landscape' ? short : long
+ const active = form.columns * form.rows > 0
+ function group(columns: number, rows: number, position: string, direction: string, primary = false): PaperGroup {
+   if (columns * rows > 0 && ((!primary && !['Kanan', 'Bawah'].includes(direction)) || !['Portrait', 'Landscape'].includes(position))) throw new Error('Pilih posisi dan arah untuk kelompok potongan yang diisi.')
+   return { columns, rows, orientation: position as PaperOrientation, direction: direction as RemainderDirection,
+     x: active && direction === 'Kanan' ? form.columns * (a + gap) : 0, y: active && direction === 'Bawah' ? form.rows * (b + gap) : 0,
+     width: position === 'Landscape' ? long : short, height: position === 'Landscape' ? short : long }
  }
- grid(0, 0, form.columns, form.rows, a, b)
- grid(form.remainderDirection === 'Kanan' ? form.columns * (a + gap) : 0, form.remainderDirection === 'Bawah' ? form.rows * (b + gap) : 0, form.remainderColumns, form.remainderRows, rw, rh, true)
- return { ...original, gap: 0, cutWidth: form.cutX, cutHeight: form.cutY, name: `${original.name} (manual)`, width: form.canvasX, height: form.canvasY, count: placements.length, utilization: Number((placements.length * form.cutX * form.cutY / (form.canvasX * form.canvasY) * 100).toFixed(2)), placements }
+ const groups = [group(form.columns, form.rows, form.position, '-', true), group(form.remainderColumns, form.remainderRows, form.remainderPosition, form.remainderDirection), group(form.secondColumns ?? 0, form.secondRows ?? 0, form.secondPosition ?? '-', form.secondDirection ?? '-')]
+ const placements = placementsFromGroups(groups, form.canvasX, form.canvasY, gap)
+ return { ...original, pattern: undefined, gap, cutWidth: short, cutHeight: long, name: `${original.name.replace(/ \(manual\)$/, '')} (manual)`, width: form.canvasX, height: form.canvasY, count: placements.length, utilization: Number((placements.length * short * long / (form.canvasX * form.canvasY) * 100).toFixed(2)), placements, groups }
 }
 
 
 export function manualFormFromResult(result: CuttingResult): ManualPaperLayout {
+ if (result.groups?.length) {
+  const [primary, remainder, second] = result.groups
+  return { canvasX: result.width, canvasY: result.height, cutX: result.cutWidth ?? 1, cutY: result.cutHeight ?? 1,
+    position: primary!.orientation, columns: primary!.columns, rows: primary!.rows,
+    remainderDirection: remainder?.direction ?? '-', remainderPosition: remainder?.orientation ?? '-', remainderColumns: remainder?.columns ?? 0, remainderRows: remainder?.rows ?? 0,
+    secondDirection: second?.direction ?? '-', secondPosition: second?.orientation ?? '-', secondColumns: second?.columns ?? 0, secondRows: second?.rows ?? 0 }
+ }
  const first = result.placements[0]
  const cutX = result.cutWidth ?? first?.width ?? 1
  const cutY = result.cutHeight ?? first?.height ?? 1

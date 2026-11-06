@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { CuttingResult } from '~/composables/usePaperCutting';
-import { manualFormFromResult, paperDimensionFields, type ManualPaperLayout } from '~/utils/manualPaperLayout';
+import { calculatePlano } from '~/utils/planoCalculator';
+import { buildPlanoSvg, downloadPlanoSvg } from '~/utils/planoSvg';
 const props = defineProps<{
     result: CuttingResult | null;
 }>();
@@ -8,32 +9,41 @@ const emit = defineEmits<{
     close: [
     ];
 }>();
-const manual = ref<CuttingResult | null>(null);
-const displayed = computed(() => manual.value ?? props.result);
 const unit = computed(() => props.result?.displayUnit ?? 'mm');
-const scale = computed(() => displayed.value ? Math.min(540 / displayed.value.width, 540 / displayed.value.height) : 1);
-const svgWidth = computed(() => (displayed.value?.width ?? 0) * scale.value + 60);
-const svgHeight = computed(() => (displayed.value?.height ?? 0) * scale.value + 60);
-const manualControls = ref<{ generate: () => void } | null>(null);
-const manualForm = reactive<ManualPaperLayout>({ canvasX: 1, canvasY: 1, cutX: 1, cutY: 1, position: 'Portrait', columns: 1, rows: 1, remainderDirection: '-', remainderPosition: '-', remainderColumns: 0, remainderRows: 0 });
-const dimensions = paperDimensionFields(manualForm, () => unit.value);
+const exportMode = ref<'CorelDRAW' | 'Universal'>('CorelDRAW');
+const dimensions = reactive({ canvasX: 0, canvasY: 0, cutX: 0, cutY: 0 });
 watch(() => props.result, result => {
-  manual.value = null;
   if (result) {
-    Object.assign(manualForm, manualFormFromResult(result));
+    const scale = unit.value === 'cm' ? 10 : 1;
+    Object.assign(dimensions, {
+      canvasX: result.width / scale, canvasY: result.height / scale,
+      cutX: (result.cutWidth ?? result.placements[0]?.width ?? 0) / scale,
+      cutY: (result.cutHeight ?? result.placements[0]?.height ?? 0) / scale,
+    });
   }
 }, { immediate: true });
-const svg = ref<SVGSVGElement | null>(null);
+const preview = computed<{ result: CuttingResult | null; error: string }>(() => {
+  if (!props.result) return { result: null, error: '' };
+  const scale = unit.value === 'cm' ? 10 : 1;
+  const width = Number(dimensions.canvasX) * scale, height = Number(dimensions.canvasY) * scale;
+  const cutWidth = Number(dimensions.cutX) * scale, cutHeight = Number(dimensions.cutY) * scale;
+  if (width === props.result.width && height === props.result.height
+      && cutWidth === (props.result.cutWidth ?? props.result.placements[0]?.width)
+      && cutHeight === (props.result.cutHeight ?? props.result.placements[0]?.height)) {
+    return { result: props.result, error: '' };
+  }
+  try {
+    const { candidates, ...layout } = calculatePlano({ width, height, cutWidth, cutHeight, gap: props.result.gap, displayUnit: unit.value });
+    const name = width === props.result.width && height === props.result.height ? props.result.name : `Plano ${dimensions.canvasX} × ${dimensions.canvasY} ${unit.value}`;
+    return { result: { ...props.result, ...layout, name }, error: '' };
+  } catch (cause: any) {
+    return { result: null, error: cause.message || 'Periksa ukuran plano dan potongan.' };
+  }
+});
+const displayed = computed(() => preview.value.result);
+const documentSvg = computed(() => displayed.value ? buildPlanoSvg(displayed.value, { mode: exportMode.value }) : null);
 function download() {
-    if (!svg.value)
-        return;
-    const blob = new Blob([new XMLSerializer().serializeToString(svg.value)], { type: 'image/svg+xml;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'layout-plano.svg';
-    link.click();
-    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    if (displayed.value) downloadPlanoSvg(displayed.value, { mode: exportMode.value });
 }
 let previousFocus: HTMLElement | null = null;
 let previousOverflow = '';
@@ -96,10 +106,10 @@ onBeforeUnmount(() => { window.removeEventListener('keydown', onKey); if (props.
         </div>
         <div class="modal-body">
           <div>
-            <h2 id="inline-style-kalkulator-potong-kertas-001">{{ displayed!.name }}</h2>
+            <h2 id="inline-style-kalkulator-potong-kertas-001">{{ displayed?.name ?? result.name }}</h2>
             <form
               class="d-md-flex d-inline-block align-items-end"
-              @submit.prevent="manualControls?.generate()"
+              @submit.prevent
               id="planoForm"
             >
               <div class="me-3">
@@ -141,31 +151,28 @@ onBeforeUnmount(() => { window.removeEventListener('keydown', onKey); if (props.
             </form>
             <div class="row p-2 mt-3">
               <p>Layout Potong Kertas</p>
-              <div class="col-lg-6">
+              <div class="col-12">
                 <div
                   class="svg-wrap p-2"
                   id="inline-style-kalkulator-potong-kertas-002"
                 >
-                  <svg id="planoSVG" ref="svg" xmlns="http://www.w3.org/2000/svg" :width="svgWidth" :height="svgHeight" :viewBox="`0 0 ${svgWidth} ${svgHeight}`">
-                    <g :transform="`translate(30 30) scale(${scale})`">
-                      <rect :width="displayed!.width" :height="displayed!.height" fill="#fff" stroke="#111" :stroke-width="3 / scale" />
-                      <rect v-for="(piece, index) in displayed!.placements" :key="index" :x="piece.x" :y="piece.y" :width="piece.width" :height="piece.height" :fill="(piece.isRemainder ?? (piece.width !== displayed!.placements[0]?.width)) ? '#fff7e6' : '#fff'" :stroke="(piece.isRemainder ?? (piece.width !== displayed!.placements[0]?.width)) ? '#e67e22' : '#111'" :stroke-width="2 / scale" />
-                    </g>
-                  </svg>
+                  <p v-if="preview.error" class="text-danger" role="alert">{{ preview.error }}</p>
+                  <svg v-if="documentSvg" id="planoSVG" xmlns="http://www.w3.org/2000/svg" width="100%" :viewBox="documentSvg.viewBox" role="img" :aria-label="`Layout ${displayed!.count} potongan`" v-html="documentSvg.body"></svg>
                   <br />
                   <div class="d-flex justify-content-end">
+                    <select v-model="exportMode" class="form-select w-auto mt-2 me-2" aria-label="Format SVG">
+                      <option value="CorelDRAW">CorelDRAW</option>
+                      <option value="Universal">Universal</option>
+                    </select>
                     <button
                       class="btn my-btn-primary mt-2 me-2"
-                      id="downloadSVG" @click="download"
+                      id="downloadSVG" @click="download" :disabled="!documentSvg"
                       type="button"
                     >
                       Download SVG
                     </button>
                   </div>
                 </div>
-              </div>
-              <div class="col-lg-6">
-                <PagesKalkulatorPotongKertasPatternManualControls ref="manualControls" :result="result" :form="manualForm" :dimensions="dimensions" :unit="unit" :count="displayed!.count" @layout="manual = $event" />
               </div>
             </div>
           </div>
